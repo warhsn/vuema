@@ -1,0 +1,1 @@
+"use strict";Object.defineProperty(exports,Symbol.toStringTag,{value:"Module"});const e=require("vue"),r=require("./_plugin-vue_export-helper-BHFhmbuH.cjs"),o={},n={href:"#",class:"dropdown-item"};function c(t,l){return e.openBlock(),e.createElementBlock("a",n,[e.renderSlot(t.$slots,"default")])}const s=r._export_sfc(o,[["render",c]]);exports.default=s;
