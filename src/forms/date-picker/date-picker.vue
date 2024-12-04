@@ -93,17 +93,7 @@ const state = reactive<DatePickerState>({
 const showPicker = computed(() => state.showingPicker)
 const displayYear = computed(() => state.currentDate.format('YYYY'))
 const today = computed(() => dayjs().format(props.format))
-
 const currentMonth = computed(() => state.currentDate.month())
-
-// Add new methods to handle month and year changes
-function handleMonthChange(month: number): void {
-    state.currentDate = state.currentDate.month(month)
-}
-
-function handleYearChange(year: number): void {
-    state.currentDate = state.currentDate.year(year)
-}
 
 const calendarDays = computed((): CalendarDay[] => {
     const prefillDays = generatePrefillDays()
@@ -134,15 +124,19 @@ function initializeDayjs(): void {
 
 function initializeState(): void {
     if (props.modelValue) {
-        state.currentDate = dayjs(String(props.modelValue)).isValid() 
-            ? dayjs(String(props.modelValue))
-            : dayjs()
-        emit('update:model-value', state.currentDate.format(props.format))
+        const initialDate = dayjs(String(props.modelValue))
+        if (initialDate.isValid()) {
+            state.currentDate = initialDate
+            state.selectedDate = initialDate.format(props.format)
+        } else {
+            state.currentDate = dayjs()
+            state.selectedDate = null
+        }
     } else {
         state.currentDate = dayjs()
+        state.selectedDate = null
     }
     
-    state.selectedDate = state.currentDate.format(props.format)
     state.minDate = props.minDate ? dayjs(props.minDate) : null
     state.maxDate = props.maxDate ? dayjs(props.maxDate) : null
 }
@@ -154,15 +148,103 @@ function handleClickOutside(event: MouseEvent): void {
     }
 }
 
+function handleManualInput(valueOrEvent: string | Event): void {
+    const inputValue = typeof valueOrEvent === 'string' 
+        ? valueOrEvent 
+        : (valueOrEvent.target as HTMLInputElement).value
+    
+    const trimmedValue = inputValue.trim()
+    
+    if (!trimmedValue) {
+        state.selectedDate = null
+        state.currentDate = dayjs()
+        emit('update:model-value', '')
+        return
+    }
+    
+    const parsedDate = dayjs(trimmedValue, props.format, true)
+    
+    if (parsedDate.isValid()) {
+        if (state.minDate && parsedDate.isBefore(state.minDate)) {
+            state.selectedDate = null
+            emit('update:model-value', '')
+            return
+        }
+        if (state.maxDate && parsedDate.isAfter(state.maxDate)) {
+            state.selectedDate = null
+            emit('update:model-value', '')
+            return
+        }
+        
+        state.currentDate = parsedDate
+        state.selectedDate = parsedDate.format(props.format)
+        emit('update:model-value', state.selectedDate)
+    } else {
+        state.selectedDate = null
+        emit('update:model-value', '')
+    }
+}
+
+function handleBlur(): void {
+    const value = state.selectedDate
+    
+    if (!value) {
+        state.selectedDate = null
+        state.currentDate = dayjs()
+        emit('update:model-value', '')
+        return
+    }
+    
+    const parsedDate = dayjs(value, props.format, true)
+    
+    if (!parsedDate.isValid()) {
+        state.selectedDate = null
+        state.currentDate = dayjs()
+        emit('update:model-value', '')
+        return
+    }
+    
+    if (state.minDate && parsedDate.isBefore(state.minDate)) {
+        state.selectedDate = null
+        state.currentDate = dayjs()
+        emit('update:model-value', '')
+        return
+    }
+    
+    if (state.maxDate && parsedDate.isAfter(state.maxDate)) {
+        state.selectedDate = null
+        state.currentDate = dayjs()
+        emit('update:model-value', '')
+        return
+    }
+}
+
 function togglePicker(): void {
     state.showingPicker = !state.showingPicker
 }
 
 function selectDate(date: string): void {
+    const selectedDate = dayjs(date)
+    
+    if (
+        (state.minDate && selectedDate.isBefore(state.minDate)) || 
+        (state.maxDate && selectedDate.isAfter(state.maxDate))
+    ) {
+        return
+    }
+    
     emit('update:model-value', date)
-    state.currentDate = dayjs(date)
-    state.selectedDate = state.currentDate.format(props.format)
+    state.currentDate = selectedDate
+    state.selectedDate = selectedDate.format(props.format)
     togglePicker()
+}
+
+function handleMonthChange(month: number): void {
+    state.currentDate = state.currentDate.month(month)
+}
+
+function handleYearChange(year: number): void {
+    state.currentDate = state.currentDate.year(year)
 }
 
 function goToPreviousMonth(): void {
@@ -173,7 +255,6 @@ function goToNextMonth(): void {
     state.currentDate = state.currentDate.add(1, 'month')
 }
 
-// Calendar generation helpers
 function generatePrefillDays(): CalendarDay[] {
     const firstDayOfMonth = state.currentDate.startOf('month').weekday()
     if (firstDayOfMonth === 0) return []
@@ -183,17 +264,19 @@ function generatePrefillDays(): CalendarDay[] {
     let daysInPreviousMonth = previousMonth.daysInMonth()
     
     const prefillDays: CalendarDay[] = [{
-        class: 'has-text-grey',
+        class: 'has-text-grey is-disabled',
         date: dayjs(`${previousMonthFormat}${daysInPreviousMonth}`),
-        day: daysInPreviousMonth
+        day: daysInPreviousMonth,
+        disabled: true  // Always true for prefill days
     }]
     
     for (let i = 0; i < firstDayOfMonth - 1; i++) {
         daysInPreviousMonth--
         prefillDays.unshift({
-            class: 'has-text-grey',
+            class: 'has-text-grey is-disabled',
             date: dayjs(`${previousMonthFormat}${daysInPreviousMonth}`),
-            day: daysInPreviousMonth
+            day: daysInPreviousMonth,
+            disabled: true  // Always true for prefill days
         })
     }
     
@@ -206,10 +289,16 @@ function generateCurrentMonthDays(): CalendarDay[] {
         .map((_, index) => {
             const day = (index + 1).toString().padStart(2, '0')
             const date = dayjs(`${state.currentDate.format('YYYY-MM-')}${day}`)
+            const isDisabled = !!(  // Convert to boolean with !!
+                (state.minDate && date.isBefore(state.minDate)) || 
+                (state.maxDate && date.isAfter(state.maxDate))
+            )
+            
             return {
-                class: '',
+                class: isDisabled ? 'has-text-grey is-disabled' : '',
                 date,
-                day: index + 1
+                day: index + 1,
+                disabled: isDisabled
             }
         })
 }
@@ -226,92 +315,18 @@ function generatePostfillDays(): CalendarDay[] {
         .map((_, index) => {
             const day = (index + 1).toString().padStart(2, '0')
             return {
-                class: 'has-text-grey',
+                class: 'has-text-grey is-disabled',
                 date: dayjs(`${nextMonthFormat}${day}`),
-                day: index + 1
+                day: index + 1,
+                disabled: true  // Always true for postfill days
             }
         })
 }
-
-function handleManualInput(valueOrEvent: string | Event): void {
-    // Extract the value whether we receive a string or an event
-    const inputValue = typeof valueOrEvent === 'string' 
-        ? valueOrEvent 
-        : (valueOrEvent.target as HTMLInputElement).value;
-    
-    const trimmedValue = inputValue.trim()
-    
-    // If the input is empty, clear the date
-    if (!trimmedValue) {
-        state.selectedDate = null
-        state.currentDate = dayjs()
-        emit('update:model-value', '')
-        return
-    }
-    
-    // Try to parse the input date
-    const parsedDate = dayjs(trimmedValue, props.format, true)
-    
-    if (parsedDate.isValid()) {
-        // Check if date is within min/max bounds
-        if (state.minDate && parsedDate.isBefore(state.minDate)) {
-            state.selectedDate = null
-            emit('update:model-value', '')
-            return
-        }
-        if (state.maxDate && parsedDate.isAfter(state.maxDate)) {
-            state.selectedDate = null
-            emit('update:model-value', '')
-            return
-        }
-        
-        // Update both the current date and selected date
-        state.currentDate = parsedDate
-        state.selectedDate = parsedDate.format(props.format)
-        emit('update:model-value', state.selectedDate)
-    } else {
-        // If invalid, clear the field
-        state.selectedDate = null
-        emit('update:model-value', '')
-    }
-}
-
-// Update handleBlur method:
-function handleBlur(): void {
-    const value = state.selectedDate
-    
-    // If empty, just emit empty string
-    if (!value) {
-        state.selectedDate = null
-        state.currentDate = dayjs()
-        emit('update:model-value', '')
-        return
-    }
-    
-    // Check if the date is valid
-    const parsedDate = dayjs(value, props.format, true)
-    
-    if (!parsedDate.isValid()) {
-        // Clear the field if date is invalid
-        state.selectedDate = null
-        state.currentDate = dayjs()
-        emit('update:model-value', '')
-        return
-    }
-    
-    // Check bounds if date is valid
-    if (state.minDate && parsedDate.isBefore(state.minDate)) {
-        state.selectedDate = null
-        state.currentDate = dayjs()
-        emit('update:model-value', '')
-        return
-    }
-    
-    if (state.maxDate && parsedDate.isAfter(state.maxDate)) {
-        state.selectedDate = null
-        state.currentDate = dayjs()
-        emit('update:model-value', '')
-        return
-    }
-}
 </script>
+
+<style scoped>
+.is-disabled {
+    cursor: not-allowed !important;
+    opacity: 0.5;
+}
+</style>

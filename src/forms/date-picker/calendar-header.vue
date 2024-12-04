@@ -1,51 +1,63 @@
 <template>
-    <div class="fixed-grid has-4-cols">
-        <div class="grid">
-            <div class="cell is-flex is-justify-content-start is-align-items-center">
-                <div 
-                    class="arrow prev is-clickable"
+    <div class="box p-2">
+        <div class="columns is-mobile is-centered is-gapless mb-0">
+            <div class="column is-narrow">
+                <button 
+                    class="button is-small"
                     @click.stop="$emit('previous-month')"
-                ></div>
+                >
+                    <span class="icon is-small">
+                        <i class="fas fa-chevron-left"></i>
+                    </span>
+                </button>
             </div>
-            <div class="cell is-col-span-2">
-                <div class="is-flex is-justify-content-center">
-                    <div class="select is-small mr-2">
-                        <select 
-                            :value="month" 
-                            @change="handleMonthChange"
-                            @click.stop
-                        >
-                            <option 
-                                v-for="(monthName, index) in months" 
-                                :key="monthName"
-                                :value="index"
+            <div class="column is-narrow px-2">
+                <div class="field is-grouped">
+                    <div class="control">
+                        <div class="select is-small">
+                            <select 
+                                :value="month"
+                                @change="handleMonthChange"
+                                @click.stop
                             >
-                                {{ monthName }}
-                            </option>
-                        </select>
+                                <option 
+                                    v-for="(monthName, index) in months" 
+                                    :key="monthName"
+                                    :value="index"
+                                >
+                                    {{ monthName }}
+                                </option>
+                            </select>
+                        </div>
                     </div>
-                    <div class="select is-small">
-                        <select 
-                            :value="year" 
-                            @change="handleYearChange"
-                            @click.stop
-                        >
-                            <option 
-                                v-for="yearNum in yearRange" 
-                                :key="yearNum"
-                                :value="yearNum"
+                    <div class="control">
+                        <div class="select is-small">
+                            <select 
+                                :value="year"
+                                @change="handleYearChange"
+                                @click.stop
                             >
-                                {{ yearNum }}
-                            </option>
-                        </select>
+                                <option 
+                                    v-for="yearNum in yearRange" 
+                                    :key="yearNum"
+                                    :value="yearNum"
+                                >
+                                    {{ yearNum }}
+                                </option>
+                            </select>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="cell is-flex is-justify-content-end is-align-items-center">
-                <div 
-                    class="arrow next is-clickable is-pulled-right"
+            <div class="column is-narrow">
+                <button 
+                    class="button is-small"
                     @click.stop="$emit('next-month')"
-                ></div>
+                >
+                    <span class="icon is-small">
+                        <i class="fas fa-chevron-right"></i>
+                    </span>
+                </button>
             </div>
         </div>
     </div>
@@ -58,13 +70,11 @@ import type { CalendarHeaderProps, CalendarHeaderEmits } from './types'
 const props = defineProps<CalendarHeaderProps>()
 const emit = defineEmits<CalendarHeaderEmits>()
 
-// Array of month names
 const months = [
     'January', 'February', 'March', 'April', 'May', 'June',
     'July', 'August', 'September', 'October', 'November', 'December'
 ]
 
-// Generate year range (20 years before and after current year)
 const currentYear = new Date().getFullYear()
 const yearRange = computed(() => {
     const years: number[] = []
@@ -86,9 +96,3 @@ function handleYearChange(event: Event) {
     emit('year-change', newYear)
 }
 </script>
-
-<style scoped>
-.select select {
-    padding-right: 2rem;
-}
-</style>

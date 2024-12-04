@@ -49,6 +49,11 @@ export interface CalendarDay {
      * The day number (1-31)
      */
     day: number
+
+    /**
+     * Whether the date is disabled (outside min/max range or not in current month)
+     */
+    disabled: boolean
 }
 
 // State Interface for DatePicker
@@ -89,7 +94,7 @@ export interface CalendarHeaderProps {
     /**
      * The current year
      */
-    year: number | string
+    year: string | number
 }
 
 // Calendar Grid Props
@@ -120,7 +125,6 @@ export interface DatePickerEmits {
     (e: 'update:model-value', value: string): void
 }
 
-// Calendar Header Emits
 export interface CalendarHeaderEmits {
     (e: 'previous-month'): void
     (e: 'next-month'): void

@@ -38,6 +38,10 @@ export interface CalendarDay {
      * The day number (1-31)
      */
     day: number;
+    /**
+     * Whether the date is disabled (outside min/max range or not in current month)
+     */
+    disabled: boolean;
 }
 export interface DatePickerState {
     /**
@@ -69,7 +73,7 @@ export interface CalendarHeaderProps {
     /**
      * The current year
      */
-    year: number | string;
+    year: string | number;
 }
 export interface CalendarGridProps {
     /**
