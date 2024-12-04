@@ -20,28 +20,30 @@
             <slot />
             
             <template #inner>
-                <box 
-                    v-show="showPicker" 
-                    class="b-date-picker-window"
-                    @click.stop
-                >
-                    <calendar-header 
-                        :month="currentMonth"
-                        :year="displayYear"
-                        @previous-month="goToPreviousMonth"
-                        @next-month="goToNextMonth"
-                        @month-change="handleMonthChange"
-                        @year-change="handleYearChange"
-                    />
-                    
-                    <calendar-grid 
-                        :calendar-days="calendarDays"
-                        :today="today"
-                        :selected-date="state.selectedDate"
-                        :date-format="props.format"
-                        @select-date="selectDate"
-                    />
-                </box>
+                <transition name="vuema-fade" mode="in-out">
+                    <box 
+                        v-if="showPicker" 
+                        class="b-date-picker-window"
+                        @click.stop
+                    >
+                        <calendar-header 
+                            :month="currentMonth"
+                            :year="displayYear"
+                            @previous-month="goToPreviousMonth"
+                            @next-month="goToNextMonth"
+                            @month-change="handleMonthChange"
+                            @year-change="handleYearChange"
+                        />
+                        
+                        <calendar-grid 
+                            :calendar-days="calendarDays"
+                            :today="today"
+                            :selected-date="state.selectedDate"
+                            :date-format="props.format"
+                            @select-date="selectDate"
+                        />
+                    </box>
+                </transition>
             </template>
         </text-input>
     </div>

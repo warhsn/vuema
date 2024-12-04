@@ -1,13 +1,14 @@
 <template>
-    <div class="box p-2">
-        <div class="columns is-mobile is-centered is-gapless mb-0">
+    <div class="mb-3">
+        <div class="columns is-mobile">
             <div class="column is-narrow">
                 <button 
                     class="button is-small"
-                    @click.stop="$emit('previous-month')"
-                >
+                    @click.stop="$emit('previous-month')">
                     <span class="icon is-small">
-                        <i class="fas fa-chevron-left"></i>
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                            <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/>
+                        </svg>
                     </span>
                 </button>
             </div>
@@ -55,7 +56,9 @@
                     @click.stop="$emit('next-month')"
                 >
                     <span class="icon is-small">
-                        <i class="fas fa-chevron-right"></i>
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                            <path d="M8.59 7.41L10 6l6 6-6 6-1.41-1.41L13.17 12z"/>
+                        </svg>
                     </span>
                 </button>
             </div>

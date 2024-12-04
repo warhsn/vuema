@@ -1,1 +1,11 @@
-@import './forms/tag-input.scss';
+@use './forms/tag-input.scss';
+
+.vuema-fade-enter-active,
+.vuema-fade-leave-active {
+    transition: opacity .5s ease;
+}
+
+.vuema-fade-enter-from,
+.vuema-fade-leave-to {
+    opacity: 0;
+}

@@ -1,5 +1,5 @@
 <template>
-    <div class="box p-2">
+    <div>
         <div class="has-text-centered">
             <div class="columns is-mobile mb-0 has-text-weight-semibold">
                 <div class="column p-1" v-for="day in weekDays" :key="day">{{ day }}</div>

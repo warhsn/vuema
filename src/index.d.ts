@@ -1,9 +1,9 @@
 import type { Plugin } from 'vue'
 
-export interface VueBulmaOptions {
+export interface VuemaOptions {
     theme?: string;
 }
 
-declare const VueBulma: Plugin
+declare const Vuema: Plugin
 
-export default VueBulma
+export default Vuema
