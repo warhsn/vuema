@@ -1,6 +1,6 @@
 <template>
-    <Transition name="modal">
-        <div v-show="isActive" class="modal" :class="{
+    <Transition name="modal" mode="in-out">
+        <div v-if="isActive" class="modal" :class="{
             'is-active': isActive
         }">
             <div @click="dismiss" class="modal-background"></div>
@@ -30,11 +30,12 @@
                     <slot />
                 </div>
         
-                <button  @click="close" v-if="(!isCard || !withHeader) && isCloseable" class="modal-close is-large" aria-label="close"></button>
+                <button @click="close" v-if="(!isCard || !withHeader) && isCloseable" class="modal-close is-large" aria-label="close"></button>
             </div>
         </div>
     </Transition>
 </template>
+
 <script setup lang="ts">
 import { _Modal } from '../interfaces/modal'
 
@@ -65,24 +66,33 @@ function dismiss(): void {
     if (props.isDismisable) {
         emit('close')
     }
-    
 }
-
 </script>
+
 <style scoped>
 .modal {
-    transition: opacity 0.35s ease-in-out;
-}
-.modal-enter-from {
-    opacity: 0;
+    opacity: 1;
+    transition: all 0.3s ease;
 }
 
+.modal-enter-active,
+.modal-leave-active {
+    transition: all 0.3s ease;
+}
+
+.modal-enter-from,
 .modal-leave-to {
     opacity: 0;
 }
 
-.modal-enter-from .modal, .modal-leave-to .modal {
-    -webkit-transform: scale(1.1);
+.modal-enter-from .modal-wrapper,
+.modal-leave-to .modal-wrapper {
     transform: scale(1.1);
+    transition: transform 0.3s ease;
+}
+
+.modal-wrapper {
+    transform: scale(1);
+    transition: transform 0.3s ease;
 }
 </style>

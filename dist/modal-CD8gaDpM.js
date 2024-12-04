@@ -1,18 +1,18 @@
-import { defineComponent as k, resolveComponent as v, openBlock as o, createBlock as r, Transition as b, withCtx as c, withDirectives as w, createElementVNode as a, normalizeClass as u, createElementBlock as s, toDisplayString as B, createCommentVNode as t, renderSlot as l, createTextVNode as _, vShow as D } from "vue";
-import { _ as N } from "./_plugin-vue_export-helper-CHgC5LLL.js";
-const $ = {
+import { defineComponent as h, resolveComponent as b, openBlock as o, createBlock as r, Transition as v, withCtx as c, createElementBlock as s, normalizeClass as u, createElementVNode as i, toDisplayString as B, createCommentVNode as t, renderSlot as a, createTextVNode as w } from "vue";
+import { _ } from "./_plugin-vue_export-helper-CHgC5LLL.js";
+const N = {
   key: 0,
   class: "modal-card-head"
-}, g = { class: "modal-card-title" }, A = { key: 0 }, H = {
+}, $ = { class: "modal-card-title" }, g = { key: 0 }, A = {
   key: 1,
   class: "modal-card-body"
-}, S = {
+}, D = {
   key: 2,
   class: "modal-card-foot"
-}, V = {
+}, H = {
   key: 3,
   class: "box is-clipped"
-}, E = /* @__PURE__ */ k({
+}, V = /* @__PURE__ */ h({
   __name: "modal",
   props: {
     withCancel: { type: Boolean },
@@ -28,39 +28,43 @@ const $ = {
   },
   emits: ["close"],
   setup(m, { emit: p }) {
-    const f = m, i = p;
+    const f = m, l = p;
     function d() {
-      i("close");
+      l("close");
     }
     function C() {
-      i("close");
+      l("close");
     }
-    function h() {
-      f.isDismisable && i("close");
+    function y() {
+      f.isDismisable && l("close");
     }
     return (e, n) => {
-      const y = v("action-button");
-      return o(), r(b, { name: "modal" }, {
+      const k = b("action-button");
+      return o(), r(v, {
+        name: "modal",
+        mode: "in-out"
+      }, {
         default: c(() => [
-          w(a("div", {
+          e.isActive ? (o(), s("div", {
+            key: 0,
             class: u(["modal", {
               "is-active": e.isActive
             }])
           }, [
-            a("div", {
-              onClick: h,
+            i("div", {
+              onClick: y,
               class: "modal-background"
             }),
-            a("div", {
+            i("div", {
               class: u(["modal-wrapper", {
                 "modal-card": e.isCard,
                 "modal-content": !e.isCard
               }])
             }, [
-              e.withHeader && e.isCard ? (o(), s("header", $, [
-                a("p", g, [
-                  e.title ? (o(), s("span", A, B(e.title), 1)) : t("", !0),
-                  l(e.$slots, "title", {}, void 0, !0)
+              e.withHeader && e.isCard ? (o(), s("header", N, [
+                i("p", $, [
+                  e.title ? (o(), s("span", g, B(e.title), 1)) : t("", !0),
+                  a(e.$slots, "title", {}, void 0, !0)
                 ]),
                 e.isCloseable ? (o(), s("button", {
                   key: 0,
@@ -69,23 +73,23 @@ const $ = {
                   "aria-label": "close"
                 })) : t("", !0)
               ])) : t("", !0),
-              e.isCard ? (o(), s("section", H, [
-                l(e.$slots, "default", {}, void 0, !0)
+              e.isCard ? (o(), s("section", A, [
+                a(e.$slots, "default", {}, void 0, !0)
               ])) : t("", !0),
-              e.withFooter && e.isCard ? (o(), s("footer", S, [
-                e.withCancel ? (o(), r(y, {
+              e.withFooter && e.isCard ? (o(), s("footer", D, [
+                e.withCancel ? (o(), r(k, {
                   key: 0,
                   onClick: C
                 }, {
                   default: c(() => n[0] || (n[0] = [
-                    _(" Cancel ")
+                    w(" Cancel ")
                   ])),
                   _: 1
                 })) : t("", !0),
-                l(e.$slots, "footer", {}, void 0, !0)
+                a(e.$slots, "footer", {}, void 0, !0)
               ])) : t("", !0),
-              e.isCard ? t("", !0) : (o(), s("div", V, [
-                l(e.$slots, "default", {}, void 0, !0)
+              e.isCard ? t("", !0) : (o(), s("div", H, [
+                a(e.$slots, "default", {}, void 0, !0)
               ])),
               (!e.isCard || !e.withHeader) && e.isCloseable ? (o(), s("button", {
                 key: 4,
@@ -94,15 +98,13 @@ const $ = {
                 "aria-label": "close"
               })) : t("", !0)
             ], 2)
-          ], 2), [
-            [D, e.isActive]
-          ])
+          ], 2)) : t("", !0)
         ]),
         _: 3
       });
     };
   }
-}), z = /* @__PURE__ */ N(E, [["__scopeId", "data-v-2054ee70"]]);
+}), S = /* @__PURE__ */ _(V, [["__scopeId", "data-v-ec83da24"]]);
 export {
-  z as default
+  S as default
 };
