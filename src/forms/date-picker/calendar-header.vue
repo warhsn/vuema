@@ -41,7 +41,7 @@
                     </div>
                 </div>
             </div>
-            <div class="cell">
+            <div class="cell is-flex is-justify-content-end is-align-items-center">
                 <div 
                     class="arrow next is-clickable is-pulled-right"
                     @click.stop="$emit('next-month')"
