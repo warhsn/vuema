@@ -3,11 +3,10 @@
     <field-label :required="required">
         <slot />
     </field-label>
-    <div class="control">
+    <div class="radios">
         <label 
             @click="onInput(item.id)" 
             class="radio" 
-            
             v-for="(item, index) in items" 
             :key="index"
         >

@@ -1,6 +1,6 @@
 import { defineComponent as c, resolveComponent as y, openBlock as n, createElementBlock as t, createVNode as u, withCtx as B, renderSlot as m, createElementVNode as l, Fragment as _, renderList as f, unref as b, createTextVNode as h, toDisplayString as k } from "vue";
 import { _ as g } from "./strings-EXVz6iyo.js";
-const N = { class: "control" }, C = ["onClick"], V = ["checked", "name", "disabled"], I = "update:modelValue", T = /* @__PURE__ */ c({
+const N = { class: "radios" }, C = ["onClick"], V = ["checked", "name", "disabled"], I = "update:modelValue", T = /* @__PURE__ */ c({
   __name: "radio-input",
   props: {
     items: {},

@@ -1,7 +1,7 @@
-import { defineComponent as E, ref as $, computed as y, resolveComponent as m, openBlock as n, createElementBlock as c, createVNode as u, withCtx as h, renderSlot as f, createElementVNode as d, normalizeClass as o, createCommentVNode as i, createBlock as v } from "vue";
+import { defineComponent as _, ref as $, computed as y, resolveComponent as m, openBlock as n, createElementBlock as d, createVNode as c, withCtx as h, renderSlot as f, createElementVNode as u, normalizeClass as o, createCommentVNode as i, createBlock as v } from "vue";
 import { _ as N } from "./errors-BZdmzG52.js";
 import { _ as T } from "./field-error.vue_vue_type_script_setup_true_lang-DiGo15DQ.js";
-const q = ["type", "placeholder", "disabled", "value"], L = { class: "control" }, P = "update:modelValue", A = /* @__PURE__ */ E({
+const q = ["type", "placeholder", "disabled", "value"], L = { class: "control" }, P = "update:modelValue", A = /* @__PURE__ */ _({
   __name: "password-input",
   props: {
     modelValue: {},
@@ -69,20 +69,20 @@ const q = ["type", "placeholder", "disabled", "value"], L = { class: "control" }
       return e;
     });
     return (e, a) => {
-      const t = m("field-label"), p = m("b-icon"), _ = m("action-button");
-      return n(), c("div", null, [
-        u(t, { required: e.required }, {
+      const t = m("field-label"), p = m("b-icon"), E = m("action-button");
+      return n(), d("div", null, [
+        c(t, { required: e.required }, {
           default: h(() => [
             f(e.$slots, "default")
           ]),
           _: 3
         }, 8, ["required"]),
-        d("div", {
+        u("div", {
           class: o(["field", {
             "has-addons": e.hasAddons || e.withToggle
           }])
         }, [
-          e.$slots.left ? (n(), c("div", {
+          e.$slots.left ? (n(), d("div", {
             key: 0,
             class: o(["control", s.value])
           }, [
@@ -90,14 +90,14 @@ const q = ["type", "placeholder", "disabled", "value"], L = { class: "control" }
               class: o(s.value)
             })
           ], 2)) : i("", !0),
-          d("div", {
+          u("div", {
             class: o(["control", {
               "has-icons-left": e.leftIcon,
               "has-icons-right": e.rightIcon,
               "is-expanded": e.isExpanded
             }])
           }, [
-            d("input", {
+            u("input", {
               type: r.value ? "text" : "password",
               class: o(["input", g.value]),
               placeholder: e.placeholder,
@@ -116,31 +116,32 @@ const q = ["type", "placeholder", "disabled", "value"], L = { class: "control" }
               icon: e.rightIcon
             }, null, 8, ["class", "icon"])) : i("", !0)
           ], 2),
-          e.$slots.right ? (n(), c("div", {
+          e.$slots.right ? (n(), d("div", {
             key: 1,
             class: o(["control", s.value])
           }, [
             f(e.$slots, "right")
           ], 2)) : i("", !0),
-          e.withToggle ? (n(), c("div", {
+          e.withToggle ? (n(), d("div", {
             key: 2,
             class: o(["control", s.value])
           }, [
-            u(_, {
+            c(E, {
+              disabled: e.disabled,
               class: o(V.value),
               onClick: w
             }, {
               default: h(() => [
-                u(p, {
+                c(p, {
                   icon: r.value ? "eye" : "eye-slash"
                 }, null, 8, ["icon"])
               ]),
               _: 1
-            }, 8, ["class"])
+            }, 8, ["disabled", "class"])
           ], 2)) : i("", !0)
         ], 2),
-        d("div", L, [
-          u(T, { error: e.error }, null, 8, ["error"])
+        u("div", L, [
+          c(T, { error: e.error }, null, 8, ["error"])
         ])
       ]);
     };

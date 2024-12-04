@@ -27,7 +27,10 @@
                 <slot name="right" />
             </div>
             <div v-if="withToggle" class="control" :class="sizes">
-                <action-button :class="toggleButtonClasses" @click="togglePasswordVisibility">
+                <action-button 
+                    :disabled="disabled"
+                    :class="toggleButtonClasses" 
+                    @click="togglePasswordVisibility">
                     <b-icon :icon="showingPassword ? 'eye' : 'eye-slash'"/>
                 </action-button>
             </div>

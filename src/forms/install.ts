@@ -13,5 +13,5 @@ export default function (app: any) {
     app.component('tag-input', defineAsyncComponent(() => import('./tag-input.vue')))
     app.component('file-input', defineAsyncComponent(() => import('./file-input.vue')))
     app.component('number-input', defineAsyncComponent(() => import('./number-input.vue')))
-    app.component('date-picker', defineAsyncComponent(() => import('./date-picker.vue')))
+    app.component('date-picker', defineAsyncComponent(() => import('./date-picker/date-picker.vue')))
 }
