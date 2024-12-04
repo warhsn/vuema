@@ -1,7 +1,7 @@
 <template>
     <div class="fixed-grid has-4-cols">
         <div class="grid">
-            <div class="cell">
+            <div class="cell is-flex is-justify-content-start is-align-items-center">
                 <div 
                     class="arrow prev is-clickable"
                     @click.stop="$emit('previous-month')"
