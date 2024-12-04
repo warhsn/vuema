@@ -1,6 +1,6 @@
 {
   "name": "@hanseninc/vuema",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Bulma for Vuejs",
   "type": "module",
   "main": "./dist/index.cjs.js",
