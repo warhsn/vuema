@@ -11,7 +11,7 @@ const d = { class: "dropdown-trigger" }, _ = {
   setup(e) {
     const n = e;
     return (t, u) => {
-      const s = r("icon");
+      const s = r("b-icon");
       return i(), a("div", d, [
         o("button", _, [
           o("span", null, [

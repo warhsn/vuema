@@ -23,7 +23,17 @@ const _class = computed(() => {
         'is-10': props.is10,
         'is-11': props.is11,
         'is-12': props.is12,
-        'is-narrow': props.isNarrow
+        'is-narrow': props.isNarrow,
+        'is-mobile': props.isMobile,
+        'is-desktop': props.isDesktop,
+        'is-half': props.isHalf,
+        'is-three-quarters-mobile': props.isThreeQuartersMobile,
+        'is-two-thirds-tablet': props.isTwoThirdsTablet,
+        'is-half-desktop': props.isHalfDesktop,
+        'is-one-third-widescreen': props.isOneThirdWidescreen,
+        'is-one-quarter-fullhd': props.isOneQuarterFullhd,
+        'is-gapless': props.isGapless,
+        'is-multiline': props.isMultiline,
     }
 })
 </script>

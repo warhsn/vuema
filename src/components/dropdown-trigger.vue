@@ -5,7 +5,7 @@
                 <slot :is-active="props.isActive"/>
             </span>
             <span class="icon is-small">
-                <icon icon="angle-down" icon-type="fa-solid"/>
+                <b-icon icon="angle-down" icon-type="fas"/>
             </span>
         </button>
     </div>
