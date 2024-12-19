@@ -48,6 +48,7 @@ const _class = computed(() => {
         'is-hovered': props.isHovered,
         'is-focused': props.isFocused,
         'is-active': props.isActive,
+        'is-static': props.isStatic,
     }
 })
 

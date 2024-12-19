@@ -16,4 +16,5 @@ export interface _Buttons extends _Addons, _Align, _Processing, _Sizes, _Status,
     isHovered?: boolean
     isFocused?: boolean
     isActive?: boolean
+    isStatic?: boolean
 }

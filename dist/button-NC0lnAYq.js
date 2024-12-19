@@ -1,12 +1,12 @@
-import { defineComponent as r, computed as c, resolveComponent as y, openBlock as i, createElementBlock as s, normalizeClass as B, withModifiers as d, createVNode as u, createCommentVNode as n, createElementVNode as m, renderSlot as g, createBlock as h } from "vue";
-const f = {
+import { defineComponent as c, computed as r, resolveComponent as y, openBlock as i, createElementBlock as s, normalizeClass as d, withModifiers as B, createVNode as u, createCommentVNode as n, createElementVNode as m, renderSlot as g, createBlock as h } from "vue";
+const I = ["disabled"], f = {
   key: 0,
   class: "icon"
-}, v = {
+}, k = {
   key: 1,
   class: "icon"
-}, b = /* @__PURE__ */ r({
-  __name: "submit-button",
+}, b = /* @__PURE__ */ c({
+  __name: "button",
   props: {
     disabled: { type: Boolean },
     isSelected: { type: Boolean },
@@ -17,6 +17,7 @@ const f = {
     isHovered: { type: Boolean },
     isFocused: { type: Boolean },
     isActive: { type: Boolean },
+    isStatic: { type: Boolean },
     hasAddons: { type: Boolean },
     align: {},
     loading: { type: Boolean },
@@ -68,7 +69,7 @@ const f = {
     rightIconType: {}
   },
   setup(a) {
-    const e = a, p = c(() => ({
+    const e = a, p = r(() => ({
       "is-success": e.isSuccess,
       "is-warning": e.isWarning,
       "is-danger": e.isDanger,
@@ -93,28 +94,34 @@ const f = {
       "is-fullwidth": e.isFullwidth,
       "is-hovered": e.isHovered,
       "is-focused": e.isFocused,
-      "is-active": e.isActive
+      "is-active": e.isActive,
+      "is-static": e.isStatic
     }));
     return (o, t) => {
       const l = y("b-icon");
       return i(), s("button", {
-        type: "submit",
-        class: B(["button", p.value]),
-        onClick: t[0] || (t[0] = d((I) => o.$emit("submit"), ["prevent"]))
+        class: d(["button", p.value]),
+        onClick: t[0] || (t[0] = B(() => {
+        }, ["prevent"])),
+        disabled: o.disabled
       }, [
         o.leftIcon ? (i(), s("span", f, [
-          u(l, { icon: o.leftIcon }, null, 8, ["icon"])
+          u(l, {
+            icon: o.leftIcon,
+            "icon-type": o.leftIconType
+          }, null, 8, ["icon", "icon-type"])
         ])) : n("", !0),
         m("span", null, [
           g(o.$slots, "default")
         ]),
-        o.rightIcon ? (i(), s("span", v, [
+        o.rightIcon ? (i(), s("span", k, [
           o.rightIcon ? (i(), h(l, {
             key: 0,
-            icon: o.rightIcon
-          }, null, 8, ["icon"])) : n("", !0)
+            icon: o.rightIcon,
+            "icon-type": o.rightIconType
+          }, null, 8, ["icon", "icon-type"])) : n("", !0)
         ])) : n("", !0)
-      ], 2);
+      ], 10, I);
     };
   }
 });

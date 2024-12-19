@@ -1,5 +1,5 @@
 import { defineComponent as l, computed as t, openBlock as s, createElementBlock as i, normalizeClass as p, renderSlot as y } from "vue";
-const d = /* @__PURE__ */ l({
+const c = /* @__PURE__ */ l({
   __name: "buttons",
   props: {
     disabled: { type: Boolean },
@@ -11,6 +11,7 @@ const d = /* @__PURE__ */ l({
     isHovered: { type: Boolean },
     isFocused: { type: Boolean },
     isActive: { type: Boolean },
+    isStatic: { type: Boolean },
     hasAddons: { type: Boolean },
     align: {},
     loading: { type: Boolean },
@@ -81,5 +82,5 @@ const d = /* @__PURE__ */ l({
   }
 });
 export {
-  d as default
+  c as default
 };

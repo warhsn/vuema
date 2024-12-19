@@ -1,12 +1,12 @@
-import { defineComponent as r, computed as c, resolveComponent as y, openBlock as i, createElementBlock as s, normalizeClass as d, withModifiers as B, createVNode as u, createCommentVNode as n, createElementVNode as m, renderSlot as g, createBlock as h } from "vue";
-const I = ["disabled"], f = {
+import { defineComponent as r, computed as c, resolveComponent as y, openBlock as i, createElementBlock as s, normalizeClass as B, withModifiers as d, createVNode as u, createCommentVNode as n, createElementVNode as m, renderSlot as g, createBlock as h } from "vue";
+const f = {
   key: 0,
   class: "icon"
-}, k = {
+}, v = {
   key: 1,
   class: "icon"
 }, b = /* @__PURE__ */ r({
-  __name: "button",
+  __name: "submit-button",
   props: {
     disabled: { type: Boolean },
     isSelected: { type: Boolean },
@@ -17,6 +17,7 @@ const I = ["disabled"], f = {
     isHovered: { type: Boolean },
     isFocused: { type: Boolean },
     isActive: { type: Boolean },
+    isStatic: { type: Boolean },
     hasAddons: { type: Boolean },
     align: {},
     loading: { type: Boolean },
@@ -93,33 +94,29 @@ const I = ["disabled"], f = {
       "is-fullwidth": e.isFullwidth,
       "is-hovered": e.isHovered,
       "is-focused": e.isFocused,
-      "is-active": e.isActive
+      "is-active": e.isActive,
+      "is-static": e.isStatic
     }));
     return (o, t) => {
       const l = y("b-icon");
       return i(), s("button", {
-        class: d(["button", p.value]),
-        onClick: t[0] || (t[0] = B(() => {
-        }, ["prevent"])),
-        disabled: o.disabled
+        type: "submit",
+        class: B(["button", p.value]),
+        onClick: t[0] || (t[0] = d((I) => o.$emit("submit"), ["prevent"]))
       }, [
         o.leftIcon ? (i(), s("span", f, [
-          u(l, {
-            icon: o.leftIcon,
-            "icon-type": o.leftIconType
-          }, null, 8, ["icon", "icon-type"])
+          u(l, { icon: o.leftIcon }, null, 8, ["icon"])
         ])) : n("", !0),
         m("span", null, [
           g(o.$slots, "default")
         ]),
-        o.rightIcon ? (i(), s("span", k, [
+        o.rightIcon ? (i(), s("span", v, [
           o.rightIcon ? (i(), h(l, {
             key: 0,
-            icon: o.rightIcon,
-            "icon-type": o.rightIconType
-          }, null, 8, ["icon", "icon-type"])) : n("", !0)
+            icon: o.rightIcon
+          }, null, 8, ["icon"])) : n("", !0)
         ])) : n("", !0)
-      ], 10, I);
+      ], 2);
     };
   }
 });
