@@ -4,15 +4,9 @@
         @click.prevent
         :class="_class"
         :disabled="disabled">
-            <span v-if="leftIcon" class="icon">
-                <b-icon :icon="leftIcon" :icon-type="leftIconType"/>
-            </span>
-            <span>
-                <slot />
-            </span>
-            <span v-if="rightIcon" class="icon">
-                <b-icon v-if="rightIcon" :icon="rightIcon" :icon-type="rightIconType"/>
-            </span>
+            <b-icon v-if="leftIcon" :icon="leftIcon" :icon-type="leftIconType"/>
+            <slot />
+            <b-icon v-if="rightIcon" :icon="rightIcon" :icon-type="rightIconType"/>
     </button>
 </template>
 <script setup lang="ts">

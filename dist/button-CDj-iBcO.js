@@ -1,11 +1,5 @@
-import { defineComponent as c, computed as r, resolveComponent as y, openBlock as i, createElementBlock as s, normalizeClass as d, withModifiers as B, createVNode as u, createCommentVNode as n, createElementVNode as m, renderSlot as g, createBlock as h } from "vue";
-const I = ["disabled"], f = {
-  key: 0,
-  class: "icon"
-}, k = {
-  key: 1,
-  class: "icon"
-}, b = /* @__PURE__ */ c({
+import { defineComponent as y, computed as r, resolveComponent as c, openBlock as i, createElementBlock as B, normalizeClass as d, withModifiers as u, createBlock as t, createCommentVNode as l, renderSlot as m } from "vue";
+const g = ["disabled"], f = /* @__PURE__ */ y({
   __name: "button",
   props: {
     disabled: { type: Boolean },
@@ -97,34 +91,29 @@ const I = ["disabled"], f = {
       "is-active": e.isActive,
       "is-static": e.isStatic
     }));
-    return (o, t) => {
-      const l = y("b-icon");
-      return i(), s("button", {
+    return (o, s) => {
+      const n = c("b-icon");
+      return i(), B("button", {
         class: d(["button", p.value]),
-        onClick: t[0] || (t[0] = B(() => {
+        onClick: s[0] || (s[0] = u(() => {
         }, ["prevent"])),
         disabled: o.disabled
       }, [
-        o.leftIcon ? (i(), s("span", f, [
-          u(l, {
-            icon: o.leftIcon,
-            "icon-type": o.leftIconType
-          }, null, 8, ["icon", "icon-type"])
-        ])) : n("", !0),
-        m("span", null, [
-          g(o.$slots, "default")
-        ]),
-        o.rightIcon ? (i(), s("span", k, [
-          o.rightIcon ? (i(), h(l, {
-            key: 0,
-            icon: o.rightIcon,
-            "icon-type": o.rightIconType
-          }, null, 8, ["icon", "icon-type"])) : n("", !0)
-        ])) : n("", !0)
-      ], 10, I);
+        o.leftIcon ? (i(), t(n, {
+          key: 0,
+          icon: o.leftIcon,
+          "icon-type": o.leftIconType
+        }, null, 8, ["icon", "icon-type"])) : l("", !0),
+        m(o.$slots, "default"),
+        o.rightIcon ? (i(), t(n, {
+          key: 1,
+          icon: o.rightIcon,
+          "icon-type": o.rightIconType
+        }, null, 8, ["icon", "icon-type"])) : l("", !0)
+      ], 10, g);
     };
   }
 });
 export {
-  b as default
+  f as default
 };
