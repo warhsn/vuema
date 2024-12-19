@@ -7,6 +7,9 @@ export interface _Icons
 
     leftIcon?: string,
     iconClasses?: string,
+    leftIconClass?: string,
     leftIconType?: string,
+    rightIconClass?: string,
     rightIcon?: string
+    rightIconType?: string,
 }

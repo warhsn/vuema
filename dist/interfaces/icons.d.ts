@@ -5,6 +5,9 @@ export interface _Icons {
     textIcon?: boolean;
     leftIcon?: string;
     iconClasses?: string;
+    leftIconClass?: string;
     leftIconType?: string;
+    rightIconClass?: string;
     rightIcon?: string;
+    rightIconType?: string;
 }

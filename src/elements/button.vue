@@ -11,7 +11,7 @@
                 <slot />
             </span>
             <span v-if="rightIcon" class="icon">
-                <b-icon v-if="rightIcon" :icon="rightIcon"/>
+                <b-icon v-if="rightIcon" :icon="rightIcon" :icon-type="rightIconType"/>
             </span>
     </button>
 </template>
