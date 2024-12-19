@@ -10,12 +10,30 @@ import { _Buttons } from '../interfaces/buttons'
 
     const props = defineProps<_Buttons>()
 
-    const classes = computed(() => {
-        const classes = []
+    type ButtonClasses = {
+        'has-addons': boolean;
+        'is-rounded': boolean;
+        'are-normal': boolean;
+        'are-small': boolean;
+        'are-medium': boolean;
+        'are-large': boolean;
+        [key: `is-${string}`]: boolean;
+    }
 
-        if(props.hasAddons) classes.push('has-addons')
-        if(props.align) classes.push(`is-${props.align}`)
-        if(props.isRounded) classes.push(`is-rounded`)
+    const classes = computed(() => {
+
+        const classes: ButtonClasses = {
+            'has-addons': props.hasAddons,
+            'is-rounded': props.isRounded,
+            'are-normal': props.areNormal,
+            'are-small': props.areSmall,
+            'are-medium': props.areMedium,
+            'are-large': props.areLarge,
+        }
+
+        if (props.align) {
+            classes[`is-${props.align}`] = true
+        }
 
         return classes
     })

@@ -9,4 +9,10 @@ export interface _Status
     isInverted?: boolean
     isRounded?: boolean
     isPrimary?: boolean
+    isWhite?: boolean
+    isLight?: boolean
+    isDark?: boolean
+    isBlack?: boolean
+    isText?: boolean
+    isGhost?: boolean
 }

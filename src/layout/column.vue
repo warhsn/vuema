@@ -11,6 +11,7 @@ const props = defineProps<_Columns>()
 
 const _class = computed(() => {
     return {
+        'is-0': props.is0,
         'is-1': props.is1,
         'is-2': props.is2,
         'is-3': props.is3,

@@ -9,4 +9,11 @@ import { _Status } from "./status";
 export interface _Buttons extends _Addons, _Align, _Processing, _Sizes, _Status, _Icons, _Shapes {
     disabled?: boolean
     isSelected?: boolean
+    areNormal?: boolean
+    areSmall?: boolean
+    areMedium?: boolean
+    areLarge?: boolean
+    isHovered?: boolean
+    isFocused?: boolean
+    isActive?: boolean
 }

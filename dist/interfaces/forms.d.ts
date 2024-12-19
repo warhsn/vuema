@@ -11,6 +11,5 @@ export interface _Forms extends _Icons, _Errors, _Addons, _Sizes {
     required?: boolean;
     isLoading?: boolean;
     isRounded?: boolean;
-    isExpanded?: boolean;
     autocomplete?: boolean;
 }

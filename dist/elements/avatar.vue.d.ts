@@ -3,5 +3,5 @@ declare const _default: import('vue').DefineComponent<_Avatar, {}, {}, {}, {}, i
     size: string;
     backgroundColour: string;
     textColor: string;
-}, {}, {}, {}, string, import('vue').ComponentProvideOptions, false, {}, any>;
+}, {}, {}, {}, string, import('vue').ComponentProvideOptions, false, {}, HTMLElement>;
 export default _default;

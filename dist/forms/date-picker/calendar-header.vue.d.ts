@@ -9,5 +9,5 @@ declare const _default: import('vue').DefineComponent<CalendarHeaderProps, {}, {
     "onNext-month"?: (() => any) | undefined;
     "onMonth-change"?: ((month: number) => any) | undefined;
     "onYear-change"?: ((year: number) => any) | undefined;
-}>, {}, {}, {}, {}, string, import('vue').ComponentProvideOptions, false, {}, any>;
+}>, {}, {}, {}, {}, string, import('vue').ComponentProvideOptions, false, {}, HTMLDivElement>;
 export default _default;

@@ -1,7 +1,12 @@
 export interface _Sizes {
+    isNormal?: boolean;
     isSmall?: boolean;
     isMedium?: boolean;
     isLarge?: boolean;
+    isResponsive?: boolean;
+    isExpanded?: boolean;
+    isFullwidth?: boolean;
+    is0?: boolean;
     is1?: boolean;
     is2?: boolean;
     is3?: boolean;
@@ -14,5 +19,4 @@ export interface _Sizes {
     is10?: boolean;
     is11?: boolean;
     is12?: boolean;
-    isNarrow?: boolean;
 }

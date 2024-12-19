@@ -1,7 +1,7 @@
 export default interface _Processing {
-    processing?: boolean;
+    loading?: boolean;
 }
 
 export default interface Addons {
-    processing?: boolean;
+    loading?: boolean;
 }

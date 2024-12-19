@@ -1,5 +1,6 @@
 import { _Modal } from '../interfaces/modal';
 declare function __VLS_template(): {
+    attrs: Partial<{}>;
     slots: {
         title?(_: {}): any;
         default?(_: {}): any;
@@ -7,7 +8,7 @@ declare function __VLS_template(): {
         footer?(_: {}): any;
     };
     refs: {};
-    attrs: Partial<{}>;
+    rootEl: any;
 };
 type __VLS_TemplateResult = ReturnType<typeof __VLS_template>;
 declare const __VLS_component: import('vue').DefineComponent<_Modal, {}, {}, {}, {}, import('vue').ComponentOptionsMixin, import('vue').ComponentOptionsMixin, {} & {
