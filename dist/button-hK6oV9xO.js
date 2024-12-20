@@ -1,5 +1,5 @@
-import { defineComponent as y, computed as r, resolveComponent as c, openBlock as i, createElementBlock as B, normalizeClass as d, withModifiers as u, createBlock as t, createCommentVNode as l, renderSlot as m } from "vue";
-const g = ["disabled"], f = /* @__PURE__ */ y({
+import { defineComponent as r, computed as y, resolveComponent as c, openBlock as i, createElementBlock as d, normalizeClass as B, withModifiers as u, createBlock as t, createCommentVNode as l, createElementVNode as m, renderSlot as g } from "vue";
+const h = ["disabled"], I = /* @__PURE__ */ r({
   __name: "button",
   props: {
     disabled: { type: Boolean },
@@ -63,7 +63,7 @@ const g = ["disabled"], f = /* @__PURE__ */ y({
     rightIconType: {}
   },
   setup(a) {
-    const e = a, p = r(() => ({
+    const e = a, p = y(() => ({
       "is-success": e.isSuccess,
       "is-warning": e.isWarning,
       "is-danger": e.isDanger,
@@ -93,8 +93,8 @@ const g = ["disabled"], f = /* @__PURE__ */ y({
     }));
     return (o, s) => {
       const n = c("b-icon");
-      return i(), B("button", {
-        class: d(["button", p.value]),
+      return i(), d("button", {
+        class: B(["button", p.value]),
         onClick: s[0] || (s[0] = u(() => {
         }, ["prevent"])),
         disabled: o.disabled
@@ -104,16 +104,18 @@ const g = ["disabled"], f = /* @__PURE__ */ y({
           icon: o.leftIcon,
           "icon-type": o.leftIconType
         }, null, 8, ["icon", "icon-type"])) : l("", !0),
-        m(o.$slots, "default"),
+        m("span", null, [
+          g(o.$slots, "default")
+        ]),
         o.rightIcon ? (i(), t(n, {
           key: 1,
           icon: o.rightIcon,
           "icon-type": o.rightIconType
         }, null, 8, ["icon", "icon-type"])) : l("", !0)
-      ], 10, g);
+      ], 10, h);
     };
   }
 });
 export {
-  f as default
+  I as default
 };

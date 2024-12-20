@@ -4,11 +4,7 @@
         @click.prevent
         :class="_class"
         :disabled="disabled">
-            <b-icon v-if="leftIcon" :icon="leftIcon" :icon-type="leftIconType"/>
-            <span>
-                <slot />
-            </span>
-            <b-icon v-if="rightIcon" :icon="rightIcon" :icon-type="rightIconType"/>
+            <b-icon :icon="icon" :icon-type="iconType"/>
     </button>
 </template>
 <script setup lang="ts">
