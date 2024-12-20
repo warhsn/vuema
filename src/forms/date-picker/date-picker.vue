@@ -12,7 +12,7 @@
             @update:model-value="handleManualInput"
         >
             <template #left>
-                <icon-button role="presentation" icon="calendar"/>
+                <icon-button v-if="withIcon" role="presentation" icon="calendar"/>
             </template>
             
             <slot />
@@ -73,6 +73,7 @@ const props = withDefaults(defineProps<DatePickerProps>(), {
     minDate: null,
     maxDate: null,
     required: false,
+    withIcon: true,
 })
 
 const emit = defineEmits<DatePickerEmits>()
