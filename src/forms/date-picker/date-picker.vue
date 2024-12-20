@@ -12,9 +12,7 @@
             @update:model-value="handleManualInput"
         >
             <template #left>
-                <action-button role="presentation">
-                    <b-icon icon="calendar"/>
-                </action-button>
+                <icon-button role="presentation" icon="calendar"/>
             </template>
             
             <slot />

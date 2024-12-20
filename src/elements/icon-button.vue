@@ -1,10 +1,12 @@
 <template>
     <button 
         class="button"
-        @click.prevent
         :class="_class"
         :disabled="disabled">
-            <b-icon :icon="icon" :icon-type="iconType"/>
+            <b-icon
+                :icon="icon"
+                :icon-type="iconType"
+            />
     </button>
 </template>
 <script setup lang="ts">

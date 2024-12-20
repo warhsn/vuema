@@ -1,5 +1,12 @@
 <template>
-    <a href="#" class="dropdown-item">
+    <div @click="emit('click')" class="dropdown-item">
         <slot />
-    </a>
+    </div>
 </template>
+<script lang="ts" setup>
+
+const emit = defineEmits<{
+    (event: 'click'): void
+}>()
+
+</script>

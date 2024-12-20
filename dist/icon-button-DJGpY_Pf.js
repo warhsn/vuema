@@ -1,5 +1,5 @@
-import { defineComponent as a, computed as l, resolveComponent as p, openBlock as y, createElementBlock as c, normalizeClass as r, withModifiers as B, createVNode as d } from "vue";
-const u = ["disabled"], g = /* @__PURE__ */ a({
+import { defineComponent as t, computed as a, resolveComponent as l, openBlock as p, createElementBlock as y, normalizeClass as c, createVNode as B } from "vue";
+const r = ["disabled"], m = /* @__PURE__ */ t({
   __name: "icon-button",
   props: {
     disabled: { type: Boolean },
@@ -62,8 +62,8 @@ const u = ["disabled"], g = /* @__PURE__ */ a({
     rightIcon: {},
     rightIconType: {}
   },
-  setup(s) {
-    const e = s, n = l(() => ({
+  setup(i) {
+    const e = i, s = a(() => ({
       "is-success": e.isSuccess,
       "is-warning": e.isWarning,
       "is-danger": e.isDanger,
@@ -91,22 +91,20 @@ const u = ["disabled"], g = /* @__PURE__ */ a({
       "is-active": e.isActive,
       "is-static": e.isStatic
     }));
-    return (o, i) => {
-      const t = p("b-icon");
-      return y(), c("button", {
-        class: r(["button", n.value]),
-        onClick: i[0] || (i[0] = B(() => {
-        }, ["prevent"])),
+    return (o, d) => {
+      const n = l("b-icon");
+      return p(), y("button", {
+        class: c(["button", s.value]),
         disabled: o.disabled
       }, [
-        d(t, {
+        B(n, {
           icon: o.icon,
           "icon-type": o.iconType
         }, null, 8, ["icon", "icon-type"])
-      ], 10, u);
+      ], 10, r);
     };
   }
 });
 export {
-  g as default
+  m as default
 };

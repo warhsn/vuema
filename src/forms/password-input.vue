@@ -18,7 +18,7 @@
                     :class="classes" 
                     :placeholder="placeholder" 
                     :disabled="disabled" 
-                    :value="modelValue" 
+                    :value="modelValue"
                     @input="onInput">
                 <b-icon v-if="leftIcon" class="icon is-small is-left" :class="sizes" :icon="leftIcon"/>
                 <b-icon v-if="rightIcon" class="icon is-small is-right" :class="sizes" :icon="rightIcon"/>
@@ -26,13 +26,19 @@
             <div v-if="$slots.right" class="control" :class="sizes">
                 <slot name="right" />
             </div>
-            <div v-if="withToggle" class="control" :class="sizes">
-                <action-button 
+            <div v-if="withToggle" @click="togglePasswordVisibility" class="control" :class="sizes">
+                <icon-button 
+                    v-if="showingPassword"
+                    icon="eye"
                     :disabled="disabled"
                     :class="toggleButtonClasses" 
-                    @click="togglePasswordVisibility">
-                    <b-icon :icon="showingPassword ? 'eye' : 'eye-slash'"/>
-                </action-button>
+                />
+                <icon-button 
+                    v-else
+                    icon="eye-slash"
+                    :disabled="disabled"
+                    :class="toggleButtonClasses" 
+                />
             </div>
         </div>
          <div class="control">
@@ -47,14 +53,12 @@ import FieldError from './field-error.vue'
 import { ref, computed } from 'vue'
 
 const props = defineProps<_PasswordInput>()
-
 const inputName = 'update:modelValue'
+const showingPassword = ref(false)
 
 const emit = defineEmits<{
     (e: typeof inputName, value: string | number): void
 }>()
-
-const showingPassword = ref(false)
 
 function onInput(event: Event): void {
     const target = event.target as HTMLInputElement
