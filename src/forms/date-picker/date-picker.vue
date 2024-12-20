@@ -5,14 +5,14 @@
             :error="error"
             :required="required"
             class="is-clickable"
-            has-addons
+            :has-addons="withIcon"
             @click="togglePicker"
             @input="handleManualInput"
             @blur="handleBlur"
             @update:model-value="handleManualInput"
         >
             <template #left>
-                <icon-button v-if="withIcon" role="presentation" icon="calendar"/>
+                <icon-button class="is-shadowless" v-if="withIcon" role="presentation" icon="calendar"/>
             </template>
             
             <slot />

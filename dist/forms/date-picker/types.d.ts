@@ -24,6 +24,10 @@ export interface DatePickerProps {
      * Error message or validation state
      */
     error?: string[] | null;
+    /**
+     * Show the calendar icon
+     */
+    withIcon?: boolean;
 }
 export interface CalendarDay {
     /**

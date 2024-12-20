@@ -20,6 +20,7 @@ declare const __VLS_component: import('vue').DefineComponent<DatePickerProps, {}
     format: string;
     minDate: string | null;
     maxDate: string | null;
+    withIcon: boolean;
 }, {}, {}, {}, string, import('vue').ComponentProvideOptions, false, {}, HTMLDivElement>;
 declare const _default: __VLS_WithTemplateSlots<typeof __VLS_component, __VLS_TemplateResult["slots"]>;
 export default _default;
