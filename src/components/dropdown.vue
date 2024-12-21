@@ -9,7 +9,7 @@
             <slot name="trigger" :is-active="isActive"/>
         </dropdown-trigger>
         <div class="dropdown-menu" id="dropdown-menu" role="menu">
-            <div class="dropdown-content">
+            <div class="dropdown-content" @click="isActive = false">
                 <slot />
             </div>
         </div>

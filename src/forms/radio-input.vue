@@ -5,7 +5,7 @@
     </field-label>
     <div class="radios">
         <label 
-            @click="onInput(item.id)" 
+            @click="onInput(item.id, item.disabled)" 
             class="radio" 
             v-for="(item, index) in items" 
             :key="index"
@@ -33,8 +33,10 @@ const emit = defineEmits<{
     (e: typeof inputName, value: string | Number): void
 }>()
 
-function onInput(event: string | Number) {
-    emit(inputName, event)
+function onInput(event: string | Number, disabled: boolean) {
+    if(!disabled) {
+        emit(inputName, event)
+    }
 }
 
 const fielName = _randomString();

@@ -1,6 +1,6 @@
-import { defineComponent as c, resolveComponent as y, openBlock as n, createElementBlock as t, createVNode as u, withCtx as B, renderSlot as m, createElementVNode as l, Fragment as f, renderList as _, unref as h, createTextVNode as b, toDisplayString as g } from "vue";
-import { _ as k } from "./strings-EXVz6iyo.js";
-const C = { class: "radios" }, I = ["onClick"], N = ["checked", "name", "disabled"], V = "update:modelValue", E = /* @__PURE__ */ c({
+import { defineComponent as y, resolveComponent as u, openBlock as n, createElementBlock as l, createVNode as B, withCtx as m, renderSlot as f, createElementVNode as a, Fragment as _, renderList as h, unref as b, createTextVNode as g, toDisplayString as k } from "vue";
+import { _ as C } from "./strings-EXVz6iyo.js";
+const I = { class: "radios" }, N = ["onClick"], V = ["checked", "name", "disabled"], v = "update:modelValue", E = /* @__PURE__ */ y({
   __name: "radio-input",
   props: {
     items: {},
@@ -47,35 +47,35 @@ const C = { class: "radios" }, I = ["onClick"], N = ["checked", "name", "disable
     is11: { type: Boolean },
     is12: { type: Boolean }
   },
-  setup(v, { emit: a }) {
-    const i = a;
-    function s(e) {
-      i(V, e);
+  setup(S, { emit: i }) {
+    const s = i;
+    function p(e, t) {
+      t || s(v, e);
     }
-    const p = k();
-    return (e, S) => {
-      const r = y("field-label");
-      return n(), t("div", null, [
-        u(r, { required: e.required }, {
-          default: B(() => [
-            m(e.$slots, "default")
+    const r = C();
+    return (e, t) => {
+      const d = u("field-label");
+      return n(), l("div", null, [
+        B(d, { required: e.required }, {
+          default: m(() => [
+            f(e.$slots, "default")
           ]),
           _: 3
         }, 8, ["required"]),
-        l("div", C, [
-          (n(!0), t(f, null, _(e.items, (o, d) => (n(), t("label", {
-            onClick: (q) => s(o.id),
+        a("div", I, [
+          (n(!0), l(_, null, h(e.items, (o, c) => (n(), l("label", {
+            onClick: (q) => p(o.id, o.disabled),
             class: "radio",
-            key: d
+            key: c
           }, [
-            l("input", {
+            a("input", {
               type: "radio",
               checked: o.id === e.modelValue,
-              name: h(p),
+              name: b(r),
               disabled: o.disabled
-            }, null, 8, N),
-            b(" " + g(o.label), 1)
-          ], 8, I))), 128))
+            }, null, 8, V),
+            g(" " + k(o.label), 1)
+          ], 8, N))), 128))
         ])
       ]);
     };
