@@ -18,4 +18,5 @@ export default function (app: any) {
 
     // Dialogs
     app.component('confirm', defineAsyncComponent(() => import('./confirm-dialog.vue')))
+    app.component('alert', defineAsyncComponent(() => import('./alert-dialog.vue')))
 }

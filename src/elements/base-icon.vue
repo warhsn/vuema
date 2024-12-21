@@ -4,7 +4,7 @@
     </span>
 </template>
 <script setup lang="ts">
-import { _Icons } from '../interfaces/icons';
+import { _Icons } from '../interfaces/icons'
 
 defineProps<_Icons>()
 </script>

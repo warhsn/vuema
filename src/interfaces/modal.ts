@@ -7,7 +7,10 @@ export interface _Modal extends _Transition, _Activity
     withHeader?: boolean
     withFooter?: boolean
     title?: string
-    isDismisable?: boolean
+    isDismissable?: boolean
     isCloseable?: boolean
     isCard?: boolean
+    to?: string
+    transition?: string
+    cancelButtonClasses?: string
 }

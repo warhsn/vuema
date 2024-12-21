@@ -9,3 +9,29 @@
 .vuema-fade-leave-to {
     opacity: 0;
 }
+
+.modal {
+    opacity: 1;
+    transition: all 0.3s ease;
+}
+
+.modal-enter-active,
+.modal-leave-active {
+    transition: all 0.3s ease;
+}
+
+.modal-enter-from,
+.modal-leave-to {
+    opacity: 0;
+}
+
+.modal-enter-from .modal-wrapper,
+.modal-leave-to .modal-wrapper {
+    transform: scale(1.1);
+    transition: transform 0.3s ease;
+}
+
+.modal-wrapper {
+    transform: scale(1);
+    transition: transform 0.3s ease;
+}

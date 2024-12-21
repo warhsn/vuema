@@ -12,4 +12,7 @@ export interface _Dialog extends _Activity
     titleIcon?: string | null
     titleIconType: string | null
     titleIconClass?: string
+    to?: string
+    transition?: string
+    okButtonClass?: string
 }

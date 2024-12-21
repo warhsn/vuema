@@ -5,8 +5,8 @@
     </div>
     <Teleport :to="props.to">
         <Transition :name="props.transition" mode="in-out">
-            <div v-if="isActive || confirming" class="modal" :class="{
-                'is-active': isActive || confirming
+            <div v-if="isActive" class="modal" :class="{
+                'is-active': isActive
             }">
                 <div class="modal-background"></div>
                 <div class="modal-wrapper modal-content">
@@ -26,15 +26,9 @@
                         <slot />
                         <buttons class="mt-4" :align="controlAlignment">
                             <action-button
-                                class="is-small"
-                                @click="cancel">
-                                {{ props.cancelText }}
-                            </action-button>
-                            <action-button
-                                :loading="confirming"
-                                @click="confirm"
-                                :class="confirmButtonClass">
-                                {{ props.confirmText }}
+                                @click="close"
+                                :class="okButtonClass">
+                                Okay
                             </action-button>
                         </buttons>
                     </div>
@@ -50,33 +44,23 @@ import type { _Dialog } from '../interfaces/dialog'
 
 const props = withDefaults(
     defineProps<_Dialog>(), {
-        confirming: false,
-        confirmButtonClass: 'is-success',
+        okButtonClass: 'is-success',
         controlAlignment: 'right',
         titleIcon: null,
         titleIconType: null,
-        titleIconClass: '',
+        titleIconClass: 'has-text-danger',
         to: 'body',
-        transition: 'modal',
-        confirmText: 'Proceed',
-        cancelText: 'Cancel'
+        transition: 'modal'
     }
 )
 
 const isActive = ref(false)
 
 const emits = defineEmits<{
-    (e: 'cancel'): void,
-    (e: 'confirm'): void,
+    (e: 'close'): void,
 }>()
 
-function cancel() {
+function close() {
     isActive.value = false
-    emits('cancel')
-}
-
-function confirm() {
-    isActive.value = false
-    emits('confirm')
 }
 </script>
