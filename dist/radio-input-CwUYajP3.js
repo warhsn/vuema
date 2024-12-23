@@ -64,7 +64,7 @@ const I = { class: "radios" }, N = ["onClick"], V = ["checked", "name", "disable
         }, 8, ["required"]),
         a("div", I, [
           (n(!0), l(_, null, h(e.items, (o, c) => (n(), l("label", {
-            onClick: (q) => p(o.id, o.disabled),
+            onClick: (q) => p(o.id, o.disabled ?? !1),
             class: "radio",
             key: c
           }, [

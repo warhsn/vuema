@@ -1,7 +1,10 @@
 import { _CheckboxInput } from '../interfaces/checkbox-input';
 declare function __VLS_template(): {
     attrs: Partial<{}>;
-    slots: any;
+    slots: {
+        default?(_: {}): any;
+        "inner-label"?(_: {}): any;
+    };
     refs: {};
     rootEl: HTMLDivElement;
 };

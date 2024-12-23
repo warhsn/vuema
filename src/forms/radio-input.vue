@@ -5,7 +5,7 @@
     </field-label>
     <div class="radios">
         <label 
-            @click="onInput(item.id, item.disabled)" 
+            @click="onInput(item.id, item.disabled ?? false)" 
             class="radio" 
             v-for="(item, index) in items" 
             :key="index"

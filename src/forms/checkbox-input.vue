@@ -1,6 +1,7 @@
 <template>
     <div>
         <field-label
+            @click="onInput"
             :for-label="fieldName"
             :required="required">
             <slot />
@@ -14,9 +15,11 @@
                 class="checkbox mr-1"
                 type="checkbox"
                 :name="fieldName" 
-                :checked="modelValue === true""
+                :checked="modelValue === true"
             >
-            <slot name="inner-label"/>
+            <span @click="onInput">
+                <slot name="inner-label"/>
+            </span>
         </label>
     </div>
 </template>

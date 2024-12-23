@@ -1,6 +1,6 @@
-import { defineComponent as d, resolveComponent as y, openBlock as B, createElementBlock as u, createVNode as m, unref as l, withCtx as f, renderSlot as n, createElementVNode as t } from "vue";
+import { defineComponent as d, resolveComponent as y, openBlock as B, createElementBlock as u, createVNode as m, unref as n, withCtx as f, renderSlot as t, createElementVNode as a } from "vue";
 import { _ as b } from "./strings-EXVz6iyo.js";
-const h = ["for-label"], _ = ["disabled", "name", "checked"], k = "update:modelValue", N = /* @__PURE__ */ d({
+const h = ["for-label"], k = ["disabled", "name", "checked"], _ = "update:modelValue", N = /* @__PURE__ */ d({
   __name: "checkbox-input",
   props: {
     classes: {},
@@ -46,38 +46,40 @@ const h = ["for-label"], _ = ["disabled", "name", "checked"], k = "update:modelV
     is11: { type: Boolean },
     is12: { type: Boolean }
   },
-  setup(a, { emit: s }) {
-    const i = a, p = s;
-    function r() {
-      p(k, !i.modelValue);
+  setup(s, { emit: i }) {
+    const p = s, r = i;
+    function o() {
+      r(_, !p.modelValue);
     }
-    const o = b();
-    return (e, I) => {
+    const l = b();
+    return (e, C) => {
       const c = y("field-label");
       return B(), u("div", null, [
         m(c, {
-          "for-label": l(o),
+          onClick: o,
+          "for-label": n(l),
           required: e.required
         }, {
           default: f(() => [
-            n(e.$slots, "default")
+            t(e.$slots, "default")
           ]),
           _: 3
         }, 8, ["for-label", "required"]),
-        t("label", {
-          onClick: r,
+        a("label", {
+          onClick: o,
           class: "checkbox",
-          "for-label": l(o)
+          "for-label": n(l)
         }, [
-          t("input", {
+          a("input", {
             disabled: e.disabled,
             class: "checkbox mr-1",
             type: "checkbox",
-            name: l(o),
-            checked: e.modelValue === !0,
-            '"': ""
-          }, null, 8, _),
-          n(e.$slots, "inner-label")
+            name: n(l),
+            checked: e.modelValue === !0
+          }, null, 8, k),
+          a("span", { onClick: o }, [
+            t(e.$slots, "inner-label")
+          ])
         ], 8, h)
       ]);
     };
