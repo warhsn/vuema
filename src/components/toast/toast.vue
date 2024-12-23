@@ -1,7 +1,7 @@
 <template>
     <div :class="['toast-container', positionClass]">
         <TransitionGroup 
-            name="toast"
+            :name="transition"
             tag="div"
             :class="['toast-group', positionClass]"
         >
@@ -36,6 +36,10 @@ export default defineComponent({
         position: {
             type: String as () => ToastPosition,
             default: 'top-right'
+        },
+        transition: {
+            type: String,
+            default: 'toast'
         }
     },
     setup(props) {

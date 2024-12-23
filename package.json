@@ -1,6 +1,6 @@
 {
-  "name": "@hanseninc/vuema",
-  "version": "0.3.1",
+  "name": "@warhsn/vuema",
+  "version": "0.3.3",
   "description": "Bulma for Vuejs",
   "type": "module",
   "main": "./dist/index.cjs.js",
@@ -20,7 +20,7 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Warren Hansen",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
     "bulma": "^1.0.2",
     "dayjs": "^1.11.11",

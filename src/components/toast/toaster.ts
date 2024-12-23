@@ -1,14 +1,18 @@
 import { App, createApp } from 'vue'
-import Toast from './Toast.vue'
+import Toast from './toast.vue'
 import type { ToastPosition } from './types'
 
 class Toaster {
     private toastApp: App
     private toastComponent: any
     private position: ToastPosition
+    private timeout: number
+    private transition: String
 
-    constructor(position: ToastPosition = 'top-right') {
+    constructor(position: ToastPosition = 'bottom-right', timeout: number = 4000, transition: String = 'toast') {
         this.position = position
+        this.timeout = timeout
+        this.transition = transition
         const toastContainer = document.createElement('div')
         toastContainer.id = 'toast-container'
         document.body.appendChild(toastContainer)
@@ -27,40 +31,46 @@ class Toaster {
         toastContainer.id = 'toast-container'
         document.body.appendChild(toastContainer)
         this.toastApp = createApp(Toast, {
-            position: this.position
+            position: this.position,
+            timeout: this.timeout,
+            transition: this.transition
         })
         this.toastComponent = this.toastApp.mount('#toast-container')
     }
 
-    success(message: string, timeout = 3000) {
+    success(message: string) {
         this.toastComponent.addToast({
             message,
             type: 'is-success',
-            timeout
+            timeout: this.timeout,
+            transition: this.transition
         })
     }
 
-    error(message: string, timeout = 3000) {
+    error(message: string) {
         this.toastComponent.addToast({
             message,
             type: 'is-danger',
-            timeout
+            timeout: this.timeout,
+            transition: this.transition
         })
     }
 
-    warning(message: string, timeout = 3000) {
+    warning(message: string) {
         this.toastComponent.addToast({
             message,
             type: 'is-warning',
-            timeout
+            timeout: this.timeout,
+            transition: this.transition
         })
     }
 
-    info(message: string, timeout = 3000) {
+    info(message: string) {
         this.toastComponent.addToast({
             message,
             type: 'is-info',
-            timeout
+            timeout: this.timeout,
+            transition: this.transition
         })
     }
 

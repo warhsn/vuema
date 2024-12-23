@@ -10,6 +10,10 @@ declare const _default: import('vue').DefineComponent<import('vue').ExtractPropT
         type: () => ToastPosition;
         default: string;
     };
+    transition: {
+        type: StringConstructor;
+        default: string;
+    };
 }>, {
     notifications: import('vue').Ref<{
         id: number;
@@ -30,7 +34,12 @@ declare const _default: import('vue').DefineComponent<import('vue').ExtractPropT
         type: () => ToastPosition;
         default: string;
     };
+    transition: {
+        type: StringConstructor;
+        default: string;
+    };
 }>> & Readonly<{}>, {
+    transition: string;
     position: ToastPosition;
 }, {}, {}, {}, string, import('vue').ComponentProvideOptions, true, {}, any>;
 export default _default;

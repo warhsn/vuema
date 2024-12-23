@@ -9,14 +9,27 @@ import type { App, Plugin } from 'vue'
 
 import './scss/styles.scss'
 
+const componentOptions = { 
+    toaster: { 
+        position: 'bottom-right',
+        timeout: 4000,
+        transition: 'toast',
+    }
+}
+
+
 const Vuema: Plugin = {
-    install: (app: App) => {
+    install: (app: App, options = componentOptions) => {
         installLayout(app)
         installElements(app)
         installComponents(app)
         installForms(app)
     
-        const toaster = new Toaster('bottom-right')
+        const toaster = new Toaster(
+            options?.toaster?.position,
+            options?.toaster?.timeout,
+            options?.toaster?.transition,
+    )
         app.provide(ToasterSymbol, toaster)
         app.config.globalProperties.$toaster = toaster
 
