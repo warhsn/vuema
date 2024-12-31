@@ -6,6 +6,7 @@ import { useToaster } from './components/toast/user-toaster'
 import { ToasterSymbol } from './symbols'
 import installForms from './forms/install'
 import type { App, Plugin } from 'vue'
+import useDebouncedRef from './utils/debounced-ref'
 
 import './scss/styles.scss'
 
@@ -39,4 +40,4 @@ const Vuema: Plugin = {
     }
 }
 
-export { Vuema as default, useToaster }
+export { Vuema as default, useToaster, useDebouncedRef }
