@@ -1,5 +1,5 @@
 import { openBlock as o, createElementBlock as t, renderSlot as r } from "vue";
-import { _ as n } from "./index-0yvhRpQm.js";
+import { _ as n } from "./index-C--icbuu.js";
 const s = {}, c = { class: "menu-label" };
 function l(e, a) {
   return o(), t("p", c, [

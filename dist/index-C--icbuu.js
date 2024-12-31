@@ -1,15 +1,15 @@
-var b = Object.defineProperty;
-var y = (t, o, e) => o in t ? b(t, o, { enumerable: !0, configurable: !0, writable: !0, value: e }) : t[o] = e;
+var g = Object.defineProperty;
+var y = (t, o, e) => o in t ? g(t, o, { enumerable: !0, configurable: !0, writable: !0, value: e }) : t[o] = e;
 var c = (t, o, e) => y(t, typeof o != "symbol" ? o + "" : o, e);
 import { defineAsyncComponent as n, defineComponent as v, ref as C, computed as T, openBlock as a, createElementBlock as u, normalizeClass as d, createVNode as w, TransitionGroup as _, withCtx as k, Fragment as A, renderList as x, createElementVNode as l, createTextVNode as E, toDisplayString as $, createApp as h, inject as S } from "vue";
 function V(t) {
-  t.component("column", n(() => import("./column-CCAP556S.js"))), t.component("columns", n(() => import("./columns-DWoNJgSX.js"))), t.component("flex", n(() => import("./flex-Bq3kv0Dj.js")));
+  t.component("column", n(() => import("./column-CCAP556S.js"))), t.component("columns", n(() => import("./columns-DWoNJgSX.js"))), t.component("flex", n(() => import("./flex-CRjUfPuI.js")));
 }
 function B(t) {
-  t.component("base-icon", n(() => import("./base-icon-B-tbkkJe.js"))), t.component("action-button", n(() => import("./button-hK6oV9xO.js"))), t.component("icon-button", n(() => import("./icon-button-DJGpY_Pf.js"))), t.component("submit-button", n(() => import("./submit-button-DYsgDvB_.js"))), t.component("buttons", n(() => import("./buttons-C2PrXJUd.js"))), t.component("loader", n(() => import("./loader-DEoDXj-g.js"))), t.component("block", n(() => import("./block-DxfmfMXP.js"))), t.component("box", n(() => import("./box-Tw4OIdoz.js"))), t.component("b-icon", n(() => import("./icon-iMiYgm47.js"))), t.component("avatar", n(() => import("./avatar-DuymQACc.js")));
+  t.component("base-icon", n(() => import("./base-icon-B-tbkkJe.js"))), t.component("action-button", n(() => import("./button-hK6oV9xO.js"))), t.component("icon-button", n(() => import("./icon-button-DJGpY_Pf.js"))), t.component("submit-button", n(() => import("./submit-button-DYsgDvB_.js"))), t.component("buttons", n(() => import("./buttons-C2PrXJUd.js"))), t.component("loader", n(() => import("./loader-O0MIInVx.js"))), t.component("block", n(() => import("./block-VRW-cmuN.js"))), t.component("box", n(() => import("./box-C1fKAJ_W.js"))), t.component("b-icon", n(() => import("./icon-iMiYgm47.js"))), t.component("avatar", n(() => import("./avatar-DuymQACc.js")));
 }
 function D(t) {
-  t.component("side-menu", n(() => import("./side-menu-ckvhL20J.js"))), t.component("side-menu-label", n(() => import("./side-menu-label-C8v4_24B.js"))), t.component("side-menu-list", n(() => import("./side-menu-list-Jxeyiody.js"))), t.component("side-menu-list-item", n(() => import("./side-menu-list-item-BXJinElp.js"))), t.component("dropdown", n(() => import("./dropdown-BP_CwBx3.js"))), t.component("dropdown-divider", n(() => import("./dropdown-divider-CzXqXr86.js"))), t.component("dropdown-item", n(() => import("./dropdown-item-BUIdaown.js"))), t.component("dropdown-trigger", n(() => import("./dropdown-trigger-C9QKT2QF.js"))), t.component("modal", n(() => import("./modal-bYere2Ki.js"))), t.component("confirm", n(() => import("./confirm-dialog-BQTZ5qyU.js"))), t.component("alert", n(() => import("./alert-dialog-w-nS6SoS.js")));
+  t.component("side-menu", n(() => import("./side-menu-CohqleK6.js"))), t.component("side-menu-label", n(() => import("./side-menu-label-oqfJUWn0.js"))), t.component("side-menu-list", n(() => import("./side-menu-list-CW8AmTLB.js"))), t.component("side-menu-list-item", n(() => import("./side-menu-list-item-CB0qe2GS.js"))), t.component("dropdown", n(() => import("./dropdown-BP_CwBx3.js"))), t.component("dropdown-divider", n(() => import("./dropdown-divider-DvOyL67q.js"))), t.component("dropdown-item", n(() => import("./dropdown-item-BUIdaown.js"))), t.component("dropdown-trigger", n(() => import("./dropdown-trigger-C9QKT2QF.js"))), t.component("modal", n(() => import("./modal-bYere2Ki.js"))), t.component("confirm", n(() => import("./confirm-dialog-BQTZ5qyU.js"))), t.component("alert", n(() => import("./alert-dialog-w-nS6SoS.js"))), t.component("tabs", n(() => import("./tabs-CijP3t8Y.js"))), t.component("tab", n(() => import("./tab-C-ZFdJQY.js")));
 }
 const I = v({
   name: "Toast",
@@ -137,9 +137,9 @@ class O {
     o && (this.toastApp.unmount(), o.remove());
   }
 }
-const g = Symbol("toaster");
+const b = Symbol("toaster");
 function q() {
-  const t = S(g);
+  const t = S(b);
   if (!t)
     throw new Error("Toaster not provided! Did you forget to install the plugin?");
   return {
@@ -150,7 +150,7 @@ function q() {
   };
 }
 function P(t) {
-  t.component("field-label", n(() => import("./field-label-B7n3LkGe.js"))), t.component("text-input", n(() => import("./text-input-YsWYud3U.js"))), t.component("password-input", n(() => import("./password-input-tBB4pK44.js"))), t.component("text-area", n(() => import("./text-area-BtFpKQ0w.js"))), t.component("select-input", n(() => import("./select-input-BquhCHZf.js"))), t.component("radio-input", n(() => import("./radio-input-CwUYajP3.js"))), t.component("checkbox-input", n(() => import("./checkbox-input-DtBpftvj.js"))), t.component("switch-input", n(() => import("./switch-input-CwbDCiD0.js"))), t.component("currency-input", n(() => import("./currency-input-DqYkxU7X.js"))), t.component("tag-input", n(() => import("./tag-input-DwwCvg4V.js"))), t.component("file-input", n(() => import("./file-input-BIsSd6C-.js"))), t.component("number-input", n(() => import("./number-input-_Q__nRcB.js"))), t.component("date-picker", n(() => import("./date-picker-U1zWVXPA.js")));
+  t.component("field-label", n(() => import("./field-label-B7n3LkGe.js"))), t.component("text-input", n(() => import("./text-input-YsWYud3U.js"))), t.component("password-input", n(() => import("./password-input-tBB4pK44.js"))), t.component("text-area", n(() => import("./text-area-BtFpKQ0w.js"))), t.component("select-input", n(() => import("./select-input-BquhCHZf.js"))), t.component("radio-input", n(() => import("./radio-input-CwUYajP3.js"))), t.component("checkbox-input", n(() => import("./checkbox-input-DtBpftvj.js"))), t.component("switch-input", n(() => import("./switch-input-CwbDCiD0.js"))), t.component("currency-input", n(() => import("./currency-input-DqYkxU7X.js"))), t.component("tag-input", n(() => import("./tag-input-DwwCvg4V.js"))), t.component("file-input", n(() => import("./file-input-BIsSd6C-.js"))), t.component("number-input", n(() => import("./number-input-_Q__nRcB.js"))), t.component("date-picker", n(() => import("./date-picker-BaV1hDLL.js")));
 }
 const j = {
   toaster: {
@@ -167,7 +167,7 @@ const j = {
       (i = o == null ? void 0 : o.toaster) == null ? void 0 : i.timeout,
       (m = o == null ? void 0 : o.toaster) == null ? void 0 : m.transition
     );
-    t.provide(g, e), t.config.globalProperties.$toaster = e, t.unmount = () => {
+    t.provide(b, e), t.config.globalProperties.$toaster = e, t.unmount = () => {
       e.destroy();
     };
   }
