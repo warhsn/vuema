@@ -1,6 +1,7 @@
 <template>
     <div class="b-date-picker" ref="pickerRef">
         <text-input
+            is-expanded
             :model-value="state.selectedDate"
             :error="error"
             :required="required"
@@ -12,7 +13,7 @@
             @update:model-value="handleManualInput"
         >
             <template #left>
-                <icon-button class="is-shadowless" v-if="withIcon" role="presentation" icon="calendar"/>
+                <icon-button @click.prevent class="is-shadowless" v-if="withIcon" role="presentation" icon="calendar"/>
             </template>
             
             <slot />
@@ -273,11 +274,13 @@ function generatePrefillDays(): CalendarDay[] {
     
     for (let i = 0; i < firstDayOfMonth - 1; i++) {
         daysInPreviousMonth--
+        const day = dayjs(`${previousMonthFormat}${daysInPreviousMonth}`)
+        const previousIsDisabled = !!(state.minDate && day.isBefore(state.minDate))
         prefillDays.unshift({
             class: 'has-text-grey is-disabled',
-            date: dayjs(`${previousMonthFormat}${daysInPreviousMonth}`),
+            date: day,
             day: daysInPreviousMonth,
-            disabled: true  // Always true for prefill days
+            disabled: previousIsDisabled  // Always true for prefill days
         })
     }
     
@@ -315,11 +318,13 @@ function generatePostfillDays(): CalendarDay[] {
         .fill(null)
         .map((_, index) => {
             const day = (index + 1).toString().padStart(2, '0')
+            const date = dayjs(`${nextMonthFormat}${day}`)
+            const nextIsDisabled = !!(state.minDate && date.isBefore(state.minDate))
             return {
                 class: 'has-text-grey is-disabled',
-                date: dayjs(`${nextMonthFormat}${day}`),
+                date: date,
                 day: index + 1,
-                disabled: true  // Always true for postfill days
+                disabled: nextIsDisabled 
             }
         })
 }

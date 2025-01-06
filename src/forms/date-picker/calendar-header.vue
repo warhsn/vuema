@@ -4,7 +4,7 @@
             <div class="column is-narrow">
                 <button 
                     class="button is-small"
-                    @click.stop="$emit('previous-month')">
+                    @click.prevent="$emit('previous-month')">
                     <span class="icon is-small">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                             <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/>
@@ -19,7 +19,7 @@
                             <select 
                                 :value="month"
                                 @change="handleMonthChange"
-                                @click.stop
+                                @click.prevent
                             >
                                 <option 
                                     v-for="(monthName, index) in months" 
@@ -36,7 +36,7 @@
                             <select 
                                 :value="year"
                                 @change="handleYearChange"
-                                @click.stop
+                                @click.prevent
                             >
                                 <option 
                                     v-for="yearNum in yearRange" 
@@ -53,7 +53,7 @@
             <div class="column is-narrow">
                 <button 
                     class="button is-small"
-                    @click.stop="$emit('next-month')"
+                    @click.prevent="$emit('next-month')"
                 >
                     <span class="icon is-small">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
