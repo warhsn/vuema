@@ -2,6 +2,9 @@
 <div>
     <field-label :required="required">
         <slot />
+        <template #description>
+            <slot name="description" />
+        </template>
     </field-label>
     <div>
         <div class="is-expanded control" :class="{

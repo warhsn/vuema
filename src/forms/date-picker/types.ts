@@ -1,3 +1,4 @@
+import { _TextInput } from '@/interfaces/text-input'
 import { Dayjs } from 'dayjs'
 
 // Main DatePicker Props Interface
@@ -36,6 +37,11 @@ export interface DatePickerProps {
      * Show the calendar icon
      */
     withIcon?: boolean
+
+    /**
+     * The description of the field
+     */
+    description?: string
 }
 
 // Calendar Day Interface

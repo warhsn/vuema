@@ -1,10 +1,10 @@
-import { defineComponent as De, computed as te, openBlock as Z, createElementBlock as Q, createElementVNode as x, withModifiers as ee, Fragment as ue, renderList as ce, toDisplayString as le, normalizeClass as _e, ref as Ye, reactive as xe, onMounted as Se, onUnmounted as Oe, resolveComponent as pe, createVNode as ie, withCtx as ne, createBlock as ve, createCommentVNode as ye, Transition as Le, renderSlot as Ce } from "vue";
-import { _ as $e } from "./index-CTPw_HZC.js";
+import { defineComponent as De, computed as ne, openBlock as Z, createElementBlock as Q, createElementVNode as x, withModifiers as ee, Fragment as ue, renderList as ce, toDisplayString as le, normalizeClass as _e, ref as xe, reactive as Se, onMounted as Oe, onUnmounted as Le, resolveComponent as pe, createVNode as ie, withCtx as te, createBlock as ve, createCommentVNode as ye, renderSlot as $e, Transition as Ce } from "vue";
+import { _ as Me } from "./index-CaHfaib0.js";
 var re = typeof globalThis < "u" ? globalThis : typeof window < "u" ? window : typeof global < "u" ? global : typeof self < "u" ? self : {};
 function ae(C) {
   return C && C.__esModule && Object.prototype.hasOwnProperty.call(C, "default") ? C.default : C;
 }
-var Me = { exports: {} };
+var ge = { exports: {} };
 (function(C, U) {
   (function(m, $) {
     C.exports = $();
@@ -67,8 +67,8 @@ var Me = { exports: {} };
           if (typeof r == "string" && !/Z$/i.test(r)) {
             var d = r.match(f);
             if (d) {
-              var p = d[2] - 1 || 0, Y = (d[7] || "0").substring(0, 3);
-              return c ? new Date(Date.UTC(d[1], p, d[3] || 1, d[4] || 0, d[5] || 0, d[6] || 0, Y)) : new Date(d[1], p, d[3] || 1, d[4] || 0, d[5] || 0, d[6] || 0, Y);
+              var p = d[2] - 1 || 0, _ = (d[7] || "0").substring(0, 3);
+              return c ? new Date(Date.UTC(d[1], p, d[3] || 1, d[4] || 0, d[5] || 0, d[6] || 0, _)) : new Date(d[1], p, d[3] || 1, d[4] || 0, d[5] || 0, d[6] || 0, _);
             }
           }
           return new Date(r);
@@ -97,7 +97,7 @@ var Me = { exports: {} };
         var r = this, c = !!i.u(s) || s, d = i.p(t), p = function(N, F) {
           var E = i.w(r.$u ? Date.UTC(r.$y, F, N) : new Date(r.$y, F, N), r);
           return c ? E : E.endOf(l);
-        }, Y = function(N, F) {
+        }, _ = function(N, F) {
           return i.w(r.toDate()[N].apply(r.toDate("s"), (c ? [0, 0, 0, 0] : [23, 59, 59, 999]).slice(F)), r);
         }, L = this.$W, W = this.$M, V = this.$D, G = "set" + (this.$u ? "UTC" : "");
         switch (d) {
@@ -110,24 +110,24 @@ var Me = { exports: {} };
             return p(c ? V - K : V + (6 - K), W);
           case l:
           case B:
-            return Y(G + "Hours", 0);
+            return _(G + "Hours", 0);
           case v:
-            return Y(G + "Minutes", 1);
+            return _(G + "Minutes", 1);
           case w:
-            return Y(G + "Seconds", 2);
+            return _(G + "Seconds", 2);
           case D:
-            return Y(G + "Milliseconds", 3);
+            return _(G + "Milliseconds", 3);
           default:
             return this.clone();
         }
       }, n.endOf = function(t) {
         return this.startOf(t, !1);
       }, n.$set = function(t, s) {
-        var r, c = i.p(t), d = "set" + (this.$u ? "UTC" : ""), p = (r = {}, r[l] = d + "Date", r[B] = d + "Date", r[S] = d + "Month", r[T] = d + "FullYear", r[v] = d + "Hours", r[w] = d + "Minutes", r[D] = d + "Seconds", r[e] = d + "Milliseconds", r)[c], Y = c === l ? this.$D + (s - this.$W) : s;
+        var r, c = i.p(t), d = "set" + (this.$u ? "UTC" : ""), p = (r = {}, r[l] = d + "Date", r[B] = d + "Date", r[S] = d + "Month", r[T] = d + "FullYear", r[v] = d + "Hours", r[w] = d + "Minutes", r[D] = d + "Seconds", r[e] = d + "Milliseconds", r)[c], _ = c === l ? this.$D + (s - this.$W) : s;
         if (c === S || c === T) {
           var L = this.clone().set(B, 1);
-          L.$d[p](Y), L.init(), this.$d = L.set(B, Math.min(this.$D, L.daysInMonth())).$d;
-        } else p && this.$d[p](Y);
+          L.$d[p](_), L.init(), this.$d = L.set(B, Math.min(this.$D, L.daysInMonth())).$d;
+        } else p && this.$d[p](_);
         return this.init(), this;
       }, n.set = function(t, s) {
         return this.clone().$set(t, s);
@@ -144,14 +144,14 @@ var Me = { exports: {} };
         if (d === T) return this.set(T, this.$y + t);
         if (d === l) return p(1);
         if (d === h) return p(7);
-        var Y = (r = {}, r[w] = $, r[v] = g, r[D] = m, r)[d] || 1, L = this.$d.getTime() + t * Y;
+        var _ = (r = {}, r[w] = $, r[v] = g, r[D] = m, r)[d] || 1, L = this.$d.getTime() + t * _;
         return i.w(L, this);
       }, n.subtract = function(t, s) {
         return this.add(-1 * t, s);
       }, n.format = function(t) {
         var s = this, r = this.$locale();
         if (!this.isValid()) return r.invalidDate || R;
-        var c = t || "YYYY-MM-DDTHH:mm:ssZ", d = i.z(this), p = this.$H, Y = this.$m, L = this.$M, W = r.weekdays, V = r.months, G = r.meridiem, J = function(F, E, q, X) {
+        var c = t || "YYYY-MM-DDTHH:mm:ssZ", d = i.z(this), p = this.$H, _ = this.$m, L = this.$M, W = r.weekdays, V = r.months, G = r.meridiem, J = function(F, E, q, X) {
           return F && (F[E] || F(s, c)) || q[E].slice(0, X);
         }, K = function(F) {
           return i.s(p % 12 || 12, F, "0");
@@ -195,13 +195,13 @@ var Me = { exports: {} };
               case "hh":
                 return K(2);
               case "a":
-                return N(p, Y, !0);
+                return N(p, _, !0);
               case "A":
-                return N(p, Y, !1);
+                return N(p, _, !1);
               case "m":
-                return String(Y);
+                return String(_);
               case "mm":
-                return i.s(Y, 2, "0");
+                return i.s(_, 2, "0");
               case "s":
                 return String(s.$s);
               case "ss":
@@ -217,8 +217,8 @@ var Me = { exports: {} };
       }, n.utcOffset = function() {
         return 15 * -Math.round(this.$d.getTimezoneOffset() / 15);
       }, n.diff = function(t, s, r) {
-        var c, d = this, p = i.p(s), Y = o(t), L = (Y.utcOffset() - this.utcOffset()) * $, W = this - Y, V = function() {
-          return i.m(d, Y);
+        var c, d = this, p = i.p(s), _ = o(t), L = (_.utcOffset() - this.utcOffset()) * $, W = this - _, V = function() {
+          return i.m(d, _);
         };
         switch (p) {
           case T:
@@ -268,9 +268,9 @@ var Me = { exports: {} };
       }, n.toString = function() {
         return this.$d.toUTCString();
       }, a;
-    }(), _ = y.prototype;
-    return o.prototype = _, [["$ms", e], ["$s", D], ["$m", w], ["$H", v], ["$W", l], ["$M", S], ["$y", T], ["$D", B]].forEach(function(a) {
-      _[a[1]] = function(n) {
+    }(), Y = y.prototype;
+    return o.prototype = Y, [["$ms", e], ["$s", D], ["$m", w], ["$H", v], ["$W", l], ["$M", S], ["$y", T], ["$D", B]].forEach(function(a) {
+      Y[a[1]] = function(n) {
         return this.$g(n, a[0], a[1]);
       };
     }), o.extend = function(a, n) {
@@ -279,10 +279,10 @@ var Me = { exports: {} };
       return o(1e3 * a);
     }, o.en = P[A], o.Ls = P, o.p = {}, o;
   });
-})(Me);
-var Te = Me.exports;
+})(ge);
+var Te = ge.exports;
 const O = /* @__PURE__ */ ae(Te);
-var ge = { exports: {} };
+var we = { exports: {} };
 (function(C, U) {
   (function(m, $) {
     C.exports = $();
@@ -294,10 +294,10 @@ var ge = { exports: {} };
       };
     };
   });
-})(ge);
-var We = ge.exports;
+})(we);
+var We = we.exports;
 const Ae = /* @__PURE__ */ ae(We);
-var we = { exports: {} };
+var ke = { exports: {} };
 (function(C, U) {
   (function(m, $) {
     C.exports = $();
@@ -323,10 +323,10 @@ var we = { exports: {} };
       };
     };
   });
-})(we);
-var Fe = we.exports;
+})(ke);
+var Fe = ke.exports;
 const Ie = /* @__PURE__ */ ae(Fe);
-var ke = { exports: {} };
+var be = { exports: {} };
 (function(C, U) {
   (function(m, $) {
     C.exports = $();
@@ -340,10 +340,10 @@ var ke = { exports: {} };
       };
     };
   });
-})(ke);
-var Pe = ke.exports;
+})(be);
+var Pe = be.exports;
 const He = /* @__PURE__ */ ae(Pe);
-var be = { exports: {} };
+var Ye = { exports: {} };
 (function(C, U) {
   (function(m, $) {
     C.exports = $();
@@ -404,8 +404,8 @@ var be = { exports: {} };
       var M, b;
       M = f, b = v && v.formats;
       for (var k = (f = M.replace(/(\[[^\]]+])|(LTS?|l{1,4}|L{1,4})/g, function(o, i, y) {
-        var _ = y && y.toUpperCase();
-        return i || b[y] || m[y] || b[_].replace(/(\[[^\]]+])|(MMMM|MM|DD|dddd)/g, function(a, n, t) {
+        var Y = y && y.toUpperCase();
+        return i || b[y] || m[y] || b[Y].replace(/(\[[^\]]+])|(MMMM|MM|DD|dddd)/g, function(a, n, t) {
           return n || t.slice(1);
         });
       })).match($), j = k.length, A = 0; A < j; A += 1) {
@@ -413,11 +413,11 @@ var be = { exports: {} };
         k[A] = u ? { regex: H, parser: u } : P.replace(/^\[|\]$/g, "");
       }
       return function(o) {
-        for (var i = {}, y = 0, _ = 0; y < j; y += 1) {
+        for (var i = {}, y = 0, Y = 0; y < j; y += 1) {
           var a = k[y];
-          if (typeof a == "string") _ += a.length;
+          if (typeof a == "string") Y += a.length;
           else {
-            var n = a.regex, t = a.parser, s = o.slice(_), r = n.exec(s)[0];
+            var n = a.regex, t = a.parser, s = o.slice(Y), r = n.exec(s)[0];
             t.call(i, r), o = o.replace(r, "");
           }
         }
@@ -438,18 +438,18 @@ var be = { exports: {} };
         this.$u = z;
         var u = H[1];
         if (typeof u == "string") {
-          var o = H[2] === !0, i = H[3] === !0, y = o || i, _ = H[2];
-          i && (_ = H[2]), v = this.$locale(), !o && _ && (v = b.Ls[_]), this.$d = function(s, r, c, d) {
+          var o = H[2] === !0, i = H[3] === !0, y = o || i, Y = H[2];
+          i && (Y = H[2]), v = this.$locale(), !o && Y && (v = b.Ls[Y]), this.$d = function(s, r, c, d) {
             try {
               if (["x", "X"].indexOf(r) > -1) return new Date((r === "X" ? 1e3 : 1) * s);
-              var p = R(r)(s), Y = p.year, L = p.month, W = p.day, V = p.hours, G = p.minutes, J = p.seconds, K = p.milliseconds, N = p.zone, F = p.week, E = /* @__PURE__ */ new Date(), q = W || (Y || L ? 1 : E.getDate()), X = Y || E.getFullYear(), se = 0;
-              Y && !L || (se = L > 0 ? L - 1 : E.getMonth());
+              var p = R(r)(s), _ = p.year, L = p.month, W = p.day, V = p.hours, G = p.minutes, J = p.seconds, K = p.milliseconds, N = p.zone, F = p.week, E = /* @__PURE__ */ new Date(), q = W || (_ || L ? 1 : E.getDate()), X = _ || E.getFullYear(), se = 0;
+              _ && !L || (se = L > 0 ? L - 1 : E.getMonth());
               var oe, de = V || 0, fe = G || 0, he = J || 0, me = K || 0;
               return N ? new Date(Date.UTC(X, se, q, de, fe, he, me + 60 * N.offset * 1e3)) : c ? new Date(Date.UTC(X, se, q, de, fe, he, me)) : (oe = new Date(X, se, q, de, fe, he, me), F && (oe = d(oe).week(F).toDate()), oe);
             } catch {
               return /* @__PURE__ */ new Date("");
             }
-          }(P, u, z, b), this.init(), _ && _ !== !0 && (this.$L = this.locale(_).$L), y && P != this.format(u) && (this.$d = /* @__PURE__ */ new Date("")), v = {};
+          }(P, u, z, b), this.init(), Y && Y !== !0 && (this.$L = this.locale(Y).$L), y && P != this.format(u) && (this.$d = /* @__PURE__ */ new Date("")), v = {};
         } else if (u instanceof Array) for (var a = u.length, n = 1; n <= a; n += 1) {
           H[1] = u[n - 1];
           var t = b.apply(this, H);
@@ -463,8 +463,8 @@ var be = { exports: {} };
       };
     };
   });
-})(be);
-var Ve = be.exports;
+})(Ye);
+var Ve = Ye.exports;
 const Be = /* @__PURE__ */ ae(Ve), je = { class: "mb-3" }, ze = { class: "columns is-mobile" }, Ee = { class: "column is-narrow" }, Ze = { class: "column is-narrow px-2" }, Ue = { class: "field is-grouped" }, Ne = { class: "control" }, Je = { class: "select is-small" }, qe = ["value"], Qe = ["value"], Re = { class: "control" }, Ge = { class: "select is-small" }, Xe = ["value"], Ke = ["value"], et = { class: "column is-narrow" }, tt = /* @__PURE__ */ De({
   __name: "calendar-header",
   props: {
@@ -486,7 +486,7 @@ const Be = /* @__PURE__ */ ae(Ve), je = { class: "mb-3" }, ze = { class: "column
       "October",
       "November",
       "December"
-    ], g = (/* @__PURE__ */ new Date()).getFullYear(), e = te(() => {
+    ], g = (/* @__PURE__ */ new Date()).getFullYear(), e = ne(() => {
       const v = [];
       for (let l = g - 20; l <= g + 20; l++)
         v.push(l);
@@ -608,7 +608,7 @@ const Be = /* @__PURE__ */ ae(Ve), je = { class: "mb-3" }, ze = { class: "column
       ])
     ]));
   }
-}), it = /* @__PURE__ */ $e(ot, [["__scopeId", "data-v-d526db46"]]), ut = /* @__PURE__ */ De({
+}), it = /* @__PURE__ */ Me(ot, [["__scopeId", "data-v-d526db46"]]), ut = /* @__PURE__ */ De({
   __name: "date-picker",
   props: {
     modelValue: { default: null },
@@ -617,24 +617,25 @@ const Be = /* @__PURE__ */ ae(Ve), je = { class: "mb-3" }, ze = { class: "column
     maxDate: { default: null },
     required: { type: Boolean, default: !1 },
     error: {},
-    withIcon: { type: Boolean, default: !0 }
+    withIcon: { type: Boolean, default: !0 },
+    description: {}
   },
   emits: ["update:model-value"],
   setup(C, { emit: U }) {
     S();
-    const m = C, $ = U, g = Ye(null), e = xe({
+    const m = C, $ = U, g = xe(null), e = Se({
       showingPicker: !1,
       currentDate: O(),
       selectedDate: null,
       minDate: null,
       maxDate: null
-    }), D = te(() => e.showingPicker), w = te(() => e.currentDate.format("YYYY")), v = te(() => O().format(m.format)), l = te(() => e.currentDate.month()), h = te(() => {
+    }), D = ne(() => e.showingPicker), w = ne(() => e.currentDate.format("YYYY")), v = ne(() => O().format(m.format)), l = ne(() => e.currentDate.month()), h = ne(() => {
       const u = P(), o = z(), i = H();
       return [...u, ...o, ...i];
     });
-    Se(() => {
+    Oe(() => {
       I(), document.addEventListener("click", T);
-    }), Oe(() => {
+    }), Le(() => {
       document.removeEventListener("click", T);
     });
     function S() {
@@ -716,7 +717,7 @@ const Be = /* @__PURE__ */ ae(Ve), je = { class: "mb-3" }, ze = { class: "column
       if (u === 0) return [];
       const o = e.currentDate.subtract(1, "month"), i = o.format("YYYY-MM-");
       let y = o.daysInMonth();
-      const _ = [{
+      const Y = [{
         class: "has-text-grey is-disabled",
         date: O(`${i}${y}`),
         day: y,
@@ -726,7 +727,7 @@ const Be = /* @__PURE__ */ ae(Ve), je = { class: "mb-3" }, ze = { class: "column
       for (let a = 0; a < u - 1; a++) {
         y--;
         const n = O(`${i}${y}`), t = !!(e.minDate && n.isBefore(e.minDate));
-        _.unshift({
+        Y.unshift({
           class: "has-text-grey is-disabled",
           date: n,
           day: y,
@@ -734,17 +735,17 @@ const Be = /* @__PURE__ */ ae(Ve), je = { class: "mb-3" }, ze = { class: "column
           // Always true for prefill days
         });
       }
-      return _;
+      return Y;
     }
     function z() {
       return Array(e.currentDate.daysInMonth()).fill(null).map((u, o) => {
-        const i = (o + 1).toString().padStart(2, "0"), y = O(`${e.currentDate.format("YYYY-MM-")}${i}`), _ = !!// Convert to boolean with !!
+        const i = (o + 1).toString().padStart(2, "0"), y = O(`${e.currentDate.format("YYYY-MM-")}${i}`), Y = !!// Convert to boolean with !!
         (e.minDate && y.isBefore(e.minDate) || e.maxDate && y.isAfter(e.maxDate));
         return {
-          class: _ ? "has-text-grey is-disabled" : "",
+          class: Y ? "has-text-grey is-disabled" : "",
           date: y,
           day: o + 1,
-          disabled: _
+          disabled: Y
         };
       });
     }
@@ -752,24 +753,24 @@ const Be = /* @__PURE__ */ ae(Ve), je = { class: "mb-3" }, ze = { class: "column
       const u = e.currentDate.endOf("month").weekday();
       if (u === 6) return [];
       const i = e.currentDate.add(1, "month").format("YYYY-MM-");
-      return Array(6 - u).fill(null).map((y, _) => {
-        const a = (_ + 1).toString().padStart(2, "0"), n = O(`${i}${a}`), t = !!(e.minDate && n.isBefore(e.minDate));
+      return Array(6 - u).fill(null).map((y, Y) => {
+        const a = (Y + 1).toString().padStart(2, "0"), n = O(`${i}${a}`), t = !!(e.minDate && n.isBefore(e.minDate));
         return {
           class: "has-text-grey is-disabled",
           date: n,
-          day: _ + 1,
+          day: Y + 1,
           disabled: t
         };
       });
     }
     return (u, o) => {
-      const i = pe("icon-button"), y = pe("box"), _ = pe("text-input");
+      const i = pe("icon-button"), y = pe("box"), Y = pe("text-input");
       return Z(), Q("div", {
         class: "b-date-picker",
         ref_key: "pickerRef",
         ref: g
       }, [
-        ie(_, {
+        ie(Y, {
           "is-expanded": "",
           "model-value": e.selectedDate,
           error: u.error,
@@ -781,7 +782,7 @@ const Be = /* @__PURE__ */ ae(Ve), je = { class: "mb-3" }, ze = { class: "column
           onBlur: R,
           "onUpdate:modelValue": B
         }, {
-          left: ne(() => [
+          left: te(() => [
             u.withIcon ? (Z(), ve(i, {
               key: 0,
               onClick: o[0] || (o[0] = ee(() => {
@@ -791,19 +792,22 @@ const Be = /* @__PURE__ */ ae(Ve), je = { class: "mb-3" }, ze = { class: "column
               icon: "calendar"
             })) : ye("", !0)
           ]),
-          inner: ne(() => [
-            ie(Le, {
+          description: te(() => [
+            $e(u.$slots, "description", {}, void 0, !0)
+          ]),
+          inner: te(() => [
+            ie(Ce, {
               name: "vuema-fade",
               mode: "in-out"
             }, {
-              default: ne(() => [
+              default: te(() => [
                 D.value ? (Z(), ve(y, {
                   key: 0,
                   class: "b-date-picker-window",
                   onClick: o[1] || (o[1] = ee(() => {
                   }, ["stop"]))
                 }, {
-                  default: ne(() => [
+                  default: te(() => [
                     ie(tt, {
                       month: l.value,
                       year: w.value,
@@ -826,15 +830,15 @@ const Be = /* @__PURE__ */ ae(Ve), je = { class: "mb-3" }, ze = { class: "column
               _: 1
             })
           ]),
-          default: ne(() => [
-            Ce(u.$slots, "default", {}, void 0, !0)
+          default: te(() => [
+            $e(u.$slots, "default", {}, void 0, !0)
           ]),
           _: 3
         }, 8, ["model-value", "error", "required", "has-addons"])
       ], 512);
     };
   }
-}), ft = /* @__PURE__ */ $e(ut, [["__scopeId", "data-v-c2e61032"]]);
+}), ft = /* @__PURE__ */ Me(ut, [["__scopeId", "data-v-3252d5ab"]]);
 export {
   ft as default
 };

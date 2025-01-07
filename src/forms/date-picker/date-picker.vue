@@ -15,6 +15,10 @@
             <template #left>
                 <icon-button @click.prevent class="is-shadowless" v-if="withIcon" role="presentation" icon="calendar"/>
             </template>
+
+            <template #description>
+                <slot name="description" />
+            </template>
             
             <slot />
             

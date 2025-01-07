@@ -3,6 +3,7 @@ declare function __VLS_template(): {
     attrs: Partial<{}>;
     slots: {
         default?(_: {}): any;
+        description?(_: {}): any;
     };
     refs: {};
     rootEl: HTMLDivElement;

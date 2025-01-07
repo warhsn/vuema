@@ -1,10 +1,10 @@
-import { defineComponent as b, resolveComponent as a, openBlock as o, createElementBlock as n, createVNode as i, withCtx as g, renderSlot as I, createElementVNode as t, normalizeClass as r, unref as C, toDisplayString as p, createCommentVNode as d, Fragment as k, renderList as L, createBlock as E } from "vue";
+import { defineComponent as I, resolveComponent as a, openBlock as o, createElementBlock as n, createVNode as i, withCtx as r, renderSlot as p, createElementVNode as t, normalizeClass as d, unref as C, toDisplayString as u, createCommentVNode as c, Fragment as k, renderList as L, createBlock as E } from "vue";
 import { _ as K } from "./errors-BZdmzG52.js";
 import { _ as V } from "./field-error.vue_vue_type_script_setup_true_lang-DiGo15DQ.js";
 const N = ["multiple", "disabled", "size"], S = {
   key: 0,
   value: ""
-}, q = ["value", "selected"], w = "update:modelValue", _ = /* @__PURE__ */ b({
+}, q = ["value", "selected"], w = "update:modelValue", $ = /* @__PURE__ */ I({
   __name: "select-input",
   props: {
     valueKey: {},
@@ -56,32 +56,35 @@ const N = ["multiple", "disabled", "size"], S = {
     is11: { type: Boolean },
     is12: { type: Boolean }
   },
-  setup(u, { emit: c }) {
-    const y = u, m = c;
-    function B(e) {
+  setup(y, { emit: m }) {
+    const B = y, f = m;
+    function h(e) {
       const s = e.target;
-      m(w, s.value);
+      f(w, s.value);
     }
-    const f = K(y);
+    const v = K(B);
     return (e, s) => {
-      const h = a("field-label"), v = a("b-icon");
+      const b = a("field-label"), g = a("b-icon");
       return o(), n("div", null, [
-        i(h, { required: e.required }, {
-          default: g(() => [
-            I(e.$slots, "default")
+        i(b, { required: e.required }, {
+          description: r(() => [
+            p(e.$slots, "description")
+          ]),
+          default: r(() => [
+            p(e.$slots, "default")
           ]),
           _: 3
         }, 8, ["required"]),
         t("div", null, [
           t("div", {
-            class: r(["is-expanded control", {
+            class: d(["is-expanded control", {
               "has-icons-left": e.leftIcon
             }])
           }, [
             t("div", {
-              class: r(["select is-fullwidth", {
+              class: d(["select is-fullwidth", {
                 "is-multiple": e.multiple,
-                "is-danger": C(f),
+                "is-danger": C(v),
                 "is-rounded": e.isRounded,
                 "is-loading": e.isLoading
               }])
@@ -90,20 +93,20 @@ const N = ["multiple", "disabled", "size"], S = {
                 multiple: e.multiple,
                 disabled: e.disabled,
                 size: e.itemCount,
-                onInput: B
+                onInput: h
               }, [
-                e.multiple ? d("", !0) : (o(), n("option", S, p(e.promptLabel), 1)),
+                e.multiple ? c("", !0) : (o(), n("option", S, u(e.promptLabel), 1)),
                 (o(!0), n(k, null, L(e.items, (l) => (o(), n("option", {
                   value: l[e.valueKey],
                   key: l[e.valueKey],
                   selected: l[e.valueKey] === e.modelValue
-                }, p(l[e.labelKey]), 9, q))), 128))
+                }, u(l[e.labelKey]), 9, q))), 128))
               ], 40, N),
-              e.leftIcon ? (o(), E(v, {
+              e.leftIcon ? (o(), E(g, {
                 key: 0,
                 "icon-classes": e.leftIconClass,
                 icon: e.leftIcon
-              }, null, 8, ["icon-classes", "icon"])) : d("", !0)
+              }, null, 8, ["icon-classes", "icon"])) : c("", !0)
             ], 2)
           ], 2)
         ]),
@@ -113,5 +116,5 @@ const N = ["multiple", "disabled", "size"], S = {
   }
 });
 export {
-  _ as default
+  $ as default
 };

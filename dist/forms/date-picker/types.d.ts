@@ -28,6 +28,10 @@ export interface DatePickerProps {
      * Show the calendar icon
      */
     withIcon?: boolean;
+    /**
+     * The description of the field
+     */
+    description?: string;
 }
 export interface CalendarDay {
     /**
