@@ -21,4 +21,7 @@ export default function (app: any) {
     app.component('alert', defineAsyncComponent(() => import('./alert-dialog.vue')))
     app.component('tabs', defineAsyncComponent(() => import('./tabs/tabs.vue')))
     app.component('tab', defineAsyncComponent(() => import('./tabs/tab.vue')))
+
+    // Pagination
+    app.component('pagination', defineAsyncComponent(() => import('./pagination.vue')))
 }
