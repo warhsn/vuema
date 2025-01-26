@@ -1,54 +1,28 @@
 <template>
     <div class="b-date-picker" ref="pickerRef">
-        <text-input
-            is-expanded
-            :model-value="state.selectedDate"
-            :error="error"
-            :required="required"
-            class="is-clickable"
-            :has-addons="withIcon"
-            @click="togglePicker"
-            @input="handleManualInput"
-            @blur="handleBlur"
-            @update:model-value="handleManualInput"
-        >
+        <text-input is-expanded :model-value="state.selectedDate" :error="error" :required="required"
+            class="is-clickable" :has-addons="withIcon" @click="togglePicker" @input="handleManualInput"
+            @blur="handleBlur" @update:model-value="handleManualInput">
             <template #left>
-                <icon-button @click.prevent class="is-shadowless" v-if="withIcon" role="presentation" icon="calendar"/>
+                <icon-button @click.prevent class="is-shadowless" v-if="withIcon" role="presentation" icon="calendar" />
             </template>
 
             <template #description>
                 <slot name="description" />
             </template>
-            
+
             <slot />
-            
-            <template #inner>
-                <transition name="vuema-fade" mode="in-out">
-                    <box 
-                        v-if="showPicker" 
-                        class="b-date-picker-window"
-                        @click.stop
-                    >
-                        <calendar-header 
-                            :month="currentMonth"
-                            :year="displayYear"
-                            @previous-month="goToPreviousMonth"
-                            @next-month="goToNextMonth"
-                            @month-change="handleMonthChange"
-                            @year-change="handleYearChange"
-                        />
-                        
-                        <calendar-grid 
-                            :calendar-days="calendarDays"
-                            :today="today"
-                            :selected-date="state.selectedDate"
-                            :date-format="props.format"
-                            @select-date="selectDate"
-                        />
-                    </box>
-                </transition>
-            </template>
         </text-input>
+
+        <transition name="vuema-fade" mode="in-out">
+            <box v-if="showPicker" class="b-date-picker-window" @click.stop>
+                <calendar-header :month="currentMonth" :year="displayYear" @previous-month="goToPreviousMonth"
+                    @next-month="goToNextMonth" @month-change="handleMonthChange" @year-change="handleYearChange" />
+
+                <calendar-grid :calendar-days="calendarDays" :today="today" :selected-date="state.selectedDate"
+                    :date-format="props.format" @select-date="selectDate" />
+            </box>
+        </transition>
     </div>
 </template>
 

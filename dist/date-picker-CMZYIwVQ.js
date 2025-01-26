@@ -1,5 +1,5 @@
-import { defineComponent as De, computed as ne, openBlock as Z, createElementBlock as Q, createElementVNode as x, withModifiers as ee, Fragment as ue, renderList as ce, toDisplayString as le, normalizeClass as _e, ref as xe, reactive as Se, onMounted as Oe, onUnmounted as Le, resolveComponent as pe, createVNode as ie, withCtx as te, createBlock as ve, createCommentVNode as ye, renderSlot as $e, Transition as Ce } from "vue";
-import { _ as Me } from "./index-DAhpNphV.js";
+import { defineComponent as De, computed as te, openBlock as Z, createElementBlock as Q, createElementVNode as x, withModifiers as ee, Fragment as ue, renderList as ce, toDisplayString as le, normalizeClass as _e, ref as xe, reactive as Se, onMounted as Oe, onUnmounted as Le, resolveComponent as pe, createVNode as ie, withCtx as ne, createBlock as ve, createCommentVNode as ye, renderSlot as $e, Transition as Ce } from "vue";
+import { _ as Me } from "./index-BM2bubGl.js";
 var re = typeof globalThis < "u" ? globalThis : typeof window < "u" ? window : typeof global < "u" ? global : typeof self < "u" ? self : {};
 function ae(C) {
   return C && C.__esModule && Object.prototype.hasOwnProperty.call(C, "default") ? C.default : C;
@@ -486,7 +486,7 @@ const Be = /* @__PURE__ */ ae(Ve), je = { class: "mb-3" }, ze = { class: "column
       "October",
       "November",
       "December"
-    ], g = (/* @__PURE__ */ new Date()).getFullYear(), e = ne(() => {
+    ], g = (/* @__PURE__ */ new Date()).getFullYear(), e = te(() => {
       const v = [];
       for (let l = g - 20; l <= g + 20; l++)
         v.push(l);
@@ -629,7 +629,7 @@ const Be = /* @__PURE__ */ ae(Ve), je = { class: "mb-3" }, ze = { class: "column
       selectedDate: null,
       minDate: null,
       maxDate: null
-    }), D = ne(() => e.showingPicker), w = ne(() => e.currentDate.format("YYYY")), v = ne(() => O().format(m.format)), l = ne(() => e.currentDate.month()), h = ne(() => {
+    }), D = te(() => e.showingPicker), w = te(() => e.currentDate.format("YYYY")), v = te(() => O().format(m.format)), l = te(() => e.currentDate.month()), h = te(() => {
       const u = P(), o = z(), i = H();
       return [...u, ...o, ...i];
     });
@@ -764,13 +764,13 @@ const Be = /* @__PURE__ */ ae(Ve), je = { class: "mb-3" }, ze = { class: "column
       });
     }
     return (u, o) => {
-      const i = pe("icon-button"), y = pe("box"), Y = pe("text-input");
+      const i = pe("icon-button"), y = pe("text-input"), Y = pe("box");
       return Z(), Q("div", {
         class: "b-date-picker",
         ref_key: "pickerRef",
         ref: g
       }, [
-        ie(Y, {
+        ie(y, {
           "is-expanded": "",
           "model-value": e.selectedDate,
           error: u.error,
@@ -782,7 +782,7 @@ const Be = /* @__PURE__ */ ae(Ve), je = { class: "mb-3" }, ze = { class: "column
           onBlur: R,
           "onUpdate:modelValue": B
         }, {
-          left: te(() => [
+          left: ne(() => [
             u.withIcon ? (Z(), ve(i, {
               key: 0,
               onClick: o[0] || (o[0] = ee(() => {
@@ -792,53 +792,51 @@ const Be = /* @__PURE__ */ ae(Ve), je = { class: "mb-3" }, ze = { class: "column
               icon: "calendar"
             })) : ye("", !0)
           ]),
-          description: te(() => [
+          description: ne(() => [
             $e(u.$slots, "description", {}, void 0, !0)
           ]),
-          inner: te(() => [
-            ie(Ce, {
-              name: "vuema-fade",
-              mode: "in-out"
-            }, {
-              default: te(() => [
-                D.value ? (Z(), ve(y, {
-                  key: 0,
-                  class: "b-date-picker-window",
-                  onClick: o[1] || (o[1] = ee(() => {
-                  }, ["stop"]))
-                }, {
-                  default: te(() => [
-                    ie(tt, {
-                      month: l.value,
-                      year: w.value,
-                      onPreviousMonth: j,
-                      onNextMonth: A,
-                      onMonthChange: b,
-                      onYearChange: k
-                    }, null, 8, ["month", "year"]),
-                    ie(it, {
-                      "calendar-days": h.value,
-                      today: v.value,
-                      "selected-date": e.selectedDate,
-                      "date-format": m.format,
-                      onSelectDate: M
-                    }, null, 8, ["calendar-days", "today", "selected-date", "date-format"])
-                  ]),
-                  _: 1
-                })) : ye("", !0)
-              ]),
-              _: 1
-            })
-          ]),
-          default: te(() => [
+          default: ne(() => [
             $e(u.$slots, "default", {}, void 0, !0)
           ]),
           _: 3
-        }, 8, ["model-value", "error", "required", "has-addons"])
+        }, 8, ["model-value", "error", "required", "has-addons"]),
+        ie(Ce, {
+          name: "vuema-fade",
+          mode: "in-out"
+        }, {
+          default: ne(() => [
+            D.value ? (Z(), ve(Y, {
+              key: 0,
+              class: "b-date-picker-window",
+              onClick: o[1] || (o[1] = ee(() => {
+              }, ["stop"]))
+            }, {
+              default: ne(() => [
+                ie(tt, {
+                  month: l.value,
+                  year: w.value,
+                  onPreviousMonth: j,
+                  onNextMonth: A,
+                  onMonthChange: b,
+                  onYearChange: k
+                }, null, 8, ["month", "year"]),
+                ie(it, {
+                  "calendar-days": h.value,
+                  today: v.value,
+                  "selected-date": e.selectedDate,
+                  "date-format": m.format,
+                  onSelectDate: M
+                }, null, 8, ["calendar-days", "today", "selected-date", "date-format"])
+              ]),
+              _: 1
+            })) : ye("", !0)
+          ]),
+          _: 1
+        })
       ], 512);
     };
   }
-}), ft = /* @__PURE__ */ Me(ut, [["__scopeId", "data-v-3252d5ab"]]);
+}), ft = /* @__PURE__ */ Me(ut, [["__scopeId", "data-v-6e7b2f1f"]]);
 export {
   ft as default
 };

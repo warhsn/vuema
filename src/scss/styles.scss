@@ -35,3 +35,80 @@
     transform: scale(1);
     transition: transform 0.3s ease;
 }
+
+.b-date-picker {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+}
+
+.b-date-picker-window {
+    position: absolute;
+    z-index: 99;
+    top: calc(100% + 5px);
+    left: 0;
+    min-width: 280px;
+    background-color: var(--bulma-scheme-main);
+    color: var(--bulma-scheme-main-text);
+    border: 1px solid var(--bulma-border);
+    border-radius: var(--bulma-radius);
+    box-shadow: var(--bulma-shadow);
+    padding: 1rem;
+}
+
+/* Calendar day styles */
+.b-date-picker .is-block {
+    border-radius: var(--bulma-radius-small);
+    transition: background-color 0.15s ease-out;
+}
+
+.b-date-picker .is-clickable:hover {
+    background-color: var(--bulma-scheme-main-ter);
+    cursor: pointer;
+}
+
+/* Selected date styles */
+.b-date-picker .has-background-grey-light {
+    background-color: var(--bulma-scheme-main-ter) !important;
+    color: var(--bulma-scheme-main-text) !important;
+}
+
+/* Today's date styles */
+.b-date-picker .has-background-primary {
+    background-color: var(--bulma-primary) !important;
+    color: var(--bulma-primary-invert) !important;
+}
+
+/* Disabled dates */
+.b-date-picker .is-disabled {
+    opacity: 0.5;
+    cursor: not-allowed !important;
+    color: var(--bulma-scheme-main-text-light);
+}
+
+/* Header buttons */
+.b-date-picker .button {
+    background-color: var(--bulma-scheme-main);
+    border-color: var(--bulma-border);
+    color: var(--bulma-scheme-main-text);
+}
+
+.b-date-picker .button:hover {
+    border-color: var(--bulma-border-hover);
+    background-color: var(--bulma-scheme-main-bis);
+}
+
+.b-date-picker .button .icon svg {
+    fill: currentColor;
+}
+
+/* Select dropdowns */
+.b-date-picker .select select {
+    background-color: var(--bulma-scheme-main);
+    color: var(--bulma-scheme-main-text);
+    border-color: var(--bulma-border);
+}
+
+.b-date-picker .select select:hover {
+    border-color: var(--bulma-border-hover);
+}
