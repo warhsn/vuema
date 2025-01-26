@@ -1,8 +1,12 @@
 {
   "name": "@warhsn/vuema",
-  "version": "0.6.2",
+  "version": "0.6.3",
   "description": "Bulma for Vuejs",
   "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/warhsn/vuema.git"
+  },
   "main": "./dist/index.cjs.js",
   "module": "./dist/index.es.js",
   "types": "./dist/index.d.ts",
