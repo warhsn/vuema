@@ -14,7 +14,10 @@
                     'is-multiple': multiple,
                     'is-danger': hasErrors,
                     'is-rounded': isRounded,
-                    'is-loading': isLoading
+                    'is-loading': isLoading,
+                    'is-small': isSmall,
+                    'is-medium': isMedium,
+                    'is-large': isLarge,
                 }">
                 <select
                     :multiple="multiple"
