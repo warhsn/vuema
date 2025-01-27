@@ -51,6 +51,11 @@ const props = withDefaults(
     defineProps<_SelectInput>(), {
         promptLabel: '- Select an Option -',
         multiple: false,
+        isSmall: false,
+        isMedium: false,
+        isLarge: false,
+        isLoading: false,
+        isRounded: false,
         modelValue: () => []
     }
 )

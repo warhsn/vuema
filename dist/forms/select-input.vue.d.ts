@@ -14,7 +14,12 @@ declare const __VLS_component: import('vue').DefineComponent<_SelectInput, {}, {
 }, string, import('vue').PublicProps, Readonly<_SelectInput> & Readonly<{
     "onUpdate:modelValue"?: ((value: string | number | (string | number)[]) => any) | undefined;
 }>, {
+    isSmall: boolean;
+    isMedium: boolean;
+    isLarge: boolean;
+    isRounded: boolean;
     modelValue: string | number | Array<string | number>;
+    isLoading: boolean;
     promptLabel: string;
     multiple: boolean;
 }, {}, {}, {}, string, import('vue').ComponentProvideOptions, false, {}, HTMLDivElement>;

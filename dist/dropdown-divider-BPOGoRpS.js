@@ -1,5 +1,5 @@
 import { openBlock as o, createElementBlock as r } from "vue";
-import { _ as e } from "./index-BM2bubGl.js";
+import { _ as e } from "./index-BSGFFj8B.js";
 const c = {}, t = { class: "dropdown-divider" };
 function n(d, s) {
   return o(), r("hr", t);
