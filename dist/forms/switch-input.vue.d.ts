@@ -4,7 +4,7 @@ declare function __VLS_template(): {
     slots: {
         default?(_: {}): any;
         description?(_: {}): any;
-        "inner-label"?(_: {}): any;
+        'inner-label'?(_: {}): any;
     };
     refs: {};
     rootEl: HTMLDivElement;
