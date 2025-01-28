@@ -30,6 +30,7 @@
                     :value="modelValue" 
                     @input="onInput"
                     @focus="onFocus"
+                    @blur="onBlur"
                 >
                 <b-icon 
                     v-if="leftIcon" 
@@ -59,11 +60,13 @@ import { computed } from 'vue'
 const props = defineProps<_TextInput>()
 
 const inputName = 'update:modelValue'
-const focusName = 'focus'
+const focus = 'focus'
+const blur = 'blur'
 
 const emit = defineEmits<{
     (e: typeof inputName, value: string | number): void,
-    (e: typeof focusName): void,
+    (e: typeof focus): void,
+    (e: typeof blur): void,
 }>()
 
 function onInput(event: Event): void {
@@ -71,7 +74,8 @@ function onInput(event: Event): void {
     emit(inputName, target.value)
 }
 
-const onFocus = () => emit(focusName)
+const onFocus = () => emit(focus)
+const onBlur = () => emit(blur)
 
 const hasErrors = _hasErrors(props)
 
