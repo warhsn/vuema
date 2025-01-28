@@ -29,6 +29,7 @@
                     :disabled="disabled"
                     :value="modelValue" 
                     @input="onInput"
+                    @focus="onFocus"
                 >
                 <b-icon 
                     v-if="leftIcon" 
@@ -58,15 +59,19 @@ import { computed } from 'vue'
 const props = defineProps<_TextInput>()
 
 const inputName = 'update:modelValue'
+const focusName = 'focus'
 
 const emit = defineEmits<{
-    (e: typeof inputName, value: string | number): void
+    (e: typeof inputName, value: string | number): void,
+    (e: typeof focusName): void,
 }>()
 
 function onInput(event: Event): void {
     const target = event.target as HTMLInputElement
     emit(inputName, target.value)
 }
+
+const onFocus = () => emit(focusName)
 
 const hasErrors = _hasErrors(props)
 

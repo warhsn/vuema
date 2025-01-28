@@ -25,8 +25,10 @@ declare function __VLS_template(): {
 };
 type __VLS_TemplateResult = ReturnType<typeof __VLS_template>;
 declare const __VLS_component: import('vue').DefineComponent<_TextInput, {}, {}, {}, {}, import('vue').ComponentOptionsMixin, import('vue').ComponentOptionsMixin, {} & {
+    focus: () => any;
     "update:modelValue": (value: string | number) => any;
 }, string, import('vue').PublicProps, Readonly<_TextInput> & Readonly<{
+    onFocus?: (() => any) | undefined;
     "onUpdate:modelValue"?: ((value: string | number) => any) | undefined;
 }>, {}, {}, {}, {}, string, import('vue').ComponentProvideOptions, false, {}, HTMLDivElement>;
 declare const _default: __VLS_WithTemplateSlots<typeof __VLS_component, __VLS_TemplateResult["slots"]>;

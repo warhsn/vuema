@@ -1,7 +1,7 @@
-import { defineComponent as C, computed as c, resolveComponent as u, openBlock as n, createElementBlock as t, createVNode as m, withCtx as y, renderSlot as a, createElementVNode as r, normalizeClass as o, createCommentVNode as i, createBlock as B } from "vue";
-import { _ as $ } from "./errors-BWO7vh4U.js";
-import { _ as E } from "./field-error.vue_vue_type_script_setup_true_lang-C_t8qsdB.js";
-const V = ["placeholder", "disabled", "value"], L = "update:modelValue", w = /* @__PURE__ */ C({
+import { defineComponent as $, computed as u, resolveComponent as m, openBlock as n, createElementBlock as t, createVNode as y, withCtx as B, renderSlot as a, createElementVNode as r, normalizeClass as o, createCommentVNode as i, createBlock as f } from "vue";
+import { _ as E } from "./errors-BWO7vh4U.js";
+import { _ as N } from "./field-error.vue_vue_type_script_setup_true_lang-C_t8qsdB.js";
+const V = ["placeholder", "disabled", "value"], L = "update:modelValue", q = "focus", S = /* @__PURE__ */ $({
   __name: "text-input",
   props: {
     modelValue: {},
@@ -48,29 +48,29 @@ const V = ["placeholder", "disabled", "value"], L = "update:modelValue", w = /* 
     is11: { type: Boolean },
     is12: { type: Boolean }
   },
-  setup(h, { emit: f }) {
-    const l = h, g = f;
+  setup(h, { emit: g }) {
+    const s = h, d = g;
     function v(e) {
-      const d = e.target;
-      g(L, d.value);
+      const p = e.target;
+      d(L, p.value);
     }
-    const I = $(l), s = c(() => ({
-      "is-small": l.isSmall,
-      "is-medium": l.isMedium,
-      "is-large": l.isLarge
-    })), b = c(() => ({
-      "is-danger": I.value,
-      "is-rounded": l.isRounded,
-      ...s.value
+    const I = () => d(q), b = E(s), l = u(() => ({
+      "is-small": s.isSmall,
+      "is-medium": s.isMedium,
+      "is-large": s.isLarge
+    })), k = u(() => ({
+      "is-danger": b.value,
+      "is-rounded": s.isRounded,
+      ...l.value
     }));
-    return (e, d) => {
-      const k = u("field-label"), p = u("b-icon");
+    return (e, p) => {
+      const C = m("field-label"), c = m("b-icon");
       return n(), t("div", null, [
-        m(k, { required: e.required }, {
-          description: y(() => [
+        y(C, { required: e.required }, {
+          description: B(() => [
             a(e.$slots, "description")
           ]),
-          default: y(() => [
+          default: B(() => [
             a(e.$slots, "default")
           ]),
           _: 3
@@ -82,10 +82,10 @@ const V = ["placeholder", "disabled", "value"], L = "update:modelValue", w = /* 
         }, [
           e.$slots.left ? (n(), t("div", {
             key: 0,
-            class: o(["control", s.value])
+            class: o(["control", l.value])
           }, [
             a(e.$slots, "left", {
-              class: o(s.value)
+              class: o(l.value)
             })
           ], 2)) : i("", !0),
           r("div", {
@@ -98,18 +98,19 @@ const V = ["placeholder", "disabled", "value"], L = "update:modelValue", w = /* 
           }, [
             r("input", {
               type: "text",
-              class: o(["input", b.value]),
+              class: o(["input", k.value]),
               placeholder: e.placeholder,
               disabled: e.disabled,
               value: e.modelValue,
-              onInput: v
+              onInput: v,
+              onFocus: I
             }, null, 42, V),
-            e.leftIcon ? (n(), B(p, {
+            e.leftIcon ? (n(), f(c, {
               key: 0,
               class: "icon is-small is-left",
               icon: e.leftIcon
             }, null, 8, ["icon"])) : i("", !0),
-            e.rightIcon ? (n(), B(p, {
+            e.rightIcon ? (n(), f(c, {
               key: 1,
               class: "icon is-small is-right",
               icon: e.rightIcon
@@ -118,18 +119,18 @@ const V = ["placeholder", "disabled", "value"], L = "update:modelValue", w = /* 
           ], 2),
           e.$slots.right ? (n(), t("div", {
             key: 1,
-            class: o(["control", s.value])
+            class: o(["control", l.value])
           }, [
             a(e.$slots, "right", {
-              class: o(s.value)
+              class: o(l.value)
             })
           ], 2)) : i("", !0)
         ], 2),
-        m(E, { error: e.error }, null, 8, ["error"])
+        y(N, { error: e.error }, null, 8, ["error"])
       ]);
     };
   }
 });
 export {
-  w as default
+  S as default
 };
