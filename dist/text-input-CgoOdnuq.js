@@ -1,7 +1,7 @@
-import { defineComponent as $, computed as u, resolveComponent as m, openBlock as n, createElementBlock as t, createVNode as y, withCtx as B, renderSlot as a, createElementVNode as r, normalizeClass as o, createCommentVNode as i, createBlock as f } from "vue";
-import { _ as E } from "./errors-BWO7vh4U.js";
-import { _ as N } from "./field-error.vue_vue_type_script_setup_true_lang-C_t8qsdB.js";
-const V = ["placeholder", "disabled", "value"], L = "update:modelValue", q = "focus", S = /* @__PURE__ */ $({
+import { defineComponent as C, computed as y, resolveComponent as m, openBlock as s, createElementBlock as r, createBlock as d, withCtx as B, renderSlot as t, createCommentVNode as a, createElementVNode as p, normalizeClass as o, createVNode as E } from "vue";
+import { _ as V } from "./errors-BWO7vh4U.js";
+import { _ as L } from "./field-error.vue_vue_type_script_setup_true_lang-C_t8qsdB.js";
+const N = ["placeholder", "disabled", "value"], q = "update:modelValue", T = "focus", w = "blur", A = /* @__PURE__ */ C({
   __name: "text-input",
   props: {
     modelValue: {},
@@ -48,47 +48,50 @@ const V = ["placeholder", "disabled", "value"], L = "update:modelValue", q = "fo
     is11: { type: Boolean },
     is12: { type: Boolean }
   },
-  setup(h, { emit: g }) {
-    const s = h, d = g;
-    function v(e) {
-      const p = e.target;
-      d(L, p.value);
+  setup(f, { emit: h }) {
+    const l = f, i = h;
+    function g(e) {
+      const c = e.target;
+      i(q, c.value);
     }
-    const I = () => d(q), b = E(s), l = u(() => ({
-      "is-small": s.isSmall,
-      "is-medium": s.isMedium,
-      "is-large": s.isLarge
-    })), k = u(() => ({
+    const v = () => i(T), I = () => i(w), b = V(l), n = y(() => ({
+      "is-small": l.isSmall,
+      "is-medium": l.isMedium,
+      "is-large": l.isLarge
+    })), $ = y(() => ({
       "is-danger": b.value,
-      "is-rounded": s.isRounded,
-      ...l.value
+      "is-rounded": l.isRounded,
+      ...n.value
     }));
-    return (e, p) => {
-      const C = m("field-label"), c = m("b-icon");
-      return n(), t("div", null, [
-        y(C, { required: e.required }, {
+    return (e, c) => {
+      const k = m("field-label"), u = m("b-icon");
+      return s(), r("div", null, [
+        e.$slots.default || e.$slots.description ? (s(), d(k, {
+          key: 0,
+          required: e.required
+        }, {
           description: B(() => [
-            a(e.$slots, "description")
+            t(e.$slots, "description")
           ]),
           default: B(() => [
-            a(e.$slots, "default")
+            t(e.$slots, "default")
           ]),
           _: 3
-        }, 8, ["required"]),
-        r("div", {
+        }, 8, ["required"])) : a("", !0),
+        p("div", {
           class: o(["field", {
             "has-addons": e.hasAddons
           }])
         }, [
-          e.$slots.left ? (n(), t("div", {
+          e.$slots.left ? (s(), r("div", {
             key: 0,
-            class: o(["control", l.value])
+            class: o(["control", n.value])
           }, [
-            a(e.$slots, "left", {
-              class: o(l.value)
+            t(e.$slots, "left", {
+              class: o(n.value)
             })
-          ], 2)) : i("", !0),
-          r("div", {
+          ], 2)) : a("", !0),
+          p("div", {
             class: o(["control", {
               "has-icons-left": e.leftIcon,
               "has-icons-right": e.rightIcon,
@@ -96,41 +99,42 @@ const V = ["placeholder", "disabled", "value"], L = "update:modelValue", q = "fo
               "is-expanded": e.isExpanded
             }])
           }, [
-            r("input", {
+            p("input", {
               type: "text",
-              class: o(["input", k.value]),
+              class: o(["input", $.value]),
               placeholder: e.placeholder,
               disabled: e.disabled,
               value: e.modelValue,
-              onInput: v,
-              onFocus: I
-            }, null, 42, V),
-            e.leftIcon ? (n(), f(c, {
+              onInput: g,
+              onFocus: v,
+              onBlur: I
+            }, null, 42, N),
+            e.leftIcon ? (s(), d(u, {
               key: 0,
               class: "icon is-small is-left",
               icon: e.leftIcon
-            }, null, 8, ["icon"])) : i("", !0),
-            e.rightIcon ? (n(), f(c, {
+            }, null, 8, ["icon"])) : a("", !0),
+            e.rightIcon ? (s(), d(u, {
               key: 1,
               class: "icon is-small is-right",
               icon: e.rightIcon
-            }, null, 8, ["icon"])) : i("", !0),
-            a(e.$slots, "inner")
+            }, null, 8, ["icon"])) : a("", !0),
+            t(e.$slots, "inner")
           ], 2),
-          e.$slots.right ? (n(), t("div", {
+          e.$slots.right ? (s(), r("div", {
             key: 1,
-            class: o(["control", l.value])
+            class: o(["control", n.value])
           }, [
-            a(e.$slots, "right", {
-              class: o(l.value)
+            t(e.$slots, "right", {
+              class: o(n.value)
             })
-          ], 2)) : i("", !0)
+          ], 2)) : a("", !0)
         ], 2),
-        y(N, { error: e.error }, null, 8, ["error"])
+        E(L, { error: e.error }, null, 8, ["error"])
       ]);
     };
   }
 });
 export {
-  S as default
+  A as default
 };

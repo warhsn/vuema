@@ -1,8 +1,9 @@
+import { _Sizes } from '@/interfaces/sizes'
 import { _TextInput } from '@/interfaces/text-input'
 import { Dayjs } from 'dayjs'
 
 // Main DatePicker Props Interface
-export interface DatePickerProps {
+export interface DatePickerProps extends _Sizes {
     /**
      * The current value of the date picker (v-model)
      */
@@ -42,6 +43,11 @@ export interface DatePickerProps {
      * The description of the field
      */
     description?: string
+
+    /**
+     * The placeholder text for the field
+     */
+    placeholder?: string
 }
 
 // Calendar Day Interface

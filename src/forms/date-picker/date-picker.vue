@@ -1,33 +1,70 @@
 <template>
     <div class="b-date-picker" ref="pickerRef">
-        <text-input is-expanded :model-value="state.selectedDate" :error="error" :required="required"
-            class="is-clickable" :has-addons="withIcon" @click="togglePicker" @input="handleManualInput"
-            @blur="handleBlur" @update:model-value="handleManualInput">
+        <text-input 
+            is-expanded
+            :has-addons="withIcon"
+            :is-small="isSmall"
+            :is-medium="isMedium"
+            :is-large="isLarge"
+            :placeholder="placeholder"
+            :model-value="state.selectedDate"
+            :error="error"
+            class="is-clickable"
+            @click="togglePicker"
+            @input="handleManualInput"
+            @blur="handleBlur"
+            @update:model-value="handleManualInput"
+            v-bind="$attrs">
             <template #left>
-                <icon-button @click.prevent class="is-shadowless" v-if="withIcon" role="presentation" icon="calendar" />
+                <icon-button
+                    v-if="withIcon"
+                    :is-small="isSmall"
+                    :is-medium="isMedium"
+                    :is-large="isLarge"
+                    @click.prevent
+                    class="is-shadowless"
+                    role="presentation"
+                    icon="calendar"
+                />
             </template>
-
-            <template #description>
-                <slot name="description" />
+            <template v-for="slotName in slotNames" :key="slotName" v-slot:[slotName]>
+                <slot :name="slotName"></slot>
             </template>
-
-            <slot />
         </text-input>
 
         <transition name="vuema-fade" mode="in-out">
             <box v-if="showPicker" class="b-date-picker-window" @click.stop>
-                <calendar-header :month="currentMonth" :year="displayYear" @previous-month="goToPreviousMonth"
-                    @next-month="goToNextMonth" @month-change="handleMonthChange" @year-change="handleYearChange" />
+                <calendar-header
+                    :month="currentMonth"
+                    :year="displayYear"
+                    @previous-month="goToPreviousMonth"
+                    @next-month="goToNextMonth"
+                    @month-change="handleMonthChange"
+                    @year-change="handleYearChange"
+                />
 
-                <calendar-grid :calendar-days="calendarDays" :today="today" :selected-date="state.selectedDate"
-                    :date-format="props.format" @select-date="selectDate" />
+                <calendar-grid
+                    :calendar-days="calendarDays"
+                    :today="today"
+                    :selected-date="state.selectedDate"
+                    :date-format="props.format"
+                    @select-date="selectDate"
+                />
             </box>
         </transition>
     </div>
 </template>
 
 <script setup lang="ts">
-import { reactive, computed, onMounted, ref, onUnmounted } from 'vue'
+import { 
+    reactive,
+    computed,
+    onMounted,
+    ref,
+    onUnmounted,
+    useSlots, type Slots,
+    ComputedRef
+} from 'vue'
 import dayjs from 'dayjs'
 import weekday from 'dayjs/plugin/weekday'
 import isoWeek from 'dayjs/plugin/isoWeek'
@@ -42,10 +79,13 @@ import type {
 import CalendarHeader from './calendar-header.vue'
 import CalendarGrid from './calendar-grid.vue'
 
-// Initialize dayjs plugins and locale
 initializeDayjs()
 
-// Props and emits
+const slots: Slots = useSlots()
+const slotNames: ComputedRef<string[]> = computed((): string[] => {
+    return Object.keys(slots)
+})
+
 const props = withDefaults(defineProps<DatePickerProps>(), {
     format: 'YYYY-MM-DD',
     modelValue: null,
@@ -57,10 +97,8 @@ const props = withDefaults(defineProps<DatePickerProps>(), {
 
 const emit = defineEmits<DatePickerEmits>()
 
-// Refs
 const pickerRef = ref<HTMLElement | null>(null)
 
-// State
 const state = reactive<DatePickerState>({
     showingPicker: false,
     currentDate: dayjs(),
@@ -69,7 +107,6 @@ const state = reactive<DatePickerState>({
     maxDate: null,
 })
 
-// Computed properties
 const showPicker = computed(() => state.showingPicker)
 const displayYear = computed(() => state.currentDate.format('YYYY'))
 const today = computed(() => dayjs().format(props.format))
@@ -83,7 +120,6 @@ const calendarDays = computed((): CalendarDay[] => {
     return [...prefillDays, ...currentMonthDays, ...postfillDays]
 })
 
-// Lifecycle hooks
 onMounted(() => {
     initializeState()
     document.addEventListener('click', handleClickOutside)
@@ -93,7 +129,6 @@ onUnmounted(() => {
     document.removeEventListener('click', handleClickOutside)
 })
 
-// Methods
 function initializeDayjs(): void {
     dayjs.extend(updateLocale)
     dayjs.extend(weekday)
@@ -244,7 +279,7 @@ function generatePrefillDays(): CalendarDay[] {
     let daysInPreviousMonth = previousMonth.daysInMonth()
     
     const prefillDays: CalendarDay[] = [{
-        class: 'has-text-grey is-disabled',
+        class: 'has-text-grey',
         date: dayjs(`${previousMonthFormat}${daysInPreviousMonth}`),
         day: daysInPreviousMonth,
         disabled: true  // Always true for prefill days
@@ -255,7 +290,7 @@ function generatePrefillDays(): CalendarDay[] {
         const day = dayjs(`${previousMonthFormat}${daysInPreviousMonth}`)
         const previousIsDisabled = !!(state.minDate && day.isBefore(state.minDate))
         prefillDays.unshift({
-            class: 'has-text-grey is-disabled',
+            class: 'has-text-grey',
             date: day,
             day: daysInPreviousMonth,
             disabled: previousIsDisabled  // Always true for prefill days
@@ -271,13 +306,13 @@ function generateCurrentMonthDays(): CalendarDay[] {
         .map((_, index) => {
             const day = (index + 1).toString().padStart(2, '0')
             const date = dayjs(`${state.currentDate.format('YYYY-MM-')}${day}`)
-            const isDisabled = !!(  // Convert to boolean with !!
+            const isDisabled = !!(
                 (state.minDate && date.isBefore(state.minDate)) || 
                 (state.maxDate && date.isAfter(state.maxDate))
             )
             
             return {
-                class: isDisabled ? 'has-text-grey is-disabled' : '',
+                class: isDisabled ? 'has-text-grey' : '',
                 date,
                 day: index + 1,
                 disabled: isDisabled

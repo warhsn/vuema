@@ -1,5 +1,6 @@
+import { _Sizes } from '../../interfaces/sizes';
 import { Dayjs } from 'dayjs';
-export interface DatePickerProps {
+export interface DatePickerProps extends _Sizes {
     /**
      * The current value of the date picker (v-model)
      */
@@ -32,6 +33,10 @@ export interface DatePickerProps {
      * The description of the field
      */
     description?: string;
+    /**
+     * The placeholder text for the field
+     */
+    placeholder?: string;
 }
 export interface CalendarDay {
     /**

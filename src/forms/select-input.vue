@@ -1,6 +1,6 @@
 <template>
 <div>
-    <field-label :required="required">
+    <field-label v-if="$slots.default || $slots.description" :required="required">
         <slot />
         <template #description>
             <slot name="description" />
