@@ -8,7 +8,7 @@ import installForms from './forms/install'
 import type { App, Plugin } from 'vue'
 import useDebouncedRef from './utils/debounced-ref'
 
-import './scss/styles.scss'
+import './scss/vuema.scss'
 
 const componentOptions = { 
     toaster: { 
@@ -17,7 +17,6 @@ const componentOptions = {
         transition: 'toast',
     }
 }
-
 
 const Vuema: Plugin = {
     install: (app: App, options = componentOptions) => {

@@ -9,7 +9,7 @@ export default defineConfig({
         lib: {
             entry: resolve(__dirname, 'src/index.ts'),
             name: 'Vuema',
-            formats: ['es', 'cjs'],  // Only build ES and CommonJS formats
+            formats: ['es', 'cjs'],
             fileName: (format) => `index.${format}.js`
         },
         rollupOptions: {
