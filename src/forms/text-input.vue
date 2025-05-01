@@ -35,12 +35,14 @@
                 <b-icon 
                     v-if="leftIcon" 
                     class="icon is-small is-left" 
-                    :icon="leftIcon" 
+                    :icon="leftIcon"
+                    :icon-type="leftIconType"
                 />
                 <b-icon 
                     v-if="rightIcon" 
                     class="icon is-small is-right" 
                     :icon="rightIcon"
+                    :icon-type="rightIconType"
                 />
                 <slot name="inner" />
             </div>
