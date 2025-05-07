@@ -1,5 +1,9 @@
 # Changelog
 
+### [0.7.0] 2025-05-06
+
+- Feature: Adds in a time input.
+
 ### [0.3.0] 2024-12-23
 
 - Feature: Adds in a basic toaster component.
