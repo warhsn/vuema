@@ -1,5 +1,10 @@
 # Changelog
 
+### [0.7.1] 2025-05-13
+
+- Bug: Avatar component not rendering image.
+- Refac: Extract initials for avatar "name".
+
 ### [0.7.0] 2025-05-06
 
 - Feature: Adds in a time input.
