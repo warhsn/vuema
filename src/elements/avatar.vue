@@ -1,55 +1,39 @@
 <template>
-    <figure class="image is-clickable" :class="_class">
+    <figure class="image is-clickable" :style="`width: ${size}px; height: ${size}px;`">
         <img 
-            v-if="props.imageUrl"
-            :src="props.imageUrl" 
-            :style="imageStyle"
+            v-if="imageUrl"
+            :width="`${size}px`"
+            :height="`${size}px`"
+            :src="imageUrl"
             :class="{
-                'is-rounded': props.isRound
+                'is-rounded': isRound
             }"    
         />
         <div 
             v-else
-            :style="avatarStyle">
-            {{ getInitials(props.name ?? '') }}
+            :style="`
+                width: ${size}px; 
+                height: ${size}px; 
+                border-radius: ${isRound ? '50%' : '0'};
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                background-color: ${backgroundColour};
+                color: ${textColor};`
+            ">
+            {{ getInitials(name ?? '') }}
         </div>
     </figure>
 </template>
 <script setup lang="ts">
-import { computed } from 'vue'
 import { _Avatar } from '../interfaces/avatar'
-import { getInitials } from '../utils/initials';
+import { getInitials } from '../utils/initials'
 
-const props = withDefaults(
+withDefaults(
     defineProps<_Avatar>(), {
     size: 48,
     backgroundColour: "grey",
-    textColor: "white"
-})
-
-const imageStyle = computed(() => {
-    return {
-        width: `${props.size}px`,
-        height: `${props.size}px`
-    }
-})
-
-const avatarStyle = computed(() => {
-    return {
-        width: `${props.size}px`,
-        height: `${props.size}px`,
-        borderRadius: props.isRound ? '50%' : '0',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        backgroundColor: props.backgroundColour,
-        color: props.textColor
-    }
-})
-
-const _class = computed(() => {
-    return {
-        [`is-${props.size}x${props.size}`]: true
-    }
+    textColor: "white",
+    isRound: true
 })
 </script>
