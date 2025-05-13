@@ -1,5 +1,9 @@
 # Changelog
 
+### [0.7.2] 2025-05-13
+
+- Bug: Invalid path.
+
 ### [0.7.1] 2025-05-13
 
 - Bug: Avatar component not rendering image.

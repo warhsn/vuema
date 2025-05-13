@@ -1,5 +1,5 @@
 import { defineComponent as s, computed as d, resolveComponent as p, createElementBlock as o, openBlock as e, normalizeStyle as u, createBlock as f, renderSlot as m, withCtx as y, normalizeProps as _, guardReactiveProps as h, createElementVNode as n, mergeProps as r } from "vue";
-import { _ as g } from "./index-CYo7EOYU.js";
+import { _ as g } from "./index-DHPp2iA5.js";
 const x = /* @__PURE__ */ s({
   __name: "loader",
   props: {

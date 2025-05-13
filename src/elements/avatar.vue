@@ -18,7 +18,7 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import { _Avatar } from '../interfaces/avatar'
-import { getInitials } from '@/utils/initials';
+import { getInitials } from '../utils/initials';
 
 const props = withDefaults(
     defineProps<_Avatar>(), {
