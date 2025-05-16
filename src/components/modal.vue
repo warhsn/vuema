@@ -80,4 +80,8 @@ function dismiss(): void {
         emit('close')
     }
 }
+
+defineExpose({
+    close
+})
 </script>
