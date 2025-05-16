@@ -2,6 +2,10 @@
 
 ### [0.7.4] 2025-05-16
 
+- Bug: Removed conflicting prop from modal component.
+
+### [0.7.4] 2025-05-16
+
 - Refactor: Expose the close method of the modal component.
 
 ### [0.7.3] 2025-05-13

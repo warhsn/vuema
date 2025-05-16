@@ -1,5 +1,5 @@
-import { defineComponent as l, resolveComponent as s, createElementBlock as g, openBlock as o, createBlock as n, createCommentVNode as r, withCtx as p, createTextVNode as i } from "vue";
-const u = {
+import { defineComponent as l, resolveComponent as _, createElementBlock as s, openBlock as o, createBlock as n, createCommentVNode as r, withCtx as p, createTextVNode as i } from "vue";
+const g = {
   class: "pagination",
   role: "navigation",
   "aria-label": "pagination"
@@ -8,10 +8,10 @@ const u = {
   props: {
     pager: {}
   },
-  setup(_) {
+  setup(u) {
     return (e, t) => {
-      const a = s("router-link");
-      return o(), g("nav", u, [
+      const a = _("router-link");
+      return o(), s("nav", g, [
         e.pager.prev_page_url ? (o(), n(a, {
           key: 0,
           to: e.pager.prev_page_url,
@@ -20,7 +20,8 @@ const u = {
           default: p(() => t[0] || (t[0] = [
             i("Previous")
           ])),
-          _: 1
+          _: 1,
+          __: [0]
         }, 8, ["to"])) : r("", !0),
         e.pager.next_page_url ? (o(), n(a, {
           key: 1,
@@ -30,7 +31,8 @@ const u = {
           default: p(() => t[1] || (t[1] = [
             i("Next page")
           ])),
-          _: 1
+          _: 1,
+          __: [1]
         }, 8, ["to"])) : r("", !0)
       ]);
     };

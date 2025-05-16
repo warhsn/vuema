@@ -1,17 +1,17 @@
-import { defineComponent as b, ref as h, resolveComponent as B, createElementBlock as t, openBlock as o, createElementVNode as n, createBlock as m, renderSlot as l, Teleport as w, createVNode as $, Transition as g, withCtx as f, createCommentVNode as s, normalizeClass as c, toDisplayString as N, createTextVNode as V } from "vue";
-const D = {
+import { defineComponent as h, ref as B, resolveComponent as w, createElementBlock as t, openBlock as o, createElementVNode as n, createBlock as m, renderSlot as l, Teleport as $, createVNode as g, Transition as N, withCtx as f, createCommentVNode as s, normalizeClass as u, toDisplayString as V, createTextVNode as D } from "vue";
+const H = {
   key: 0,
   class: "modal-card-head"
-}, H = { class: "modal-card-title" }, T = { key: 0 }, A = {
+}, T = { class: "modal-card-title" }, E = { key: 0 }, F = {
   key: 1,
   class: "modal-card-body"
-}, E = {
+}, S = {
   key: 2,
   class: "modal-card-foot"
-}, F = {
+}, z = {
   key: 3,
   class: "box is-clipped"
-}, M = /* @__PURE__ */ b({
+}, j = /* @__PURE__ */ h({
   __name: "modal",
   props: {
     withCancel: { type: Boolean },
@@ -25,88 +25,90 @@ const D = {
     transition: { default: "modal" },
     cancelButtonClasses: {},
     transistionName: {},
-    transitionMode: {},
-    isActive: { type: Boolean }
+    transitionMode: {}
   },
   emits: ["close"],
-  setup(p, { emit: C }) {
-    const r = p, a = h(!1), d = C;
-    function u() {
-      a.value = !1, d("close");
-    }
-    function k() {
+  setup(p, { expose: C, emit: k }) {
+    const r = p, a = B(!1), d = k;
+    function c() {
       a.value = !1, d("close");
     }
     function y() {
+      a.value = !1, d("close");
+    }
+    function b() {
       r.isDismissable && d("close");
     }
-    return (e, i) => {
-      const v = B("action-button");
+    return C({
+      close: c
+    }), (e, i) => {
+      const v = w("action-button");
       return o(), t("div", null, [
         n("div", {
           class: "is-inline-block",
-          onClick: i[0] || (i[0] = (S) => a.value = !a.value)
+          onClick: i[0] || (i[0] = (A) => a.value = !a.value)
         }, [
           l(e.$slots, "trigger")
         ]),
-        (o(), m(w, {
+        (o(), m($, {
           to: r.to
         }, [
-          $(g, {
+          g(N, {
             name: r.transition,
             mode: "in-out"
           }, {
             default: f(() => [
               a.value ? (o(), t("div", {
                 key: 0,
-                class: c(["modal", {
+                class: u(["modal", {
                   "is-active": a.value
                 }])
               }, [
                 n("div", {
-                  onClick: y,
+                  onClick: b,
                   class: "modal-background"
                 }),
                 n("div", {
-                  class: c(["modal-wrapper", {
+                  class: u(["modal-wrapper", {
                     "modal-card": e.isCard,
                     "modal-content": !e.isCard
                   }])
                 }, [
-                  e.withHeader && e.isCard ? (o(), t("header", D, [
-                    n("p", H, [
-                      e.title ? (o(), t("span", T, N(e.title), 1)) : s("", !0),
+                  e.withHeader && e.isCard ? (o(), t("header", H, [
+                    n("p", T, [
+                      e.title ? (o(), t("span", E, V(e.title), 1)) : s("", !0),
                       l(e.$slots, "title")
                     ]),
                     e.isCloseable ? (o(), t("button", {
                       key: 0,
-                      onClick: u,
+                      onClick: c,
                       class: "delete",
                       "aria-label": "close"
                     })) : s("", !0)
                   ])) : s("", !0),
-                  e.isCard ? (o(), t("section", A, [
+                  e.isCard ? (o(), t("section", F, [
                     l(e.$slots, "default")
                   ])) : s("", !0),
-                  e.withFooter && e.isCard ? (o(), t("footer", E, [
+                  e.withFooter && e.isCard ? (o(), t("footer", S, [
                     e.withCancel ? (o(), m(v, {
                       key: 0,
-                      class: c(e.cancelButtonClasses),
-                      onClick: k
+                      class: u(e.cancelButtonClasses),
+                      onClick: y
                     }, {
                       default: f(() => i[1] || (i[1] = [
-                        V(" Cancel ")
+                        D(" Cancel ")
                       ])),
-                      _: 1
+                      _: 1,
+                      __: [1]
                     }, 8, ["class"])) : s("", !0),
                     l(e.$slots, "footer")
                   ])) : s("", !0),
-                  e.isCard ? s("", !0) : (o(), t("div", F, [
+                  e.isCard ? s("", !0) : (o(), t("div", z, [
                     l(e.$slots, "default")
                   ])),
                   (!e.isCard || !e.withHeader) && e.isCloseable ? (o(), t("button", {
                     key: 4,
-                    onClick: u,
+                    onClick: c,
                     class: "modal-close is-large",
                     "aria-label": "close"
                   })) : s("", !0)
@@ -121,5 +123,5 @@ const D = {
   }
 });
 export {
-  M as default
+  j as default
 };

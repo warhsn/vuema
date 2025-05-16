@@ -1,4 +1,4 @@
-import { defineComponent as C, ref as b, resolveComponent as a, createElementBlock as s, openBlock as n, createElementVNode as l, createBlock as y, renderSlot as m, Teleport as _, createVNode as i, Transition as B, withCtx as c, createCommentVNode as r, normalizeClass as u, toDisplayString as I, createTextVNode as T } from "vue";
+import { defineComponent as C, ref as _, resolveComponent as a, createElementBlock as s, openBlock as n, createElementVNode as l, createBlock as b, renderSlot as m, Teleport as y, createVNode as i, Transition as B, withCtx as c, createCommentVNode as r, normalizeClass as u, toDisplayString as I, createTextVNode as T } from "vue";
 const h = { class: "modal-wrapper modal-content" }, A = { class: "box is-clipped" }, N = {
   key: 0,
   class: "is-size-4 has-text-weight-bold mb-4 is-flex is-align-items-center"
@@ -25,7 +25,7 @@ const h = { class: "modal-wrapper modal-content" }, A = { class: "box is-clipped
   },
   emits: ["close"],
   setup(p, { emit: w }) {
-    const d = p, o = b(!1);
+    const d = p, o = _(!1);
     function f() {
       o.value = !1;
     }
@@ -38,7 +38,7 @@ const h = { class: "modal-wrapper modal-content" }, A = { class: "box is-clipped
         }, [
           m(t.$slots, "trigger")
         ]),
-        (n(), y(_, {
+        (n(), b(y, {
           to: d.to
         }, [
           i(B, {
@@ -78,7 +78,8 @@ const h = { class: "modal-wrapper modal-content" }, A = { class: "box is-clipped
                           default: c(() => e[1] || (e[1] = [
                             T(" Okay ")
                           ])),
-                          _: 1
+                          _: 1,
+                          __: [1]
                         }, 8, ["class"])
                       ]),
                       _: 1
