@@ -1,5 +1,13 @@
 # Changelog
 
+### [0.7.6] 2025-05-21
+
+- Chore: Dependency updates.
+
+### [0.7.5] 2025-05-16
+
+- Bug: Modal method exposure.
+
 ### [0.7.4] 2025-05-16
 
 - Bug: Removed conflicting prop from modal component.
