@@ -2,7 +2,7 @@
 
 ### [0.8.1] 2025-05-21
 
-- Bug: Addons seperating from text-inputs.
+- Bug: Addons separating from text-inputs.
 
 ### [0.8.0] 2025-05-21
 
