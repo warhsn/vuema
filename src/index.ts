@@ -1,10 +1,11 @@
 import installLayout from './layout/install'
 import installElements from './elements/install'
 import installComponents from './components/install'
+import installForms from './forms/install'
+import installDirectives from './directives/install'
 import Toaster from './components/toast/toaster'
 import { useToaster } from './components/toast/user-toaster'
 import { ToasterSymbol } from './symbols'
-import installForms from './forms/install'
 import type { App, Plugin } from 'vue'
 import useDebouncedRef from './utils/debounced-ref'
 
@@ -24,18 +25,17 @@ const Vuema: Plugin = {
         installElements(app)
         installComponents(app)
         installForms(app)
+        installDirectives(app)
     
         const toaster = new Toaster(
             options?.toaster?.position,
             options?.toaster?.timeout,
             options?.toaster?.transition,
-    )
+        )
+
         app.provide(ToasterSymbol, toaster)
         app.config.globalProperties.$toaster = toaster
-
-        app.unmount = () => {
-            toaster.destroy()
-        }
+        app.unmount = () => toaster.destroy()
     }
 }
 

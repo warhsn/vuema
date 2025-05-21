@@ -1,5 +1,9 @@
 # Changelog
 
+### [0.8.0] 2025-05-21
+
+- Feature: Added tooltip directive.
+
 ### [0.7.7] 2025-05-21
 
 - Refactor: Extracted sizing to a composable.
