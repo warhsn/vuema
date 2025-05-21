@@ -14,7 +14,7 @@
             <div 
                 v-if="$slots.left" 
                 class="control" :class="sizes">
-                <slot name="left" :class="sizes"/>
+                <slot name="left" />
             </div>
             <div class="control" :class="{
                 'has-icons-left': leftIcon,
@@ -47,7 +47,7 @@
                 <slot name="inner" />
             </div>
             <div v-if="$slots.right" class="control" :class="sizes">
-                <slot name="right" :class="sizes"/>
+                <slot name="right" />
             </div>
         </div>
         <FieldError :error="error"/>

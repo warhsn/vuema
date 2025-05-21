@@ -1,7 +1,7 @@
 <template>
     <div class="b-date-picker" ref="pickerRef">
         <text-input 
-            is-expanded
+            :is-expanded="isExpanded"
             :has-addons="withIcon"
             :is-small="isSmall"
             :is-medium="isMedium"

@@ -4,29 +4,9 @@ declare function __VLS_template(): {
     slots: {
         default?(_: {}): any;
         description?(_: {}): any;
-        left?(_: {
-            class: {
-                'is-normal': boolean | undefined;
-                'is-small': boolean | undefined;
-                'is-medium': boolean | undefined;
-                'is-large': boolean | undefined;
-                'is-responsive': boolean | undefined;
-                'is-expanded': boolean | undefined;
-                'is-fullwidth': boolean | undefined;
-            };
-        }): any;
+        left?(_: {}): any;
         inner?(_: {}): any;
-        right?(_: {
-            class: {
-                'is-normal': boolean | undefined;
-                'is-small': boolean | undefined;
-                'is-medium': boolean | undefined;
-                'is-large': boolean | undefined;
-                'is-responsive': boolean | undefined;
-                'is-expanded': boolean | undefined;
-                'is-fullwidth': boolean | undefined;
-            };
-        }): any;
+        right?(_: {}): any;
     };
     refs: {};
     rootEl: HTMLDivElement;
