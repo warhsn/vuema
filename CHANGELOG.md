@@ -1,5 +1,10 @@
 # Changelog
 
+### [0.7.7] 2025-05-21
+
+- Refactor: Extracted sizing to a composable.
+- Refactor: Cleaned up components.
+
 ### [0.7.6] 2025-05-21
 
 - Chore: Dependency updates.

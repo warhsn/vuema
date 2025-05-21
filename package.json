@@ -1,6 +1,6 @@
 {
   "name": "@warhsn/vuema",
-  "version": "0.7.6",
+  "version": "0.7.7",
   "description": "Bulma for Vuejs",
   "type": "module",
   "repository": {
@@ -26,7 +26,7 @@
   "author": "Warren Hansen",
   "license": "MIT",
   "dependencies": {
-    "bulma": "^1.0.2",
+    "bulma": "^1.0.4",
     "dayjs": "^1.11.11",
     "sass": "^1.67.0"
   },

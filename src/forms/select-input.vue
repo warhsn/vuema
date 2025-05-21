@@ -10,15 +10,7 @@
         <div class="is-expanded control" :class="{
             'has-icons-left': leftIcon
         }">
-            <div class="select is-fullwidth" :class="{
-                    'is-multiple': multiple,
-                    'is-danger': hasErrors,
-                    'is-rounded': isRounded,
-                    'is-loading': isLoading,
-                    'is-small': isSmall,
-                    'is-medium': isMedium,
-                    'is-large': isLarge,
-                }">
+            <div class="select is-fullwidth" :class="classes">
                 <select
                     :multiple="multiple"
                     :disabled="disabled"
@@ -46,30 +38,26 @@ import { computed, ref, watch } from 'vue'
 import { _SelectInput } from '../interfaces/select-input'
 import { _hasErrors, _error } from '../computed/errors'
 import FieldError from './field-error.vue'
+import useSizes from '../utils/sizes'
 
 const props = withDefaults(
     defineProps<_SelectInput>(), {
         promptLabel: '- Select an Option -',
         multiple: false,
-        isSmall: false,
-        isMedium: false,
-        isLarge: false,
         isLoading: false,
         isRounded: false,
         modelValue: () => []
     }
 )
-
+const sizes = useSizes(props)
 const inputEvent = 'update:modelValue'
 
 const emit = defineEmits<{
     (e: typeof inputEvent, value: string | number | Array<string|number>): void
 }>()
 
-// Create a local value to track the select state
 const localValue = ref(props.modelValue)
 
-// Watch for external changes to modelValue
 watch(() => props.modelValue, (newValue) => {
     localValue.value = newValue
 })
@@ -88,4 +76,14 @@ function onChange(event: Event) {
 }
 
 const hasErrors = _hasErrors(props)
+
+const classes = computed(() => {
+    return {
+        'is-multiple': props.multiple,
+        'is-danger': hasErrors.value,
+        'is-rounded': props.isRounded,
+        'is-loading': props.isLoading,
+        ...sizes
+    }
+})
 </script>

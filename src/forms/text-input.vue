@@ -58,9 +58,10 @@ import { _TextInput } from '../interfaces/text-input'
 import { _hasErrors } from '../computed/errors'
 import FieldError from './field-error.vue'
 import { computed } from 'vue'
+import useSizes from '../utils/sizes'
 
 const props = defineProps<_TextInput>()
-
+const sizes = useSizes(props)
 const inputName = 'update:modelValue'
 const focus = 'focus'
 const blur = 'blur'
@@ -81,19 +82,11 @@ const onBlur = () => emit(blur)
 
 const hasErrors = _hasErrors(props)
 
-const sizes = computed(() => {
-    return {
-        'is-small': props.isSmall,
-        'is-medium': props.isMedium,
-        'is-large': props.isLarge,
-    }
-})
-
 const classes = computed(() => {
     return {
         'is-danger': hasErrors.value,
         'is-rounded': props.isRounded,
-        ...sizes.value
+        ...sizes
     }
 })
 

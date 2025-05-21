@@ -5,21 +5,24 @@
             <slot name="description" />
         </field-label>
         <div class="field" :class="{ 'has-addons': hasAddons }">
-            <div v-if="$slots.left" class="control">
+            <div v-if="$slots.left" class="control" :class="sizes">
                 <slot name="left" />
             </div>
-            <div class="control" :class="{ 
-                    'has-icons-left': leftIcon, 
-                    'has-icons-right': rightIcon,
-                    'is-expanded': isExpanded
-                }">
-                <input :id="inputId" type="text" class="input" :class="{ 'is-danger': hasErrors }" :placeholder="placeholder"
+            <div class="control" :class="classes">
+                <input 
+                    :id="inputId" type="text" 
+                    class="input" 
+                    :class="{ 'is-danger': hasErrors }" 
+                    :placeholder="placeholder"
                     :autocomplete="autocomplete ? 'on' : 'off'"
-                    :disabled="disabled" :value="modelValue" @input="onInput" />
+                    :disabled="disabled"
+                    :value="modelValue"
+                    @input="onInput"
+                />
                 <b-icon v-if="leftIcon" class="icon is-small is-left" :icon="leftIcon" />
                 <b-icon v-if="rightIcon" class="icon is-small is-right" :icon="rightIcon" />
             </div>
-            <div v-if="$slots.right" class="control">
+            <div v-if="$slots.right" class="control" :class="sizes">
                 <slot name="right" />
             </div>
             <FieldError :error="error" />
@@ -31,12 +34,13 @@
 import { _NumberInput } from '../interfaces/number-input'
 import { _hasErrors } from '../computed/errors'
 import FieldError from './field-error.vue'
-import randmonId from '../utils/randmon-id';
+import randmonId from '../utils/randmon-id'
+import useSizes from '../utils/sizes'
+import { computed } from 'vue'
 
 const props = defineProps<_NumberInput>()
-
+const sizes = useSizes(props)
 const inputId = randmonId()
-
 const inputName = 'update:modelValue'
 
 const emit = defineEmits<{
@@ -65,7 +69,6 @@ function onInput(event: Event): void {
         sanitizedValue = sanitizedValue.replaceAll('.', '');
     }
 
-    // Ensure that there's only one decimal point
     const decimalCount = sanitizedValue.split('.').length - 1;
     if (decimalCount > 1) {
         const parts = sanitizedValue.split('.');
@@ -78,7 +81,6 @@ function onInput(event: Event): void {
         sanitizedValue = parts[0] + '.' + decimalPart.slice(0, props.decimals);
     }
 
-    // Convert to number for comparison, then back to string for storage
     const numericValue = Number(sanitizedValue);
     if(props.min !== undefined && !isNaN(numericValue) && numericValue < props.min) {
         sanitizedValue = props.min.toString();
@@ -94,4 +96,10 @@ function onInput(event: Event): void {
 }
 
 const hasErrors = _hasErrors(props)
+
+const classes = computed(() => ({ 
+        'has-icons-left': props.leftIcon, 
+        'has-icons-right': props.rightIcon,
+        ...sizes
+    }))
 </script>

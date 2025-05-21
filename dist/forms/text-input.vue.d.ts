@@ -6,17 +6,25 @@ declare function __VLS_template(): {
         description?(_: {}): any;
         left?(_: {
             class: {
-                'is-small': boolean;
-                'is-medium': boolean;
-                'is-large': boolean;
+                'is-normal': boolean | undefined;
+                'is-small': boolean | undefined;
+                'is-medium': boolean | undefined;
+                'is-large': boolean | undefined;
+                'is-responsive': boolean | undefined;
+                'is-expanded': boolean | undefined;
+                'is-fullwidth': boolean | undefined;
             };
         }): any;
         inner?(_: {}): any;
         right?(_: {
             class: {
-                'is-small': boolean;
-                'is-medium': boolean;
-                'is-large': boolean;
+                'is-normal': boolean | undefined;
+                'is-small': boolean | undefined;
+                'is-medium': boolean | undefined;
+                'is-large': boolean | undefined;
+                'is-responsive': boolean | undefined;
+                'is-expanded': boolean | undefined;
+                'is-fullwidth': boolean | undefined;
             };
         }): any;
     };

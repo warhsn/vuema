@@ -1,0 +1,232 @@
+@use "sass:math";
+@use "sass:list";
+
+$primary: var(--primary, #00d1b2) !default;
+$grey-lighter: var(--grey-lighter, #dbdbdb) !default;
+$white: var(--white, #ffffff) !default;
+$black: var(--black, #0a0a0a) !default;
+$radius-rounded: 290486px !default;
+
+$switch-width-base: 3em !default;
+$switch-width-small: 2.5em !default;
+$switch-width-large: 4em !default;
+$switch-padding: 0.2em !default;
+
+$colors: (
+    "primary": ($primary, #fff),
+    "info": (#3e8ed0, #fff),
+    "success": (#48c78e, #fff),
+    "warning": (#ffe08a, rgba(0, 0, 0, 0.7)),
+    "danger": (#f14668, #fff),
+    "dark": (#363636, #fff),
+    "text": (#4a4a4a, #fff),
+    "link": (#485fc7, #fff),
+    "white": (#ffffff, #0a0a0a),
+    "black": (#0a0a0a, #ffffff),
+    "light": (#f5f5f5, rgba(0, 0, 0, 0.7))) !default;
+
+.switch {
+    appearance: none;
+    position: relative;
+    display: inline-block;
+    outline: none;
+    cursor: pointer;
+    width: $switch-width-base;
+    height: 1.5em;
+    background-color: $grey-lighter;
+    border-radius: $radius-rounded;
+    margin-right: 0.5em;
+    vertical-align: middle;
+    transition: background 0.3s ease;
+
+    &::before {
+        content: "";
+        position: absolute;
+        left: $switch-padding;
+        top: $switch-padding;
+        width: calc(1.5em - #{$switch-padding * 2}
+    );
+    height: calc(1.5em - #{$switch-padding * 2});
+    border-radius: $radius-rounded;
+    background-color: $white;
+    box-shadow: 0 1px 3px rgba($black, 0.1);
+    transition: left 0.3s ease;
+}
+
+&:checked {
+    background-color: $primary;
+
+    &::before {
+        left: calc(100% - 1.5em + #{$switch-padding});
+    }
+}
+
+&:focus {
+    box-shadow: 0 0 0 0.125em rgba($primary, 0.25);
+}
+
+&:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    background-color: $grey-lighter;
+}
+
+@each $name, $pair in $colors {
+    $color: list.nth($pair, 1);
+
+    &.is-#{$name} {
+        &:checked {
+            background-color: $color;
+        }
+
+        &:focus {
+            box-shadow: 0 0 0 0.125em rgba($color, 0.25);
+        }
+    }
+}
+
+&.is-small {
+    width: $switch-width-small;
+    height: 1.25em;
+
+    &::before {
+        width: calc(1.25em - #{$switch-padding * 2});
+        height: calc(1.25em - #{$switch-padding * 2});
+    }
+
+    &:checked::before {
+        left: calc(100% - 1.25em + #{$switch-padding});
+    }
+}
+
+&.is-medium {
+    width: $switch-width-base;
+    height: 1.75em;
+
+    &::before {
+        width: calc(1.75em - #{$switch-padding * 2});
+        height: calc(1.75em - #{$switch-padding * 2});
+    }
+
+    &:checked::before {
+        left: calc(100% - 1.75em + #{$switch-padding});
+    }
+}
+
+&.is-large {
+    width: $switch-width-large;
+    height: 2em;
+
+    &::before {
+        width: calc(2em - #{$switch-padding * 2});
+        height: calc(2em - #{$switch-padding * 2});
+    }
+
+    &:checked::before {
+        left: calc(100% - 2em + #{$switch-padding});
+    }
+}
+
++label {
+    display: inline-block;
+    vertical-align: middle;
+    margin-left: 0.5em;
+    line-height: 1.5em;
+}
+
+&.is-small+label {
+    line-height: 1.25em;
+}
+
+&.is-medium+label {
+    line-height: 1.75em;
+}
+
+&.is-large+label {
+    line-height: 2em;
+}
+
+&.is-rounded {
+    border-radius: $radius-rounded;
+
+    &::before {
+        border-radius: $radius-rounded;
+    }
+}
+
+&.is-thin {
+    height: 1em;
+
+    &::before {
+        height: calc(1em - #{$switch-padding * 2});
+        width: calc(1em - #{$switch-padding * 2});
+    }
+
+    &:checked::before {
+        left: calc(100% - 1em + #{$switch-padding});
+    }
+
+    &.is-small {
+        height: 0.75em;
+
+        &::before {
+            height: calc(0.75em - #{$switch-padding * 2});
+            width: calc(0.75em - #{$switch-padding * 2});
+        }
+
+        &:checked::before {
+            left: calc(100% - 0.75em + #{$switch-padding});
+        }
+    }
+
+    &.is-medium {
+        height: 1.25em;
+
+        &::before {
+            height: calc(1.25em - #{$switch-padding * 2});
+            width: calc(1.25em - #{$switch-padding * 2});
+        }
+
+        &:checked::before {
+            left: calc(100% - 1.25em + #{$switch-padding});
+        }
+    }
+
+    &.is-large {
+        height: 1.5em;
+
+        &::before {
+            height: calc(1.5em - #{$switch-padding * 2});
+            width: calc(1.5em - #{$switch-padding * 2});
+        }
+
+        &:checked::before {
+            left: calc(100% - 1.5em + #{$switch-padding});
+        }
+    }
+}
+
+[dir="rtl"] & {
+    &::before {
+        left: auto;
+        right: $switch-padding;
+    }
+
+    &:checked::before {
+        left: auto;
+        right: calc(100% - 1.5em + #{$switch-padding});
+    }
+
+    &.is-small:checked::before {
+        right: calc(100% - 1.25em + #{$switch-padding});
+    }
+
+    &.is-medium:checked::before {
+        right: calc(100% - 1.75em + #{$switch-padding});
+    }
+
+    &.is-large:checked::before {
+        right: calc(100% - 2em + #{$switch-padding});
+    }
+}
+}
