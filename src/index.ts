@@ -8,6 +8,8 @@ import { useToaster } from './components/toast/user-toaster'
 import { ToasterSymbol } from './symbols'
 import type { App, Plugin } from 'vue'
 import useDebouncedRef from './utils/debounced-ref'
+import formatDate from './utils/format-date'
+import filterWatcher from './utils/filter-watcher'
 
 import './scss/vuema.scss'
 
@@ -39,4 +41,10 @@ const Vuema: Plugin = {
     }
 }
 
-export { Vuema as default, useToaster, useDebouncedRef }
+export { 
+    Vuema as default,
+    useToaster,
+    useDebouncedRef,
+    formatDate,
+    filterWatcher
+}

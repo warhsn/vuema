@@ -1,5 +1,10 @@
 # Changelog
 
+### [0.9.0] 2025-05-26
+
+- Feature: Added a formatDate helper function.
+- Feature: Added a filter watcher for query parameters.
+
 ### [0.8.1] 2025-05-21
 
 - Bug: Addons separating from text-inputs.
