@@ -13,7 +13,7 @@
             }">
             <div 
                 v-if="$slots.left" 
-                class="control" :class="sizes">
+                class="control" :class="slotSizes">
                 <slot name="left" />
             </div>
             <div class="control" :class="{
@@ -46,7 +46,7 @@
                 />
                 <slot name="inner" />
             </div>
-            <div v-if="$slots.right" class="control" :class="sizes">
+            <div v-if="$slots.right" class="control" :class="slotSizes">
                 <slot name="right" />
             </div>
         </div>
@@ -87,6 +87,15 @@ const classes = computed(() => {
         'is-danger': hasErrors.value,
         'is-rounded': props.isRounded,
         ...sizes
+    }
+})
+
+const slotSizes = computed(() => {
+    const { 'is-expanded': isExpanded, ...sizesWithoutExpanded } = sizes
+    return {
+        'is-danger': hasErrors.value,
+        'is-rounded': props.isRounded,
+        ...sizesWithoutExpanded
     }
 })
 
