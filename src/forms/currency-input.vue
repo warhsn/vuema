@@ -44,7 +44,6 @@ const props = withDefaults(
 const hasErrors = _hasErrors(props)
 
 function onInput(value: string | number) {
-    console.log('JERE')
     emit(inputName, value)
 }
 

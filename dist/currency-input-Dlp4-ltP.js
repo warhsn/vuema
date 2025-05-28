@@ -1,6 +1,6 @@
-import { defineComponent as u, resolveComponent as n, createElementBlock as y, openBlock as m, createVNode as a, unref as B, withCtx as o, renderSlot as l, createTextVNode as f, toDisplayString as h } from "vue";
+import { defineComponent as u, resolveComponent as n, createElementBlock as y, openBlock as m, createVNode as a, unref as B, withCtx as o, renderSlot as s, createTextVNode as f, toDisplayString as h } from "vue";
 import { _ as b } from "./errors-BZdmzG52.js";
-const I = "update:modelValue", v = /* @__PURE__ */ u({
+const I = "update:modelValue", E = /* @__PURE__ */ u({
   __name: "currency-input",
   props: {
     modelValue: {},
@@ -51,12 +51,12 @@ const I = "update:modelValue", v = /* @__PURE__ */ u({
     is11: { type: Boolean },
     is12: { type: Boolean }
   },
-  setup(s, { emit: t }) {
-    const i = t, r = b(s);
+  setup(l, { emit: t }) {
+    const i = t, r = b(l);
     function p(e) {
-      console.log("JERE"), i(I, e);
+      i(I, e);
     }
-    return (e, E) => {
+    return (e, C) => {
       const d = n("action-button"), c = n("number-input");
       return m(), y("div", null, [
         a(c, {
@@ -81,10 +81,10 @@ const I = "update:modelValue", v = /* @__PURE__ */ u({
             })
           ]),
           description: o(() => [
-            l(e.$slots, "description")
+            s(e.$slots, "description")
           ]),
           default: o(() => [
-            l(e.$slots, "default")
+            s(e.$slots, "default")
           ]),
           _: 3
         }, 8, ["required", "has-addons", "left-icon", "errors", "has-errors", "disabled", "placeholder", "decimals", "value", "is-expanded"])
@@ -93,5 +93,5 @@ const I = "update:modelValue", v = /* @__PURE__ */ u({
   }
 });
 export {
-  v as default
+  E as default
 };

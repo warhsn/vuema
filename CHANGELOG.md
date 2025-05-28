@@ -1,5 +1,9 @@
 # Changelog
 
+### [0.10.0] 2025-05-28
+
+- Feature: Added currency formatting utility.
+
 ### [0.9.1] 2025-05-27
 
 - Bug: Improper display of text inputs when added left or right slots.

@@ -10,6 +10,7 @@ import type { App, Plugin } from 'vue'
 import useDebouncedRef from './utils/debounced-ref'
 import formatDate from './utils/format-date'
 import filterWatcher from './utils/filter-watcher'
+import asCurrency from './utils/as-currency'
 
 import './scss/vuema.scss'
 
@@ -46,5 +47,6 @@ export {
     useToaster,
     useDebouncedRef,
     formatDate,
-    filterWatcher
+    filterWatcher,
+    asCurrency
 }
