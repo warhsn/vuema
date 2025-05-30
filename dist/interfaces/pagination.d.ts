@@ -1,4 +1,5 @@
 import { _Pager } from './pager';
-export interface _Pagination {
+import { _Sizes } from './sizes';
+export interface _Pagination extends _Sizes {
     pager: _Pager;
 }

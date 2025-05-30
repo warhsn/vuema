@@ -1,5 +1,9 @@
 # Changelog
 
+### [0.10.1] 2025-05-30
+
+- Refac: Added sizes to the pagination component.
+
 ### [0.10.0] 2025-05-28
 
 - Feature: Added currency formatting utility.
