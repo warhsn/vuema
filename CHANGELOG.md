@@ -1,5 +1,13 @@
 # Changelog
 
+### [0.10.3] 2025-06-02
+
+- Bug: Required prop missing from date picker.
+
+### [0.10.2] 2025-05-30
+
+- Refac: Dynamic text for next and previous buttons on the pagination component.
+
 ### [0.10.1] 2025-05-30
 
 - Refac: Added sizes to the pagination component.

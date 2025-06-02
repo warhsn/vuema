@@ -1,9 +1,11 @@
-import { defineComponent as B, resolveComponent as y, createElementBlock as u, openBlock as a, normalizeClass as g, unref as m, createBlock as n, createCommentVNode as p, withCtx as i, createTextVNode as s } from "vue";
-import { u as _ } from "./sizes-tLhbz8lD.js";
-const c = /* @__PURE__ */ B({
+import { defineComponent as u, resolveComponent as y, createElementBlock as B, openBlock as o, normalizeClass as g, unref as m, createBlock as t, createCommentVNode as n, withCtx as p, createTextVNode as i, toDisplayString as s } from "vue";
+import { u as c } from "./sizes-tLhbz8lD.js";
+const x = /* @__PURE__ */ u({
   __name: "pagination",
   props: {
     pager: {},
+    nextText: { default: "Next" },
+    previousText: { default: "Previous" },
     isNormal: { type: Boolean },
     isSmall: { type: Boolean },
     isMedium: { type: Boolean },
@@ -26,40 +28,38 @@ const c = /* @__PURE__ */ B({
     is12: { type: Boolean }
   },
   setup(l) {
-    const r = _(l);
-    return (e, o) => {
-      const t = y("router-link");
-      return a(), u("nav", {
+    const r = c(l);
+    return (e, d) => {
+      const a = y("router-link");
+      return o(), B("nav", {
         class: g(["pagination", m(r)]),
         role: "navigation",
         "aria-label": "pagination"
       }, [
-        e.pager.prev_page_url ? (a(), n(t, {
+        e.pager.prev_page_url ? (o(), t(a, {
           key: 0,
           to: e.pager.prev_page_url,
           class: "pagination-previous"
         }, {
-          default: i(() => o[0] || (o[0] = [
-            s("Previous")
-          ])),
-          _: 1,
-          __: [0]
-        }, 8, ["to"])) : p("", !0),
-        e.pager.next_page_url ? (a(), n(t, {
+          default: p(() => [
+            i(s(e.previousText), 1)
+          ]),
+          _: 1
+        }, 8, ["to"])) : n("", !0),
+        e.pager.next_page_url ? (o(), t(a, {
           key: 1,
           to: e.pager.next_page_url,
           class: "pagination-next"
         }, {
-          default: i(() => o[1] || (o[1] = [
-            s("Next page")
-          ])),
-          _: 1,
-          __: [1]
-        }, 8, ["to"])) : p("", !0)
+          default: p(() => [
+            i(s(e.nextText), 1)
+          ]),
+          _: 1
+        }, 8, ["to"])) : n("", !0)
       ], 2);
     };
   }
 });
 export {
-  c as default
+  x as default
 };

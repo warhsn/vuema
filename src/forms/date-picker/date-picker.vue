@@ -7,6 +7,7 @@
             :is-medium="isMedium"
             :is-large="isLarge"
             :placeholder="placeholder"
+            :required="required"
             :model-value="state.selectedDate"
             :error="error"
             class="is-clickable"

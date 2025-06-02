@@ -3,4 +3,6 @@ import { _Sizes } from "./sizes"
 
 export interface _Pagination extends _Sizes {
     pager: _Pager
+    nextText?: string
+    previousText?: string
 }

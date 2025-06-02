@@ -1,5 +1,5 @@
 import { defineComponent as ge, computed as ee, createElementBlock as Q, openBlock as z, createElementVNode as Y, withModifiers as te, Fragment as he, renderList as ne, toDisplayString as me, normalizeClass as Le, useSlots as Oe, ref as Ce, reactive as Be, onMounted as We, onUnmounted as Fe, resolveComponent as $e, createVNode as oe, mergeProps as Pe, createSlots as Te, withCtx as ie, createBlock as Me, createCommentVNode as we, renderSlot as Ae, Transition as Ie } from "vue";
-import { _ as Se } from "./index-CHKqS6pF.js";
+import { _ as Se } from "./index-CoyAR7oe.js";
 function re(O) {
   return O && O.__esModule && Object.prototype.hasOwnProperty.call(O, "default") ? O.default : O;
 }
@@ -30,8 +30,8 @@ function Ve() {
         return s === void 0;
       } }, W = "en", A = {};
       A[W] = w;
-      var E = "$isDayjsObject", I = function(s) {
-        return s instanceof h || !(!s || !s[E]);
+      var q = "$isDayjsObject", I = function(s) {
+        return s instanceof h || !(!s || !s[q]);
       }, P = function s(n, t, o) {
         var a;
         if (!n) return W;
@@ -55,7 +55,7 @@ function Ve() {
       };
       var h = function() {
         function s(t) {
-          this.$L = P(t.locale, null, !0), this.parse(t), this.$x = this.$x || t.x || {}, this[E] = !0;
+          this.$L = P(t.locale, null, !0), this.parse(t), this.$x = this.$x || t.x || {}, this[q] = !0;
         }
         var n = s.prototype;
         return n.parse = function(t) {
@@ -95,8 +95,8 @@ function Ve() {
           return this.$d.getTime();
         }, n.startOf = function(t, o) {
           var a = this, i = !!r.u(o) || o, l = r.p(t), m = function(Z, F) {
-            var q = r.w(a.$u ? Date.UTC(a.$y, F, Z) : new Date(a.$y, F, Z), a);
-            return i ? q : q.endOf(u);
+            var E = r.w(a.$u ? Date.UTC(a.$y, F, Z) : new Date(a.$y, F, Z), a);
+            return i ? E : E.endOf(u);
           }, x = function(Z, F) {
             return r.w(a.toDate()[Z].apply(a.toDate("s"), (i ? [0, 0, 0, 0] : [23, 59, 59, 999]).slice(F)), a);
           }, L = this.$W, C = this.$M, H = this.$D, X = "set" + (this.$u ? "UTC" : "");
@@ -151,16 +151,16 @@ function Ve() {
         }, n.format = function(t) {
           var o = this, a = this.$locale();
           if (!this.isValid()) return a.invalidDate || N;
-          var i = t || "YYYY-MM-DDTHH:mm:ssZ", l = r.z(this), m = this.$H, x = this.$m, L = this.$M, C = a.weekdays, H = a.months, X = a.meridiem, R = function(F, q, J, G) {
-            return F && (F[q] || F(o, i)) || J[q].slice(0, G);
+          var i = t || "YYYY-MM-DDTHH:mm:ssZ", l = r.z(this), m = this.$H, x = this.$m, L = this.$M, C = a.weekdays, H = a.months, X = a.meridiem, R = function(F, E, J, G) {
+            return F && (F[E] || F(o, i)) || J[E].slice(0, G);
           }, K = function(F) {
             return r.s(m % 12 || 12, F, "0");
-          }, Z = X || function(F, q, J) {
+          }, Z = X || function(F, E, J) {
             var G = F < 12 ? "AM" : "PM";
             return J ? G.toLowerCase() : G;
           };
-          return i.replace(D, function(F, q) {
-            return q || function(J) {
+          return i.replace(D, function(F, E) {
+            return E || function(J) {
               switch (J) {
                 case "YY":
                   return String(o.$y).slice(-2);
@@ -283,12 +283,12 @@ function Ve() {
 }
 var je = Ve();
 const S = /* @__PURE__ */ re(je);
-var le = { exports: {} }, Ee = le.exports, xe;
-function qe() {
+var le = { exports: {} }, qe = le.exports, xe;
+function Ee() {
   return xe || (xe = 1, function(O, U) {
     (function($, b) {
       O.exports = b();
-    })(Ee, function() {
+    })(qe, function() {
       return function($, b) {
         b.prototype.weekday = function(f) {
           var v = this.$locale().weekStart || 0, p = this.$W, e = (p < v ? p + 7 : p) - v;
@@ -298,7 +298,7 @@ function qe() {
     });
   }(le)), le.exports;
 }
-var ze = qe();
+var ze = Ee();
 const Ue = /* @__PURE__ */ re(ze);
 var ce = { exports: {} }, Ze = ce.exports, Ye;
 function Ne() {
@@ -417,7 +417,7 @@ function tt() {
             return n || t.slice(1);
           });
         })).match(b), V = k.length, W = 0; W < V; W += 1) {
-          var A = k[W], E = j[A], I = E && E[0], P = E && E[1];
+          var A = k[W], q = j[A], I = q && q[0], P = q && q[1];
           k[W] = P ? { regex: I, parser: P } : A.replace(/^\[|\]$/g, "");
         }
         return function(g) {
@@ -442,22 +442,22 @@ function tt() {
         w.p.customParseFormat = !0, c && c.parseTwoDigitYear && (u = c.parseTwoDigitYear);
         var k = D.prototype, V = k.parse;
         k.parse = function(W) {
-          var A = W.date, E = W.utc, I = W.args;
-          this.$u = E;
+          var A = W.date, q = W.utc, I = W.args;
+          this.$u = q;
           var P = I[1];
           if (typeof P == "string") {
             var g = I[2] === !0, r = I[3] === !0, h = g || r, M = I[2];
             r && (M = I[2]), y = this.$locale(), !g && M && (y = w.Ls[M]), this.$d = function(o, a, i, l) {
               try {
                 if (["x", "X"].indexOf(a) > -1) return new Date((a === "X" ? 1e3 : 1) * o);
-                var m = N(a)(o), x = m.year, L = m.month, C = m.day, H = m.hours, X = m.minutes, R = m.seconds, K = m.milliseconds, Z = m.zone, F = m.week, q = /* @__PURE__ */ new Date(), J = C || (x || L ? 1 : q.getDate()), G = x || q.getFullYear(), ae = 0;
-                x && !L || (ae = L > 0 ? L - 1 : q.getMonth());
+                var m = N(a)(o), x = m.year, L = m.month, C = m.day, H = m.hours, X = m.minutes, R = m.seconds, K = m.milliseconds, Z = m.zone, F = m.week, E = /* @__PURE__ */ new Date(), J = C || (x || L ? 1 : E.getDate()), G = x || E.getFullYear(), ae = 0;
+                x && !L || (ae = L > 0 ? L - 1 : E.getMonth());
                 var se, pe = H || 0, ye = X || 0, ve = R || 0, De = K || 0;
                 return Z ? new Date(Date.UTC(G, ae, J, pe, ye, ve, De + 60 * Z.offset * 1e3)) : i ? new Date(Date.UTC(G, ae, J, pe, ye, ve, De)) : (se = new Date(G, ae, J, pe, ye, ve, De), F && (se = l(se).week(F).toDate()), se);
               } catch {
                 return /* @__PURE__ */ new Date("");
               }
-            }(A, P, E, w), this.init(), M && M !== !0 && (this.$L = this.locale(M).$L), h && A != this.format(P) && (this.$d = /* @__PURE__ */ new Date("")), y = {};
+            }(A, P, q, w), this.init(), M && M !== !0 && (this.$L = this.locale(M).$L), h && A != this.format(P) && (this.$d = /* @__PURE__ */ new Date("")), y = {};
           } else if (P instanceof Array) for (var s = P.length, n = 1; n <= s; n += 1) {
             I[1] = P[n - 1];
             var t = w.apply(this, I);
@@ -739,7 +739,7 @@ const rt = /* @__PURE__ */ re(nt), at = { class: "mb-3" }, st = { class: "column
     function A() {
       e.currentDate = e.currentDate.subtract(1, "month");
     }
-    function E() {
+    function q() {
       e.currentDate = e.currentDate.add(1, "month");
     }
     function I() {
@@ -806,6 +806,7 @@ const rt = /* @__PURE__ */ re(nt), at = { class: "mb-3" }, st = { class: "column
           "is-medium": r.isMedium,
           "is-large": r.isLarge,
           placeholder: r.placeholder,
+          required: r.required,
           "model-value": e.selectedDate,
           error: r.error,
           class: "is-clickable",
@@ -835,7 +836,7 @@ const rt = /* @__PURE__ */ re(nt), at = { class: "mb-3" }, st = { class: "column
               Ae(r.$slots, t, {}, void 0, !0)
             ])
           }))
-        ]), 1040, ["is-expanded", "has-addons", "is-small", "is-medium", "is-large", "placeholder", "model-value", "error"]),
+        ]), 1040, ["is-expanded", "has-addons", "is-small", "is-medium", "is-large", "placeholder", "required", "model-value", "error"]),
         oe(Ie, {
           name: "vuema-fade",
           mode: "in-out"
@@ -852,7 +853,7 @@ const rt = /* @__PURE__ */ re(nt), at = { class: "mb-3" }, st = { class: "column
                   month: _.value,
                   year: u.value,
                   onPreviousMonth: A,
-                  onNextMonth: E,
+                  onNextMonth: q,
                   onMonthChange: V,
                   onYearChange: W
                 }, null, 8, ["month", "year"]),
@@ -872,7 +873,7 @@ const rt = /* @__PURE__ */ re(nt), at = { class: "mb-3" }, st = { class: "column
       ], 512);
     };
   }
-}), Lt = /* @__PURE__ */ Se(Yt, [["__scopeId", "data-v-6510e837"]]);
+}), Lt = /* @__PURE__ */ Se(Yt, [["__scopeId", "data-v-41881725"]]);
 export {
   Lt as default
 };
