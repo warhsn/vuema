@@ -1,5 +1,9 @@
 # Changelog
 
+### [0.10.4] 2025-06-05
+
+- Refactor: Default icon type to fa-solid.
+
 ### [0.10.3] 2025-06-02
 
 - Bug: Required prop missing from date picker.

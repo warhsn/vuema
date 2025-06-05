@@ -1,6 +1,6 @@
 <template>
     <span class="icon">
-        <i :class="`${iconType || 'fa-regular'} fa-${icon} ${iconClasses}`"></i>
+        <i :class="`${iconType || 'fa-solid'} fa-${icon} ${iconClasses}`"></i>
     </span>
 </template>
 <script setup lang="ts">
