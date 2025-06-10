@@ -1,6 +1,6 @@
 # Changelog
 
-### [0.10.5] 2025-06-10
+### [0.10.6] 2025-06-10
 
 - Bug: Unable to select the last day of previous months.
 
