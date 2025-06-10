@@ -1,5 +1,9 @@
 # Changelog
 
+### [0.10.5] 2025-06-10
+
+- Refactor: Improved typing for asCurrency helper function.
+
 ### [0.10.4] 2025-06-05
 
 - Refactor: Default icon type to fa-solid.

@@ -3,16 +3,16 @@ var S = (t, o, e) => o in t ? b(t, o, { enumerable: !0, configurable: !0, writab
 var p = (t, o, e) => S(t, typeof o != "symbol" ? o + "" : o, e);
 import { defineAsyncComponent as s, defineComponent as T, ref as k, computed as x, createElementBlock as u, openBlock as d, normalizeClass as f, createVNode as E, TransitionGroup as $, withCtx as _, Fragment as L, renderList as M, createElementVNode as y, createTextVNode as D, toDisplayString as Y, createApp as h, inject as A, customRef as I, watch as g } from "vue";
 function F(t) {
-  t.component("column", s(() => import("./column-DFEEo01k.js"))), t.component("columns", s(() => import("./columns-CNwTQcJ_.js"))), t.component("flex", s(() => import("./flex-DiMpJ_Nk.js")));
-}
-function z(t) {
-  t.component("base-icon", s(() => import("./base-icon-BittugVB.js"))), t.component("action-button", s(() => import("./button-CecB7Pv-.js"))), t.component("icon-button", s(() => import("./icon-button-BiahoDPt.js"))), t.component("submit-button", s(() => import("./submit-button-BBryhJxf.js"))), t.component("buttons", s(() => import("./buttons-DZb92DV0.js"))), t.component("loader", s(() => import("./loader-CK5dVlDi.js"))), t.component("block", s(() => import("./block-B1_xePib.js"))), t.component("box", s(() => import("./box-qUZUUd9O.js"))), t.component("b-icon", s(() => import("./icon-XTRTXlk0.js"))), t.component("avatar", s(() => import("./avatar-Qs3jleId.js")));
-}
-function N(t) {
-  t.component("side-menu", s(() => import("./side-menu-CX_x1IQF.js"))), t.component("side-menu-label", s(() => import("./side-menu-label-DACN3hf_.js"))), t.component("side-menu-list", s(() => import("./side-menu-list-BkR8Y2lB.js"))), t.component("side-menu-list-item", s(() => import("./side-menu-list-item-CwO8UT3e.js"))), t.component("dropdown", s(() => import("./dropdown-BFSCP8ZA.js"))), t.component("dropdown-divider", s(() => import("./dropdown-divider-CPp8yQoP.js"))), t.component("dropdown-item", s(() => import("./dropdown-item-BU3bgDwG.js"))), t.component("dropdown-trigger", s(() => import("./dropdown-trigger-DTlJTm2u.js"))), t.component("modal", s(() => import("./modal-C5xJoYjS.js"))), t.component("confirm", s(() => import("./confirm-dialog-D2lNlEAL.js"))), t.component("alert", s(() => import("./alert-dialog-Cx7UVq1h.js"))), t.component("tabs", s(() => import("./tabs-BgHChJGc.js"))), t.component("tab", s(() => import("./tab-DkodDZA8.js"))), t.component("pagination", s(() => import("./pagination-BLZykKo-.js")));
+  t.component("column", s(() => import("./column-DFEEo01k.js"))), t.component("columns", s(() => import("./columns-CNwTQcJ_.js"))), t.component("flex", s(() => import("./flex-DZK7eN04.js")));
 }
 function O(t) {
-  t.component("field-label", s(() => import("./field-label-BlqTt41h.js"))), t.component("text-input", s(() => import("./text-input-DfuY0ED7.js"))), t.component("password-input", s(() => import("./password-input-CYj3PcqC.js"))), t.component("text-area", s(() => import("./text-area-BLLtHf0h.js"))), t.component("select-input", s(() => import("./select-input-CDT_VF1_.js"))), t.component("radio-input", s(() => import("./radio-input-B1Dp5itf.js"))), t.component("checkbox-input", s(() => import("./checkbox-input-B_xSXtDh.js"))), t.component("switch-input", s(() => import("./switch-input-DqyyquBs.js"))), t.component("currency-input", s(() => import("./currency-input-Dlp4-ltP.js"))), t.component("tag-input", s(() => import("./tag-input-CFTLx0Um.js"))), t.component("file-input", s(() => import("./file-input-DZouJbmP.js"))), t.component("number-input", s(() => import("./number-input-C9Yumz5J.js"))), t.component("date-picker", s(() => import("./date-picker-Cp6xFz6T.js"))), t.component("time-input", s(() => import("./time-input-IRoEV9yT.js")));
+  t.component("base-icon", s(() => import("./base-icon-BittugVB.js"))), t.component("action-button", s(() => import("./button-CecB7Pv-.js"))), t.component("icon-button", s(() => import("./icon-button-BiahoDPt.js"))), t.component("submit-button", s(() => import("./submit-button-BBryhJxf.js"))), t.component("buttons", s(() => import("./buttons-DZb92DV0.js"))), t.component("loader", s(() => import("./loader-Cv2kzPfK.js"))), t.component("block", s(() => import("./block-BM8006A6.js"))), t.component("box", s(() => import("./box-Bz0Vy--z.js"))), t.component("b-icon", s(() => import("./icon-XTRTXlk0.js"))), t.component("avatar", s(() => import("./avatar-Qs3jleId.js")));
+}
+function z(t) {
+  t.component("side-menu", s(() => import("./side-menu-YKP1hJe_.js"))), t.component("side-menu-label", s(() => import("./side-menu-label-Bpr52q8T.js"))), t.component("side-menu-list", s(() => import("./side-menu-list-CY2M4u_7.js"))), t.component("side-menu-list-item", s(() => import("./side-menu-list-item-PSi0tFwR.js"))), t.component("dropdown", s(() => import("./dropdown-BFSCP8ZA.js"))), t.component("dropdown-divider", s(() => import("./dropdown-divider-BkZzjbhg.js"))), t.component("dropdown-item", s(() => import("./dropdown-item-BU3bgDwG.js"))), t.component("dropdown-trigger", s(() => import("./dropdown-trigger-DTlJTm2u.js"))), t.component("modal", s(() => import("./modal-C5xJoYjS.js"))), t.component("confirm", s(() => import("./confirm-dialog-D2lNlEAL.js"))), t.component("alert", s(() => import("./alert-dialog-Cx7UVq1h.js"))), t.component("tabs", s(() => import("./tabs-BgHChJGc.js"))), t.component("tab", s(() => import("./tab-DkodDZA8.js"))), t.component("pagination", s(() => import("./pagination-BLZykKo-.js")));
+}
+function N(t) {
+  t.component("field-label", s(() => import("./field-label-BlqTt41h.js"))), t.component("text-input", s(() => import("./text-input-DfuY0ED7.js"))), t.component("password-input", s(() => import("./password-input-CYj3PcqC.js"))), t.component("text-area", s(() => import("./text-area-BLLtHf0h.js"))), t.component("select-input", s(() => import("./select-input-CDT_VF1_.js"))), t.component("radio-input", s(() => import("./radio-input-B1Dp5itf.js"))), t.component("checkbox-input", s(() => import("./checkbox-input-B_xSXtDh.js"))), t.component("switch-input", s(() => import("./switch-input-DqyyquBs.js"))), t.component("currency-input", s(() => import("./currency-input-Dlp4-ltP.js"))), t.component("tag-input", s(() => import("./tag-input-CFTLx0Um.js"))), t.component("file-input", s(() => import("./file-input-DZouJbmP.js"))), t.component("number-input", s(() => import("./number-input-C9Yumz5J.js"))), t.component("date-picker", s(() => import("./date-picker-BtxIgblj.js"))), t.component("time-input", s(() => import("./time-input-IRoEV9yT.js")));
 }
 const H = {
   position: "top",
@@ -27,17 +27,17 @@ const H = {
   const n = document.createElement("div");
   n.style.position = "absolute", n.style.width = "0", n.style.height = "0", n.style.borderStyle = "solid", n.style.borderWidth = "6px", n.style.pointerEvents = "none", e.position === "top" ? (n.style.borderColor = `${i.style.backgroundColor} transparent transparent transparent`, n.style.bottom = "-12px", n.style.left = "50%", n.style.transform = "translateX(-50%)") : e.position === "right" ? (n.style.borderColor = `transparent ${i.style.backgroundColor} transparent transparent`, n.style.left = "-12px", n.style.top = "50%", n.style.transform = "translateY(-50%)") : e.position === "bottom" ? (n.style.borderColor = `transparent transparent ${i.style.backgroundColor} transparent`, n.style.top = "-12px", n.style.left = "50%", n.style.transform = "translateX(-50%)") : e.position === "left" && (n.style.borderColor = `transparent transparent transparent ${i.style.backgroundColor}`, n.style.right = "-12px", n.style.top = "50%", n.style.transform = "translateY(-50%)"), i.appendChild(n), document.body.appendChild(i);
   const r = () => {
-    const a = t.getBoundingClientRect(), c = i.getBoundingClientRect();
-    e.position === "top" ? (i.style.left = `${a.left + a.width / 2 - c.width / 2 + window.scrollX}px`, i.style.top = `${a.top - c.height - 8 + window.scrollY}px`) : e.position === "right" ? (i.style.left = `${a.right + 8 + window.scrollX}px`, i.style.top = `${a.top + a.height / 2 - c.height / 2 + window.scrollY}px`) : e.position === "bottom" ? (i.style.left = `${a.left + a.width / 2 - c.width / 2 + window.scrollX}px`, i.style.top = `${a.bottom + 8 + window.scrollY}px`) : e.position === "left" && (i.style.left = `${a.left - c.width - 8 + window.scrollX}px`, i.style.top = `${a.top + a.height / 2 - c.height / 2 + window.scrollY}px`);
+    const a = t.getBoundingClientRect(), m = i.getBoundingClientRect();
+    e.position === "top" ? (i.style.left = `${a.left + a.width / 2 - m.width / 2 + window.scrollX}px`, i.style.top = `${a.top - m.height - 8 + window.scrollY}px`) : e.position === "right" ? (i.style.left = `${a.right + 8 + window.scrollX}px`, i.style.top = `${a.top + a.height / 2 - m.height / 2 + window.scrollY}px`) : e.position === "bottom" ? (i.style.left = `${a.left + a.width / 2 - m.width / 2 + window.scrollX}px`, i.style.top = `${a.bottom + 8 + window.scrollY}px`) : e.position === "left" && (i.style.left = `${a.left - m.width - 8 + window.scrollX}px`, i.style.top = `${a.top + a.height / 2 - m.height / 2 + window.scrollY}px`);
   }, l = () => {
     r(), i.style.opacity = "1";
-  }, m = () => {
+  }, c = () => {
     e.always || (i.style.opacity = "0");
   };
-  return t.addEventListener("mouseenter", l), t.addEventListener("mouseleave", m), t.addEventListener("focus", l), t.addEventListener("blur", m), e.always && l(), window.addEventListener("resize", r), window.addEventListener("scroll", r), t._tooltipInstance = {
+  return t.addEventListener("mouseenter", l), t.addEventListener("mouseleave", c), t.addEventListener("focus", l), t.addEventListener("blur", c), e.always && l(), window.addEventListener("resize", r), window.addEventListener("scroll", r), t._tooltipInstance = {
     tooltip: i,
     cleanup: () => {
-      t.removeEventListener("mouseenter", l), t.removeEventListener("mouseleave", m), t.removeEventListener("focus", l), t.removeEventListener("blur", m), window.removeEventListener("resize", r), window.removeEventListener("scroll", r), document.body.removeChild(i), delete t._tooltipInstance;
+      t.removeEventListener("mouseenter", l), t.removeEventListener("mouseleave", c), t.removeEventListener("focus", l), t.removeEventListener("blur", c), window.removeEventListener("resize", r), window.removeEventListener("scroll", r), document.body.removeChild(i), delete t._tooltipInstance;
     }
   }, t._tooltipInstance;
 }, P = {
@@ -81,7 +81,7 @@ const B = T({
         n(l);
       }, r.timeout || 3e3);
     }, n = (r) => {
-      const l = o.value.findIndex((m) => m.id === r);
+      const l = o.value.findIndex((c) => c.id === r);
       l > -1 && o.value.splice(l, 1);
     };
     return {
@@ -96,8 +96,8 @@ const B = T({
   for (const [i, n] of o)
     e[i] = n;
   return e;
-}, q = ["onClick"];
-function U(t, o, e, i, n, r) {
+}, j = ["onClick"];
+function q(t, o, e, i, n, r) {
   return d(), u("div", {
     class: f(["toast-container", t.positionClass])
   }, [
@@ -116,8 +116,8 @@ function U(t, o, e, i, n, r) {
           }, [
             y("button", {
               class: "delete",
-              onClick: (m) => t.removeToast(l.id)
-            }, null, 8, q),
+              onClick: (c) => t.removeToast(l.id)
+            }, null, 8, j),
             D(" " + Y(l.message), 1)
           ], 2)
         ]))), 128))
@@ -126,8 +126,8 @@ function U(t, o, e, i, n, r) {
     }, 8, ["name", "class"])
   ], 2);
 }
-const v = /* @__PURE__ */ V(B, [["render", U], ["__scopeId", "data-v-04e8babe"]]);
-class j {
+const v = /* @__PURE__ */ V(B, [["render", q], ["__scopeId", "data-v-04e8babe"]]);
+class U {
   constructor(o = "bottom-right", e = 4e3, i = "toast") {
     p(this, "toastApp");
     p(this, "toastComponent");
@@ -241,7 +241,7 @@ function tt(t, o, e, i) {
   g(
     t,
     (n) => {
-      const r = Object.entries(n).reduce((l, [m, a]) => (a !== "" && a !== null && a !== void 0 && (l[m] = a), l), {});
+      const r = Object.entries(n).reduce((l, [c, a]) => (a !== "" && a !== null && a !== void 0 && (l[c] = a), l), {});
       JSON.stringify(r) !== JSON.stringify(o.query) && (e.push({
         name: i.routeName,
         query: r
@@ -259,7 +259,17 @@ function tt(t, o, e, i) {
   );
 }
 function ot(t, o = "$", e = "en-US") {
-  const i = typeof t == "string" ? parseFloat(t) : t;
+  if (t == null)
+    return `${o}0.00`;
+  let i;
+  if (typeof t == "string")
+    i = parseFloat(t);
+  else if (typeof t == "number")
+    i = t;
+  else if (typeof t == "object" && t.valueOf)
+    i = t.valueOf();
+  else
+    return `${o}0.00`;
   if (isNaN(i))
     return `${o}0.00`;
   const n = i.toLocaleString(e, {
@@ -277,8 +287,8 @@ const W = {
 }, et = {
   install: (t, o = W) => {
     var i, n, r;
-    F(t), z(t), N(t), O(t), X(t);
-    const e = new j(
+    F(t), O(t), z(t), N(t), X(t);
+    const e = new U(
       (i = o == null ? void 0 : o.toaster) == null ? void 0 : i.position,
       (n = o == null ? void 0 : o.toaster) == null ? void 0 : n.timeout,
       (r = o == null ? void 0 : o.toaster) == null ? void 0 : r.transition

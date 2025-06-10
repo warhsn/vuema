@@ -1,1 +1,5 @@
-export default function asCurrency(amount: string | number, symbol?: string, locale?: string): string;
+type NumericValue = string | number | {
+    valueOf(): number;
+} | undefined;
+export default function asCurrency(amount: NumericValue, symbol?: string, locale?: string): string;
+export {};
