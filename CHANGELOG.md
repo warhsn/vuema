@@ -2,6 +2,10 @@
 
 ### [0.10.5] 2025-06-10
 
+- Bug: Unable to select the last day of previous months.
+
+### [0.10.5] 2025-06-10
+
 - Refactor: Improved typing for asCurrency helper function.
 
 ### [0.10.4] 2025-06-05

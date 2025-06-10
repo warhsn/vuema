@@ -279,22 +279,31 @@ function generatePrefillDays(): CalendarDay[] {
     const previousMonthFormat = previousMonth.format('YYYY-MM-')
     let daysInPreviousMonth = previousMonth.daysInMonth()
     
+    const day = dayjs(`${previousMonthFormat}${daysInPreviousMonth}`)
+    const previousIsDisabled = !!(
+        (state.minDate && day.isBefore(state.minDate)) || 
+        (state.maxDate && day.isAfter(state.maxDate))
+    )
+    
     const prefillDays: CalendarDay[] = [{
-        class: 'has-text-grey',
-        date: dayjs(`${previousMonthFormat}${daysInPreviousMonth}`),
+        class: previousIsDisabled ? 'has-text-grey is-disabled' : 'has-text-grey',
+        date: day,
         day: daysInPreviousMonth,
-        disabled: true  // Always true for prefill days
+        disabled: previousIsDisabled
     }]
     
     for (let i = 0; i < firstDayOfMonth - 1; i++) {
         daysInPreviousMonth--
         const day = dayjs(`${previousMonthFormat}${daysInPreviousMonth}`)
-        const previousIsDisabled = !!(state.minDate && day.isBefore(state.minDate))
+        const previousIsDisabled = !!(
+            (state.minDate && day.isBefore(state.minDate)) || 
+            (state.maxDate && day.isAfter(state.maxDate))
+        )
         prefillDays.unshift({
-            class: 'has-text-grey',
+            class: previousIsDisabled ? 'has-text-grey is-disabled' : 'has-text-grey',
             date: day,
             day: daysInPreviousMonth,
-            disabled: previousIsDisabled  // Always true for prefill days
+            disabled: previousIsDisabled
         })
     }
     
@@ -313,7 +322,7 @@ function generateCurrentMonthDays(): CalendarDay[] {
             )
             
             return {
-                class: isDisabled ? 'has-text-grey' : '',
+                class: isDisabled ? 'has-text-grey is-disabled' : '',
                 date,
                 day: index + 1,
                 disabled: isDisabled
@@ -333,9 +342,12 @@ function generatePostfillDays(): CalendarDay[] {
         .map((_, index) => {
             const day = (index + 1).toString().padStart(2, '0')
             const date = dayjs(`${nextMonthFormat}${day}`)
-            const nextIsDisabled = !!(state.minDate && date.isBefore(state.minDate))
+            const nextIsDisabled = !!(
+                (state.minDate && date.isBefore(state.minDate)) || 
+                (state.maxDate && date.isAfter(state.maxDate))
+            )
             return {
-                class: 'has-text-grey is-disabled',
+                class: nextIsDisabled ? 'has-text-grey is-disabled' : 'has-text-grey',
                 date: date,
                 day: index + 1,
                 disabled: nextIsDisabled 
