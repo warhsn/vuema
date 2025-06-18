@@ -1,5 +1,10 @@
 # Changelog
 
+### [0.11.0] 2025-06-18
+
+- Feature: Introduces a Flyout component (beta).
+- Bug: Fixed regex in formatDate utility.
+
 ### [0.10.6] 2025-06-10
 
 - Bug: Unable to select the last day of previous months.

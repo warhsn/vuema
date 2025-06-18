@@ -11,6 +11,7 @@ import useDebouncedRef from './utils/debounced-ref'
 import formatDate from './utils/format-date'
 import filterWatcher from './utils/filter-watcher'
 import asCurrency from './utils/as-currency'
+export * from './components/flyout'
 
 import './scss/vuema.scss'
 
