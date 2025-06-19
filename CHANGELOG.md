@@ -1,5 +1,9 @@
 # Changelog
 
+### [0.11.1] 2025-06-19
+
+- Refactor: Better styling for the flyout component.
+
 ### [0.11.0] 2025-06-18
 
 - Feature: Introduces a Flyout component (beta).
