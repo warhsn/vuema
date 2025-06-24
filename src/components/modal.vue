@@ -65,23 +65,26 @@ const emit = defineEmits<{
     (e: 'close'): void,
 }>()
 
-function close(): void {
+const close = (): void => {
     isActive.value = false
     emit('close')
 }
 
-function cancel(): void {
+const open = (): Boolean => isActive.value = true
+
+const cancel = (): void => {
     isActive.value = false
     emit('close')
 }
 
-function dismiss(): void {
+const dismiss = (): void => {
     if (props.isDismissable) {
         emit('close')
     }
 }
 
 defineExpose({
-    close
+    close,
+    open
 })
 </script>

@@ -1,5 +1,4 @@
 import { _Modal } from '../interfaces/modal';
-declare function close(): void;
 declare function __VLS_template(): {
     attrs: Partial<{}>;
     slots: {
@@ -14,7 +13,8 @@ declare function __VLS_template(): {
 };
 type __VLS_TemplateResult = ReturnType<typeof __VLS_template>;
 declare const __VLS_component: import('vue').DefineComponent<_Modal, {
-    close: typeof close;
+    close: () => void;
+    open: () => Boolean;
 }, {}, {}, {}, import('vue').ComponentOptionsMixin, import('vue').ComponentOptionsMixin, {} & {
     close: () => any;
 }, string, import('vue').PublicProps, Readonly<_Modal> & Readonly<{

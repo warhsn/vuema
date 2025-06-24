@@ -1,5 +1,10 @@
 # Changelog
 
+### [0.12.0] 2025-06-24
+
+- Feature: Adds a Search Input (alpha).
+- Refactor: Added first and last buttons to the pagination component.
+
 ### [0.11.1] 2025-06-19
 
 - Refactor: Better styling for the flyout component.
