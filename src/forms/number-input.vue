@@ -1,18 +1,18 @@
 <template>
     <div>
-        <field-label :required="required">
+        <field-label v-if="$slots.default" :required="required">
             <slot />
             <slot name="description" />
         </field-label>
         <div class="field" :class="{ 'has-addons': hasAddons }">
-            <div v-if="$slots.left" class="control" :class="sizes">
+            <div v-if="$slots.left" class="control" :class="slotSizes">
                 <slot name="left" />
             </div>
             <div class="control" :class="classes">
                 <input 
                     :id="inputId" type="text" 
                     class="input" 
-                    :class="{ 'is-danger': hasErrors }" 
+                    :class="classes" 
                     :placeholder="placeholder"
                     :autocomplete="autocomplete ? 'on' : 'off'"
                     :disabled="disabled"
@@ -22,7 +22,7 @@
                 <b-icon v-if="leftIcon" class="icon is-small is-left" :icon="leftIcon" />
                 <b-icon v-if="rightIcon" class="icon is-small is-right" :icon="rightIcon" />
             </div>
-            <div v-if="$slots.right" class="control" :class="sizes">
+            <div v-if="$slots.right" class="control" :class="slotSizes">
                 <slot name="right" />
             </div>
             <FieldError :error="error" />
@@ -98,8 +98,18 @@ function onInput(event: Event): void {
 const hasErrors = _hasErrors(props)
 
 const classes = computed(() => ({ 
-        'has-icons-left': props.leftIcon, 
-        'has-icons-right': props.rightIcon,
-        ...sizes
-    }))
+    'is-danger': hasErrors.value,
+    'has-icons-left': props.leftIcon, 
+    'has-icons-right': props.rightIcon,
+    ...sizes
+}))
+
+const slotSizes = computed(() => {
+    const { 'is-expanded': isExpanded, ...sizesWithoutExpanded } = sizes
+    return {
+        'is-danger': hasErrors.value,
+        'is-rounded': props.isRounded,
+        ...sizesWithoutExpanded
+    }
+})
 </script>

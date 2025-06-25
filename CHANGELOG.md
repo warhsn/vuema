@@ -1,5 +1,9 @@
 # Changelog
 
+### [0.12.1] 2025-06-25
+
+- Refactor: Added sizing to the currency input.
+
 ### [0.12.0] 2025-06-24
 
 - Feature: Adds a Search Input (alpha).
