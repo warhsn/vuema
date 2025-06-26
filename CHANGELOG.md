@@ -1,5 +1,9 @@
 # Changelog
 
+### [0.12.2] 2025-06-26
+
+- Bug: Error messages not showing for file inputs.
+
 ### [0.12.1] 2025-06-25
 
 - Refactor: Added sizing to the currency input.

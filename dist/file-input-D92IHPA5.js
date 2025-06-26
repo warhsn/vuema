@@ -1,5 +1,6 @@
-import { defineComponent as r, ref as y, createElementBlock as d, openBlock as B, normalizeClass as f, createElementVNode as e, renderSlot as m, toDisplayString as u } from "vue";
-const h = { class: "file-label" }, g = ["accept"], _ = { class: "file-cta" }, v = { class: "file-label font-engr" }, C = { class: "file-name font-engr" }, i = "selected", b = "Choose a file…", x = /* @__PURE__ */ r({
+import { defineComponent as c, ref as d, createElementBlock as y, openBlock as B, createElementVNode as e, createVNode as f, normalizeClass as m, renderSlot as u, toDisplayString as h } from "vue";
+import { _ as g } from "./field-error.vue_vue_type_script_setup_true_lang-C7PfoMZ6.js";
+const _ = { class: "file-label" }, v = ["accept"], b = { class: "file-cta" }, C = { class: "file-label font-engr" }, I = { class: "file-name font-engr" }, i = "selected", w = "Choose a file…", k = /* @__PURE__ */ c({
   __name: "file-input",
   props: {
     endpoint: {},
@@ -49,9 +50,9 @@ const h = { class: "file-label" }, g = ["accept"], _ = { class: "file-cta" }, v 
     is11: { type: Boolean },
     is12: { type: Boolean }
   },
-  setup(I, { emit: p }) {
-    const t = p, n = y(b);
-    function c(o) {
+  setup(x, { emit: p }) {
+    const t = p, n = d(w);
+    function r(o) {
       var s;
       const l = o.target;
       if ((s = l.files) != null && s.length) {
@@ -61,36 +62,39 @@ const h = { class: "file-label" }, g = ["accept"], _ = { class: "file-cta" }, v 
       }
       t(i, null);
     }
-    return (o, l) => (B(), d("div", {
-      class: f(["file has-name", {
-        "is-boxed": o.isBoxed
-      }])
-    }, [
-      e("label", h, [
-        e("input", {
-          onChange: c,
-          class: "file-input",
-          type: "file",
-          accept: o.accepts
-        }, null, 40, g),
-        e("span", _, [
-          l[0] || (l[0] = e("span", { class: "file-icon" }, [
-            e("svg", {
-              xmlns: "http://www.w3.org/2000/svg",
-              viewBox: "0 0 24 24"
-            }, [
-              e("path", { d: "M9 16h6v-6h4l-7-7-7 7h4v6zm-4 2h14v2H5v-2z" })
+    return (o, l) => (B(), y("div", null, [
+      e("div", {
+        class: m(["file has-name mb-0", {
+          "is-boxed": o.isBoxed
+        }])
+      }, [
+        e("label", _, [
+          e("input", {
+            onChange: r,
+            class: "file-input",
+            type: "file",
+            accept: o.accepts
+          }, null, 40, v),
+          e("span", b, [
+            l[0] || (l[0] = e("span", { class: "file-icon" }, [
+              e("svg", {
+                xmlns: "http://www.w3.org/2000/svg",
+                viewBox: "0 0 24 24"
+              }, [
+                e("path", { d: "M9 16h6v-6h4l-7-7-7 7h4v6zm-4 2h14v2H5v-2z" })
+              ])
+            ], -1)),
+            e("span", C, [
+              u(o.$slots, "default")
             ])
-          ], -1)),
-          e("span", v, [
-            m(o.$slots, "default")
-          ])
-        ]),
-        e("span", C, u(n.value), 1)
-      ])
-    ], 2));
+          ]),
+          e("span", I, h(n.value), 1)
+        ])
+      ], 2),
+      f(g, { error: o.error }, null, 8, ["error"])
+    ]));
   }
 });
 export {
-  x as default
+  k as default
 };

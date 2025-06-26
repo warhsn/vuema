@@ -1,36 +1,40 @@
 <template>
-    <div class="file has-name" :class="{
-        'is-boxed': isBoxed
-    }">
-        <label class="file-label">
-            <input 
-                @change="fileSelected" 
-                class="file-input" 
-                type="file"
-                :accept="accepts"
-            >
-            <span class="file-cta">
-                <span class="file-icon">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                        <path d="M9 16h6v-6h4l-7-7-7 7h4v6zm-4 2h14v2H5v-2z"/>
-                    </svg>
+    <div>
+        <div class="file has-name mb-0" :class="{
+            'is-boxed': isBoxed
+        }">
+            <label class="file-label">
+                <input 
+                    @change="fileSelected" 
+                    class="file-input" 
+                    type="file"
+                    :accept="accepts"
+                >
+                <span class="file-cta">
+                    <span class="file-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                            <path d="M9 16h6v-6h4l-7-7-7 7h4v6zm-4 2h14v2H5v-2z"/>
+                        </svg>
+                    </span>
+                    <span class="file-label font-engr">
+                        <slot />
+                    </span>
                 </span>
-                <span class="file-label font-engr">
-                    <slot />
+                <span class="file-name font-engr">
+                    {{ fileName }}
                 </span>
-            </span>
-            <span class="file-name font-engr">
-                {{ fileName }}
-            </span>
-        </label>
+            </label>
+        </div>
+        <FieldError :error="error"/>
     </div>
 </template>
 <script lang="ts" setup>
 import { _FileInput } from '../interfaces/file-input'
 import { _hasErrors } from '../computed/errors'
 import { ref } from 'vue';
+import FieldError from './field-error.vue'
 
-defineProps<_FileInput>()
+const props = defineProps<_FileInput>()
 
 const selected = 'selected'
 const uploaded = 'uploaded'
