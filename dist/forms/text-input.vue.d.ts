@@ -20,7 +20,9 @@ declare const __VLS_component: import('vue').DefineComponent<_TextInput, {}, {},
     onBlur?: (() => any) | undefined;
     onFocus?: (() => any) | undefined;
     "onUpdate:modelValue"?: ((value: string | number) => any) | undefined;
-}>, {}, {}, {}, {}, string, import('vue').ComponentProvideOptions, false, {}, HTMLDivElement>;
+}>, {
+    type: string;
+}, {}, {}, {}, string, import('vue').ComponentProvideOptions, false, {}, HTMLDivElement>;
 declare const _default: __VLS_WithTemplateSlots<typeof __VLS_component, __VLS_TemplateResult["slots"]>;
 export default _default;
 type __VLS_WithTemplateSlots<T, S> = T & {

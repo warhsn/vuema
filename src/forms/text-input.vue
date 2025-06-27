@@ -23,8 +23,9 @@
                 'is-expanded': isExpanded
             }">
                 <input 
-                    type="text"
-                    class="input" :class="classes"  
+                    class="input"
+                    :class="classes" 
+                    :type="type" 
                     :placeholder="placeholder"
                     :disabled="disabled"
                     :value="modelValue" 
@@ -60,7 +61,10 @@ import FieldError from './field-error.vue'
 import { computed } from 'vue'
 import useSizes from '../utils/sizes'
 
-const props = defineProps<_TextInput>()
+const props = withDefaults(defineProps<_TextInput>(), {
+    type: 'text'
+})
+
 const sizes = useSizes(props)
 const inputName = 'update:modelValue'
 const focus = 'focus'

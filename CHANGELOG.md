@@ -1,5 +1,9 @@
 # Changelog
 
+### [0.12.4] 2025-06-27
+
+- Refactor: Added type prop to the text input component.
+
 ### [0.12.3] 2025-06-27
 
 - Refactor: Fallback to native date picker on mobile.
