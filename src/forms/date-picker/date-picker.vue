@@ -1,6 +1,8 @@
 <template>
     <div class="b-date-picker" ref="pickerRef">
+        <!-- Mobile fallback: native date input -->
         <text-input 
+            v-if="isMobile"
             :is-expanded="isExpanded"
             :has-addons="withIcon"
             :is-small="isSmall"
@@ -8,13 +10,12 @@
             :is-large="isLarge"
             :placeholder="placeholder"
             :required="required"
-            :model-value="state.selectedDate"
+            :model-value="nativeDateValue"
             :error="error"
-            class="is-clickable"
-            @click="togglePicker"
-            @input="handleManualInput"
+            type="date"
+            @input="handleNativeInput"
             @blur="handleBlur"
-            @update:model-value="handleManualInput"
+            @update:model-value="handleNativeInput"
             v-bind="$attrs">
             <template #left>
                 <icon-button
@@ -33,26 +34,62 @@
             </template>
         </text-input>
 
-        <transition name="vuema-fade" mode="in-out">
-            <box v-if="showPicker" class="b-date-picker-window" @click.stop>
-                <calendar-header
-                    :month="currentMonth"
-                    :year="displayYear"
-                    @previous-month="goToPreviousMonth"
-                    @next-month="goToNextMonth"
-                    @month-change="handleMonthChange"
-                    @year-change="handleYearChange"
-                />
+        <!-- Desktop: custom date picker -->
+        <template v-else>
+            <text-input 
+                :is-expanded="isExpanded"
+                :has-addons="withIcon"
+                :is-small="isSmall"
+                :is-medium="isMedium"
+                :is-large="isLarge"
+                :placeholder="placeholder"
+                :required="required"
+                :model-value="state.selectedDate"
+                :error="error"
+                class="is-clickable"
+                @click="togglePicker"
+                @input="handleManualInput"
+                @blur="handleBlur"
+                @update:model-value="handleManualInput"
+                v-bind="$attrs">
+                <template #left>
+                    <icon-button
+                        v-if="withIcon"
+                        :is-small="isSmall"
+                        :is-medium="isMedium"
+                        :is-large="isLarge"
+                        @click.prevent
+                        class="is-shadowless"
+                        role="presentation"
+                        icon="calendar"
+                    />
+                </template>
+                <template v-for="slotName in slotNames" :key="slotName" v-slot:[slotName]>
+                    <slot :name="slotName"></slot>
+                </template>
+            </text-input>
 
-                <calendar-grid
-                    :calendar-days="calendarDays"
-                    :today="today"
-                    :selected-date="state.selectedDate"
-                    :date-format="props.format"
-                    @select-date="selectDate"
-                />
-            </box>
-        </transition>
+            <transition name="vuema-fade" mode="in-out">
+                <box v-if="showPicker" class="b-date-picker-window" @click.stop>
+                    <calendar-header
+                        :month="currentMonth"
+                        :year="displayYear"
+                        @previous-month="goToPreviousMonth"
+                        @next-month="goToNextMonth"
+                        @month-change="handleMonthChange"
+                        @year-change="handleYearChange"
+                    />
+
+                    <calendar-grid
+                        :calendar-days="calendarDays"
+                        :today="today"
+                        :selected-date="state.selectedDate"
+                        :date-format="props.format"
+                        @select-date="selectDate"
+                    />
+                </box>
+            </transition>
+        </template>
     </div>
 </template>
 
@@ -100,6 +137,9 @@ const emit = defineEmits<DatePickerEmits>()
 
 const pickerRef = ref<HTMLElement | null>(null)
 
+// Mobile detection
+const isMobile = ref(false)
+
 const state = reactive<DatePickerState>({
     showingPicker: false,
     currentDate: dayjs(),
@@ -113,6 +153,20 @@ const displayYear = computed(() => state.currentDate.format('YYYY'))
 const today = computed(() => dayjs().format(props.format))
 const currentMonth = computed(() => state.currentDate.month())
 
+// Convert date format for native input (always YYYY-MM-DD)
+const nativeDateValue = computed(() => {
+    if (!state.selectedDate) return ''
+    
+    // If the current format is already YYYY-MM-DD, use it directly
+    if (props.format === 'YYYY-MM-DD') {
+        return state.selectedDate
+    }
+    
+    // Otherwise, parse and convert to YYYY-MM-DD
+    const parsedDate = dayjs(state.selectedDate, props.format, true)
+    return parsedDate.isValid() ? parsedDate.format('YYYY-MM-DD') : ''
+})
+
 const calendarDays = computed((): CalendarDay[] => {
     const prefillDays = generatePrefillDays()
     const currentMonthDays = generateCurrentMonthDays()
@@ -122,13 +176,29 @@ const calendarDays = computed((): CalendarDay[] => {
 })
 
 onMounted(() => {
+    detectMobile()
     initializeState()
-    document.addEventListener('click', handleClickOutside)
+    if (!isMobile.value) {
+        document.addEventListener('click', handleClickOutside)
+    }
+    window.addEventListener('resize', detectMobile)
 })
 
 onUnmounted(() => {
-    document.removeEventListener('click', handleClickOutside)
+    if (!isMobile.value) {
+        document.removeEventListener('click', handleClickOutside)
+    }
+    window.removeEventListener('resize', detectMobile)
 })
+
+function detectMobile(): void {
+    // Check for touch capability and screen size
+    const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0
+    const isSmallScreen = window.innerWidth <= 768
+    const isMobileUserAgent = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)
+    
+    isMobile.value = isTouchDevice && (isSmallScreen || isMobileUserAgent)
+}
 
 function initializeDayjs(): void {
     dayjs.extend(updateLocale)
@@ -155,6 +225,46 @@ function initializeState(): void {
     
     state.minDate = props.minDate ? dayjs(props.minDate) : null
     state.maxDate = props.maxDate ? dayjs(props.maxDate) : null
+}
+
+function handleNativeInput(valueOrEvent: string | Event): void {
+    const inputValue = typeof valueOrEvent === 'string' 
+        ? valueOrEvent 
+        : (valueOrEvent.target as HTMLInputElement).value
+    
+    const trimmedValue = inputValue.trim()
+    
+    if (!trimmedValue) {
+        state.selectedDate = null
+        state.currentDate = dayjs()
+        emit('update:model-value', '')
+        return
+    }
+    
+    // Native input always provides YYYY-MM-DD format
+    const parsedDate = dayjs(trimmedValue, 'YYYY-MM-DD', true)
+    
+    if (parsedDate.isValid()) {
+        if (state.minDate && parsedDate.isBefore(state.minDate)) {
+            state.selectedDate = null
+            emit('update:model-value', '')
+            return
+        }
+        if (state.maxDate && parsedDate.isAfter(state.maxDate)) {
+            state.selectedDate = null
+            emit('update:model-value', '')
+            return
+        }
+        
+        state.currentDate = parsedDate
+        // Convert to the desired format for consistency
+        const formattedDate = parsedDate.format(props.format)
+        state.selectedDate = formattedDate
+        emit('update:model-value', formattedDate)
+    } else {
+        state.selectedDate = null
+        emit('update:model-value', '')
+    }
 }
 
 function handleClickOutside(event: MouseEvent): void {

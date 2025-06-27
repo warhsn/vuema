@@ -1,5 +1,9 @@
 # Changelog
 
+### [0.12.3] 2025-06-27
+
+- Refactor: Fallback to native date picker on mobile.
+
 ### [0.12.2] 2025-06-26
 
 - Bug: Error messages not showing for file inputs.

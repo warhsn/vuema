@@ -1,7 +1,7 @@
 import { DatePickerProps } from './types';
 declare function __VLS_template(): {
     attrs: Partial<{}>;
-    slots: Partial<Record<string, (_: {}) => any>>;
+    slots: Partial<Record<string, (_: {}) => any>> & Partial<Record<string, (_: {}) => any>>;
     refs: {
         pickerRef: HTMLDivElement;
     };
