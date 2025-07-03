@@ -81,7 +81,8 @@ const months = [
 const currentYear = new Date().getFullYear()
 const yearRange = computed(() => {
     const years: number[] = []
-    for (let year = currentYear - 20; year <= currentYear + 20; year++) {
+    // Extended range: 100 years back to 50 years forward
+    for (let year = currentYear - 100; year <= currentYear + 50; year++) {
         years.push(year)
     }
     return years

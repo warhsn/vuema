@@ -3,6 +3,7 @@
         <!-- Mobile fallback: native date input -->
         <text-input 
             v-if="isMobile"
+            type="date"
             :is-expanded="isExpanded"
             :has-addons="withIcon"
             :is-small="isSmall"
@@ -12,7 +13,6 @@
             :required="required"
             :model-value="nativeDateValue"
             :error="error"
-            type="date"
             @input="handleNativeInput"
             @blur="handleBlur"
             @update:model-value="handleNativeInput"
@@ -46,10 +46,15 @@
                 :required="required"
                 :model-value="state.selectedDate"
                 :error="error"
-                class="is-clickable"
+                class="date-picker-input"
+                role="combobox"
+                :aria-expanded="state.showingPicker"
+                aria-haspopup="dialog"
+                :aria-describedby="pickerId + '-description'"
                 @click="togglePicker"
                 @input="handleManualInput"
                 @blur="handleBlur"
+                @keydown="handleInputKeydown"
                 @update:model-value="handleManualInput"
                 v-bind="$attrs">
                 <template #left>
@@ -70,7 +75,16 @@
             </text-input>
 
             <transition name="vuema-fade" mode="in-out">
-                <box v-if="showPicker" class="b-date-picker-window" @click.stop>
+                <box 
+                    v-if="showPicker" 
+                    ref="pickerWindow"
+                    class="b-date-picker-window" 
+                    :style="pickerPositionStyle"
+                    role="dialog"
+                    :aria-label="`Select date, current month is ${months[currentMonth]} ${displayYear}`"
+                    :id="pickerId + '-dialog'"
+                    @click.stop
+                >
                     <calendar-header
                         :month="currentMonth"
                         :year="displayYear"
@@ -84,12 +98,44 @@
                         :calendar-days="calendarDays"
                         :today="today"
                         :selected-date="state.selectedDate"
+                        :focused-date="keyboardNavigation.focusedDate"
+                        :is-keyboard-navigating="keyboardNavigation.isNavigating"
                         :date-format="props.format"
                         @select-date="selectDate"
                     />
+                    
+                    <div class="field is-grouped mt-3">
+                        <div class="control">
+                            <button 
+                                class="button is-small is-light"
+                                @click="selectToday"
+                                type="button"
+                            >
+                                Today
+                            </button>
+                        </div>
+                        <div class="control">
+                            <button 
+                                class="button is-small is-light"
+                                @click="clearDate"
+                                type="button"
+                            >
+                                Clear
+                            </button>
+                        </div>
+                    </div>
                 </box>
             </transition>
         </template>
+        
+        <!-- Hidden description for screen readers -->
+        <div 
+            :id="pickerId + '-description'"
+            class="is-sr-only"
+            aria-live="polite"
+        >
+            Use arrow keys to navigate dates, Enter to select, Escape to close
+        </div>
     </div>
 </template>
 
@@ -114,6 +160,7 @@ import type {
     CalendarDay,
     DatePickerEmits 
 } from './types'
+import type { Dayjs } from 'dayjs'
 import CalendarHeader from './calendar-header.vue'
 import CalendarGrid from './calendar-grid.vue'
 
@@ -131,11 +178,14 @@ const props = withDefaults(defineProps<DatePickerProps>(), {
     maxDate: null,
     required: false,
     withIcon: true,
+    disabledDates: () => [],
+    isDateDisabled: undefined,
 })
 
 const emit = defineEmits<DatePickerEmits>()
 
 const pickerRef = ref<HTMLElement | null>(null)
+const pickerWindow = ref<HTMLElement | null>(null)
 
 // Mobile detection
 const isMobile = ref(false)
@@ -147,6 +197,24 @@ const state = reactive<DatePickerState>({
     minDate: null,
     maxDate: null,
 })
+
+const pickerPosition = reactive({
+    alignRight: false,
+    alignCenter: false,
+    showAbove: false
+})
+
+const keyboardNavigation = reactive({
+    focusedDate: null as string | null,
+    isNavigating: false
+})
+
+const pickerId = `date-picker-${Math.random().toString(36).substr(2, 9)}`
+
+const months = [
+    'January', 'February', 'March', 'April', 'May', 'June',
+    'July', 'August', 'September', 'October', 'November', 'December'
+]
 
 const showPicker = computed(() => state.showingPicker)
 const displayYear = computed(() => state.currentDate.format('YYYY'))
@@ -175,21 +243,179 @@ const calendarDays = computed((): CalendarDay[] => {
     return [...prefillDays, ...currentMonthDays, ...postfillDays]
 })
 
+const pickerPositionStyle = computed(() => {
+    const style: Record<string, string> = {}
+    
+    if (pickerPosition.alignRight) {
+        style.right = '0'
+        style.left = 'auto'
+        // Ensure it doesn't go off the left edge
+        style.minWidth = '280px'
+        style.maxWidth = 'calc(100vw - 1rem)'
+    } else if (pickerPosition.alignCenter) {
+        style.left = '50%'
+        style.transform = 'translateX(-50%)'
+        // Ensure centered picker doesn't overflow
+        style.maxWidth = 'calc(100vw - 2rem)'
+    } else {
+        style.left = '0'
+        // Ensure left-aligned picker doesn't overflow right edge
+        style.maxWidth = 'calc(100vw - 1rem)'
+    }
+    
+    if (pickerPosition.showAbove) {
+        style.top = 'auto'
+        style.bottom = 'calc(100% + 5px)'
+    } else {
+        style.top = 'calc(100% + 5px)'
+    }
+    
+    return style
+})
+
 onMounted(() => {
     detectMobile()
     initializeState()
     if (!isMobile.value) {
         document.addEventListener('click', handleClickOutside)
+        document.addEventListener('keydown', handleKeyDown)
     }
-    window.addEventListener('resize', detectMobile)
+    window.addEventListener('resize', handleResize)
 })
 
 onUnmounted(() => {
     if (!isMobile.value) {
         document.removeEventListener('click', handleClickOutside)
+        document.removeEventListener('keydown', handleKeyDown)
     }
-    window.removeEventListener('resize', detectMobile)
+    window.removeEventListener('resize', handleResize)
 })
+
+function handleResize(): void {
+    detectMobile()
+    if (state.showingPicker) {
+        calculatePickerPosition()
+    }
+}
+
+function handleKeyDown(event: KeyboardEvent): void {
+    if (!state.showingPicker) return
+    
+    const { key } = event
+    
+    // Handle escape key
+    if (key === 'Escape') {
+        event.preventDefault()
+        state.showingPicker = false
+        keyboardNavigation.isNavigating = false
+        keyboardNavigation.focusedDate = null
+        return
+    }
+    
+    // Handle enter key
+    if (key === 'Enter' && keyboardNavigation.focusedDate) {
+        event.preventDefault()
+        selectDate(keyboardNavigation.focusedDate)
+        return
+    }
+    
+    // Handle arrow keys
+    if (['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight'].includes(key)) {
+        event.preventDefault()
+        handleArrowNavigation(key)
+        keyboardNavigation.isNavigating = true
+    }
+}
+
+function handleArrowNavigation(key: string): void {
+    const currentFocused = keyboardNavigation.focusedDate 
+        ? dayjs(keyboardNavigation.focusedDate, props.format)
+        : state.selectedDate 
+            ? dayjs(state.selectedDate, props.format)
+            : state.currentDate
+    
+    let newFocused = currentFocused
+    
+    switch (key) {
+        case 'ArrowUp':
+            newFocused = currentFocused.subtract(7, 'day')
+            break
+        case 'ArrowDown':
+            newFocused = currentFocused.add(7, 'day')
+            break
+        case 'ArrowLeft':
+            newFocused = currentFocused.subtract(1, 'day')
+            break
+        case 'ArrowRight':
+            newFocused = currentFocused.add(1, 'day')
+            break
+    }
+    
+    // Check if the new date is disabled
+    if (isDateDisabledHelper(newFocused)) return
+    
+    // Update the calendar view if navigating to a different month
+    if (newFocused.month() !== state.currentDate.month() || 
+        newFocused.year() !== state.currentDate.year()) {
+        state.currentDate = newFocused
+    }
+    
+    keyboardNavigation.focusedDate = newFocused.format(props.format)
+}
+
+function handleInputKeydown(event: KeyboardEvent): void {
+    const { key } = event
+    
+    // Open picker on ArrowDown or Space
+    if ((key === 'ArrowDown' || key === ' ') && !state.showingPicker) {
+        event.preventDefault()
+        togglePicker()
+        return
+    }
+    
+    // Close picker on Escape
+    if (key === 'Escape' && state.showingPicker) {
+        event.preventDefault()
+        state.showingPicker = false
+        return
+    }
+}
+
+function selectToday(): void {
+    const todayDate = dayjs()
+    
+    // Check if today is disabled
+    if (isDateDisabledHelper(todayDate)) return
+    
+    const formattedToday = todayDate.format(props.format)
+    state.currentDate = todayDate
+    state.selectedDate = formattedToday
+    emit('update:model-value', formattedToday)
+    togglePicker()
+}
+
+function clearDate(): void {
+    state.selectedDate = null
+    state.currentDate = dayjs()
+    emit('update:model-value', '')
+    togglePicker()
+}
+
+function isDateDisabledHelper(date: Dayjs): boolean {
+    const dateString = date.format(props.format)
+    
+    // Check min/max dates
+    if (state.minDate && date.isBefore(state.minDate)) return true
+    if (state.maxDate && date.isAfter(state.maxDate)) return true
+    
+    // Check disabled dates array
+    if (props.disabledDates && props.disabledDates.includes(dateString)) return true
+    
+    // Check custom disabled function
+    if (props.isDateDisabled && props.isDateDisabled(dateString)) return true
+    
+    return false
+}
 
 function detectMobile(): void {
     // Check for touch capability and screen size
@@ -345,17 +571,70 @@ function handleBlur(): void {
     }
 }
 
+function calculatePickerPosition(): void {
+    if (!pickerRef.value) return
+    
+    const PICKER_WIDTH = 320
+    const MOBILE_PICKER_WIDTH = 280
+    const MARGIN = 16
+    
+    const pickerWidth = isMobile.value ? MOBILE_PICKER_WIDTH : PICKER_WIDTH
+    const rect = pickerRef.value.getBoundingClientRect()
+    const viewportWidth = window.innerWidth
+    const viewportHeight = window.innerHeight
+    
+    // Reset position flags
+    pickerPosition.alignRight = false
+    pickerPosition.alignCenter = false
+    pickerPosition.showAbove = false
+    
+    // Horizontal positioning
+    const rightEdgePos = rect.left + pickerWidth
+    const leftSpace = rect.left
+    const rightSpace = viewportWidth - rect.right
+    
+    // Check if default left alignment would overflow
+    if (rightEdgePos > viewportWidth - MARGIN) {
+        // Check if right alignment would fit better
+        if (rect.right - pickerWidth >= MARGIN) {
+            pickerPosition.alignRight = true
+        } else if (leftSpace >= MARGIN && rightSpace >= MARGIN) {
+            // Center if both sides have some space but neither fits fully
+            pickerPosition.alignCenter = true
+        } else {
+            // Force right alignment and let CSS max-width handle overflow
+            pickerPosition.alignRight = true
+        }
+    }
+    
+    // Vertical positioning - check if there's enough space below
+    const pickerHeight = 350 // Approximate picker height
+    const spaceBelow = viewportHeight - rect.bottom - MARGIN
+    const spaceAbove = rect.top - MARGIN
+    
+    if (spaceBelow < pickerHeight && spaceAbove > spaceBelow) {
+        pickerPosition.showAbove = true
+    }
+}
+
 function togglePicker(): void {
     state.showingPicker = !state.showingPicker
+    
+    if (state.showingPicker) {
+        // Calculate position when opening
+        setTimeout(() => calculatePickerPosition(), 0)
+    } else {
+        // Reset keyboard navigation when closing
+        keyboardNavigation.isNavigating = false
+        keyboardNavigation.focusedDate = null
+    }
 }
 
 function selectDate(date: string): void {
     const selectedDate = dayjs(date)
     
-    if (
-        (state.minDate && selectedDate.isBefore(state.minDate)) || 
-        (state.maxDate && selectedDate.isAfter(state.maxDate))
-    ) {
+    // Check if date is disabled
+    if (isDateDisabledHelper(selectedDate)) {
         return
     }
     
@@ -390,10 +669,7 @@ function generatePrefillDays(): CalendarDay[] {
     let daysInPreviousMonth = previousMonth.daysInMonth()
     
     const day = dayjs(`${previousMonthFormat}${daysInPreviousMonth}`)
-    const previousIsDisabled = !!(
-        (state.minDate && day.isBefore(state.minDate)) || 
-        (state.maxDate && day.isAfter(state.maxDate))
-    )
+    const previousIsDisabled = isDateDisabledHelper(day)
     
     const prefillDays: CalendarDay[] = [{
         class: previousIsDisabled ? 'has-text-grey is-disabled' : 'has-text-grey',
@@ -405,10 +681,7 @@ function generatePrefillDays(): CalendarDay[] {
     for (let i = 0; i < firstDayOfMonth - 1; i++) {
         daysInPreviousMonth--
         const day = dayjs(`${previousMonthFormat}${daysInPreviousMonth}`)
-        const previousIsDisabled = !!(
-            (state.minDate && day.isBefore(state.minDate)) || 
-            (state.maxDate && day.isAfter(state.maxDate))
-        )
+        const previousIsDisabled = isDateDisabledHelper(day)
         prefillDays.unshift({
             class: previousIsDisabled ? 'has-text-grey is-disabled' : 'has-text-grey',
             date: day,
@@ -426,10 +699,7 @@ function generateCurrentMonthDays(): CalendarDay[] {
         .map((_, index) => {
             const day = (index + 1).toString().padStart(2, '0')
             const date = dayjs(`${state.currentDate.format('YYYY-MM-')}${day}`)
-            const isDisabled = !!(
-                (state.minDate && date.isBefore(state.minDate)) || 
-                (state.maxDate && date.isAfter(state.maxDate))
-            )
+            const isDisabled = isDateDisabledHelper(date)
             
             return {
                 class: isDisabled ? 'has-text-grey is-disabled' : '',
@@ -452,10 +722,7 @@ function generatePostfillDays(): CalendarDay[] {
         .map((_, index) => {
             const day = (index + 1).toString().padStart(2, '0')
             const date = dayjs(`${nextMonthFormat}${day}`)
-            const nextIsDisabled = !!(
-                (state.minDate && date.isBefore(state.minDate)) || 
-                (state.maxDate && date.isAfter(state.maxDate))
-            )
+            const nextIsDisabled = isDateDisabledHelper(date)
             return {
                 class: nextIsDisabled ? 'has-text-grey is-disabled' : 'has-text-grey',
                 date: date,

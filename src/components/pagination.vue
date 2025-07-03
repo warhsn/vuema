@@ -1,5 +1,6 @@
 <template>
-  <nav class="pagination" :class="sizes" role="navigation" aria-label="pagination">
+  <div class="is-flex is-flex-wrap-nowrap is-justify-content-flex-start" v-show="pager.total > 0">
+    <nav class="pagination" :class="sizes" role="navigation" aria-label="pagination">
     <a @click="goToFirst" class="pagination-previous" :class="{
       'is-disabled': !pager.first_page_url || pager.current_page === 1
     }">{{ firstText }}</a>
@@ -12,8 +13,9 @@
     <a @click="goToLast" class="pagination-next" :class="{
       'is-disabled': !pager.last_page_url || pager.current_page === pager.last_page
     }">{{ lastText }}</a>
-  </nav>
-  </template>
+    </nav>
+  </div>
+</template>
   <script lang="ts" setup>
   import { _Pagination } from '@/interfaces/pagination'
   import useSizes from '../utils/sizes'
@@ -33,9 +35,7 @@
   const sizes = useSizes(props)
   
   const goToPage = (page?: string) => {
-    if(page) {
-      console.log(page)
-      
+    if(page) {      
       if (router) {
         const url = new URL(page, window.location.origin)
         router.push({

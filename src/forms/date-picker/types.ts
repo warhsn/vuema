@@ -48,6 +48,16 @@ export interface DatePickerProps extends _Sizes {
      * The placeholder text for the field
      */
     placeholder?: string
+
+    /**
+     * Array of specific dates to disable (in the same format as the date picker)
+     */
+    disabledDates?: string[]
+
+    /**
+     * Function to determine if a specific date should be disabled
+     */
+    isDateDisabled?: (date: string) => boolean
 }
 
 // Calendar Day Interface
@@ -130,6 +140,16 @@ export interface CalendarGridProps {
      * The currently selected date
      */
     selectedDate: string | null
+
+    /**
+     * The currently focused date (keyboard navigation)
+     */
+    focusedDate?: string | null
+
+    /**
+     * Whether keyboard navigation is active
+     */
+    isKeyboardNavigating?: boolean
 
     /**
      * The date format being used

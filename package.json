@@ -1,6 +1,6 @@
 {
   "name": "@warhsn/vuema",
-  "version": "0.12.4",
+  "version": "0.13.0",
   "description": "Bulma for Vuejs",
   "type": "module",
   "repository": {
@@ -42,7 +42,9 @@
     "@types/node": "^20.0.0",
     "@vitejs/plugin-vue": "^5.2.1",
     "@vue/compiler-sfc": "^3.5.13",
+    "@vue/test-utils": "^2.4.6",
     "esbuild": ">=0.25.0",
+    "jsdom": "^26.1.0",
     "typescript": "^5.0.0",
     "vite": "^6.3.4",
     "vite-plugin-dts": "^4.3.0",

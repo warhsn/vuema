@@ -48,24 +48,45 @@
     z-index: 99;
     top: calc(100% + 5px);
     left: 0;
-    min-width: 280px;
+    width: 320px;
+    max-width: calc(100vw - 2rem);
     background-color: var(--bulma-scheme-main);
     color: var(--bulma-scheme-main-text);
     border: 1px solid var(--bulma-border);
     border-radius: var(--bulma-radius);
     box-shadow: var(--bulma-shadow);
     padding: 1rem;
+    box-sizing: border-box;
+}
+
+.b-date-picker .date-picker-input {
+    cursor: pointer;
+}
+
+@media screen and (max-width: 768px) {
+    .b-date-picker-window {
+        width: 280px;
+    }
 }
 
 /* Calendar day styles */
 .b-date-picker .is-block {
     border-radius: var(--bulma-radius-small);
-    transition: background-color 0.15s ease-out;
+    transition: all 0.15s ease-out;
+    position: relative;
 }
 
-.b-date-picker .is-clickable:hover {
-    // background-color: var(--bulma-scheme-main-ter);
+.b-date-picker .is-block.is-clickable:hover {
+    background-color: var(--bulma-scheme-main-ter) !important;
     cursor: pointer;
+    transform: scale(1.05);
+}
+
+/* Keyboard focus styles */
+.b-date-picker .has-background-info {
+    background-color: var(--bulma-info) !important;
+    color: var(--bulma-info-invert) !important;
+    box-shadow: 0 0 0 2px var(--bulma-info-light);
 }
 
 /* Selected date styles */

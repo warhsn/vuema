@@ -24,4 +24,7 @@ export default function (app: any) {
 
     // Pagination
     app.component('pagination', defineAsyncComponent(() => import('./pagination.vue')))
+
+    // Steps
+    app.component('steps', defineAsyncComponent(() => import('./steps.vue')))
 }

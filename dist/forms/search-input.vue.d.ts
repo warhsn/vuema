@@ -23,6 +23,7 @@ declare const __VLS_component: import('vue').DefineComponent<_SearchInput, {}, {
     labelKey: string;
     searchPlaceholder: string;
     allowNew: boolean;
+    emitFullObjects: boolean;
 }, {}, {}, {}, string, import('vue').ComponentProvideOptions, false, {}, HTMLDivElement>;
 declare const _default: __VLS_WithTemplateSlots<typeof __VLS_component, __VLS_TemplateResult["slots"]>;
 export default _default;

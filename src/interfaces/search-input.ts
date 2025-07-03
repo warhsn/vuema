@@ -7,4 +7,5 @@ export interface _SearchInput extends _Forms {
     labelKey: string
     searchPlaceholder?: string
     allowNew?: boolean
+    emitFullObjects?: boolean
 }

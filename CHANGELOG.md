@@ -1,5 +1,11 @@
 # Changelog
 
+### [0.13.0] 2025-07-03
+
+- Feature: Implemeted steps component. 
+- Refactor: Improved pagination component.
+- Refactor: Improved date picker.
+
 ### [0.12.4] 2025-06-27
 
 - Refactor: Added type prop to the text input component.

@@ -18,6 +18,7 @@
                             {
                                 'has-background-primary has-text-white': date.date.format(dateFormat) === today,
                                 'has-background-grey-light': date.date.format(dateFormat) === selectedDate,
+                                'has-background-info has-text-white': isKeyboardNavigating && date.date.format(dateFormat) === focusedDate,
                                 'is-clickable': !date.disabled
                             }
                         ]"
@@ -33,7 +34,10 @@
 <script setup lang="ts">
 import type { CalendarGridProps } from './types'
 
-const props = defineProps<CalendarGridProps>()
+const props = withDefaults(defineProps<CalendarGridProps>(), {
+    focusedDate: null,
+    isKeyboardNavigating: false
+})
 
 const weekDays = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
 </script>
