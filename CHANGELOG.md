@@ -1,5 +1,9 @@
 # Changelog
 
+### [0.13.1] 2025-07-03
+
+- Refactor: Use v-if over v-show for pagination.
+
 ### [0.13.0] 2025-07-03
 
 - Feature: Implemeted steps component. 

@@ -1,6 +1,9 @@
-import { defineComponent as y, getCurrentInstance as B, withDirectives as c, createElementBlock as m, openBlock as v, createElementVNode as t, normalizeClass as s, unref as _, toDisplayString as n, vShow as T } from "vue";
-import { u as w } from "./sizes-tLhbz8lD.js";
-const x = { class: "is-flex is-flex-wrap-nowrap is-justify-content-flex-start" }, h = /* @__PURE__ */ y({
+import { defineComponent as y, getCurrentInstance as B, createElementBlock as m, createCommentVNode as c, openBlock as v, createElementVNode as t, normalizeClass as s, unref as _, toDisplayString as i } from "vue";
+import { u as T } from "./sizes-tLhbz8lD.js";
+const C = {
+  key: 0,
+  class: "is-flex is-flex-wrap-nowrap is-justify-content-flex-start"
+}, b = /* @__PURE__ */ y({
   __name: "pagination",
   props: {
     pager: {},
@@ -30,7 +33,7 @@ const x = { class: "is-flex is-flex-wrap-nowrap is-justify-content-flex-start" }
     is12: { type: Boolean }
   },
   setup(l) {
-    const r = B(), p = (r == null ? void 0 : r.appContext.app.config.globalProperties.$router) || null, o = l, g = w(o), i = (e) => {
+    const r = B(), p = (r == null ? void 0 : r.appContext.app.config.globalProperties.$router) || null, o = l, g = T(o), n = (e) => {
       if (e)
         if (p) {
           const a = new URL(e, window.location.origin);
@@ -41,11 +44,11 @@ const x = { class: "is-flex is-flex-wrap-nowrap is-justify-content-flex-start" }
         } else
           window.location.href = e;
     }, u = () => {
-      o.pager.current_page !== 1 && i(o.pager.first_page_url);
+      o.pager.current_page !== 1 && n(o.pager.first_page_url);
     }, f = () => {
-      o.pager.current_page !== o.pager.last_page && i(o.pager.last_page_url);
+      o.pager.current_page !== o.pager.last_page && n(o.pager.last_page_url);
     };
-    return (e, a) => c((v(), m("div", x, [
+    return (e, a) => e.pager.total > 0 ? (v(), m("div", C, [
       t("nav", {
         class: s(["pagination", _(g)]),
         role: "navigation",
@@ -56,31 +59,29 @@ const x = { class: "is-flex is-flex-wrap-nowrap is-justify-content-flex-start" }
           class: s(["pagination-previous", {
             "is-disabled": !e.pager.first_page_url || e.pager.current_page === 1
           }])
-        }, n(e.firstText), 3),
+        }, i(e.firstText), 3),
         t("a", {
           class: s([{
             "is-disabled": !e.pager.prev_page_url
           }, "pagination-previous"]),
-          onClick: a[0] || (a[0] = (d) => i(e.pager.prev_page_url))
-        }, n(e.previousText), 3),
+          onClick: a[0] || (a[0] = (d) => n(e.pager.prev_page_url))
+        }, i(e.previousText), 3),
         t("a", {
           class: s([{
             "is-disabled": !e.pager.next_page_url
           }, "pagination-next"]),
-          onClick: a[1] || (a[1] = (d) => i(e.pager.next_page_url))
-        }, n(e.nextText), 3),
+          onClick: a[1] || (a[1] = (d) => n(e.pager.next_page_url))
+        }, i(e.nextText), 3),
         t("a", {
           onClick: f,
           class: s(["pagination-next", {
             "is-disabled": !e.pager.last_page_url || e.pager.current_page === e.pager.last_page
           }])
-        }, n(e.lastText), 3)
+        }, i(e.lastText), 3)
       ], 2)
-    ], 512)), [
-      [T, e.pager.total > 0]
-    ]);
+    ])) : c("", !0);
   }
 });
 export {
-  h as default
+  b as default
 };

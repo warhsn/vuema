@@ -1,5 +1,5 @@
 <template>
-  <div class="is-flex is-flex-wrap-nowrap is-justify-content-flex-start" v-show="pager.total > 0">
+  <div class="is-flex is-flex-wrap-nowrap is-justify-content-flex-start" v-if="pager.total > 0">
     <nav class="pagination" :class="sizes" role="navigation" aria-label="pagination">
     <a @click="goToFirst" class="pagination-previous" :class="{
       'is-disabled': !pager.first_page_url || pager.current_page === 1
