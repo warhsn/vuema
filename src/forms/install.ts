@@ -17,4 +17,5 @@ export default function (app: any) {
     app.component('time-input', defineAsyncComponent(() => import('./time-input.vue')))
     app.component('search-input', defineAsyncComponent(() => import('./search-input.vue')))
     app.component('phone-input', defineAsyncComponent(() => import('./phone-input.vue')))
+    app.component('drag-drop-uploader', defineAsyncComponent(() => import('./drag-drop-uploader.vue')))
 }
