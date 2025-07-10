@@ -1,5 +1,5 @@
 import { createElementBlock as n, openBlock as l, normalizeClass as o, normalizeStyle as i, renderSlot as r } from "vue";
-import { _ as s } from "./index-ChY6qX6v.js";
+import { _ as s } from "./index-wtNYsD4q.js";
 const a = {
   props: {
     column: {

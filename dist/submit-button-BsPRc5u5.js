@@ -8,7 +8,7 @@ const f = ["disabled"], v = {
 }, S = /* @__PURE__ */ r({
   __name: "submit-button",
   props: {
-    disabled: { type: Boolean },
+    disabled: { type: Boolean, default: !1 },
     isSelected: { type: Boolean },
     areNormal: { type: Boolean },
     areSmall: { type: Boolean },

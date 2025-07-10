@@ -1,6 +1,10 @@
 # Changelog
 
-### [0.15.1 2025-07-10
+### [0.15.2] 2025-07-10
+
+- Bug: Prop reactivity.
+
+### [0.15.1] 2025-07-10
 
 - Bug: Disabled prop not being applied to submit-button component.
 

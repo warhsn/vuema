@@ -17,10 +17,12 @@
     </button>
 </template>
 <script setup lang="ts">
-import { computed } from 'vue'
+import { computed, withDefaults } from 'vue'
 import { _Buttons } from '../interfaces/buttons'
 
-const props = defineProps<_Buttons>()
+const props = withDefaults(defineProps<_Buttons>(), {
+    disabled: false
+})
 
 const _class = computed(() => {
     return {
