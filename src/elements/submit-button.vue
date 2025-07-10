@@ -1,5 +1,6 @@
 <template>
-    <button 
+    <button
+        :disabled="disabled"
         type="submit" 
         class="button"
         :class="_class"

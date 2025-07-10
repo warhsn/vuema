@@ -1,5 +1,9 @@
 # Changelog
 
+### [0.15.1 2025-07-10
+
+- Bug: Disabled prop not being applied to submit-button component.
+
 ### [0.15.0] 2025-07-08
 
 - Feature: Added a drag and drop file uploader.

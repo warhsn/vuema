@@ -1,11 +1,11 @@
-import { defineComponent as r, computed as c, resolveComponent as y, createElementBlock as s, openBlock as i, withModifiers as B, normalizeClass as d, createCommentVNode as n, createElementVNode as u, createVNode as m, renderSlot as g, createBlock as h } from "vue";
-const f = {
+import { defineComponent as r, computed as c, resolveComponent as y, createElementBlock as s, openBlock as i, withModifiers as d, normalizeClass as B, createCommentVNode as n, createElementVNode as u, createVNode as m, renderSlot as g, createBlock as h } from "vue";
+const f = ["disabled"], v = {
   key: 0,
   class: "icon"
-}, v = {
+}, I = {
   key: 1,
   class: "icon"
-}, b = /* @__PURE__ */ r({
+}, S = /* @__PURE__ */ r({
   __name: "submit-button",
   props: {
     disabled: { type: Boolean },
@@ -100,26 +100,27 @@ const f = {
     return (o, t) => {
       const l = y("b-icon");
       return i(), s("button", {
+        disabled: o.disabled,
         type: "submit",
-        class: d(["button", p.value]),
-        onClick: t[0] || (t[0] = B((I) => o.$emit("submit"), ["prevent"]))
+        class: B(["button", p.value]),
+        onClick: t[0] || (t[0] = d((k) => o.$emit("submit"), ["prevent"]))
       }, [
-        o.leftIcon ? (i(), s("span", f, [
+        o.leftIcon ? (i(), s("span", v, [
           m(l, { icon: o.leftIcon }, null, 8, ["icon"])
         ])) : n("", !0),
         u("span", null, [
           g(o.$slots, "default")
         ]),
-        o.rightIcon ? (i(), s("span", v, [
+        o.rightIcon ? (i(), s("span", I, [
           o.rightIcon ? (i(), h(l, {
             key: 0,
             icon: o.rightIcon
           }, null, 8, ["icon"])) : n("", !0)
         ])) : n("", !0)
-      ], 2);
+      ], 10, f);
     };
   }
 });
 export {
-  b as default
+  S as default
 };
