@@ -92,7 +92,7 @@
                     :disabled="isUploading || !endpoint"
                     :class="{ 'is-loading': isUploading }"
                 >
-                    Upload Files
+                    {{ uploadButtonText }}
                 </button>
             </div>
             <div class="control">
@@ -101,7 +101,7 @@
                     @click="clearFiles"
                     :disabled="isUploading"
                 >
-                    Clear All
+                    Clear
                 </button>
             </div>
         </div>
@@ -111,14 +111,14 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed } from 'vue'
+import { ref } from 'vue'
 import { _DragDropUploader } from '../interfaces/drag-drop-uploader'
-import { _hasErrors } from '../computed/errors'
 import FieldError from './field-error.vue'
 
 const props = withDefaults(defineProps<_DragDropUploader>(), {
     multiple: true,
-    accepts: '*/*'
+    accepts: '*/*',
+    uploadButtonText: 'Upload'
 })
 
 interface FileWithProgress {
@@ -137,14 +137,12 @@ const isDragOver = ref(false)
 const isUploading = ref(false)
 const fileInput = ref<HTMLInputElement>()
 
-const hasErrors = _hasErrors(props)
-
 const emit = defineEmits<{
     (e: 'filesSelected', files: File[]): void,
     (e: 'uploadProgress', progress: { file: File, progress: number }): void,
-    (e: 'uploadComplete', result: { file: File, response: any }): void,
-    (e: 'uploadError', error: { file: File, error: string }): void,
-    (e: 'allUploadsComplete', results: any[]): void,
+    (e: 'file-uploaded', result: { file: File, response: any }): void,
+    (e: 'upload-error', error: { file: File, error: string }): void,
+    (e: 'upload-completed', results: any[]): void,
 }>()
 
 function onDragOver(event: DragEvent) {
@@ -232,16 +230,16 @@ async function uploadFiles() {
                 fileObj.isComplete = true
                 fileObj.isUploading = false
                 results.push(result)
-                emit('uploadComplete', { file: fileObj.file, response: result })
+                emit('file-uploaded', { file: fileObj.file, response: result })
             } catch (error) {
                 fileObj.hasError = true
                 fileObj.isUploading = false
                 fileObj.errorMessage = error instanceof Error ? error.message : 'Upload failed'
-                emit('uploadError', { file: fileObj.file, error: fileObj.errorMessage })
+                emit('upload-error', { file: fileObj.file, error: fileObj.errorMessage })
             }
         }
         
-        emit('allUploadsComplete', results)
+        emit('upload-completed', results)
     } finally {
         isUploading.value = false
     }
@@ -286,8 +284,7 @@ async function uploadFile(fileObj: FileWithProgress): Promise<any> {
         })
         
         xhr.open('POST', props.endpoint!)
-        
-        // Add custom headers if provided
+
         if (props.headers) {
             Object.entries(props.headers).forEach(([key, value]) => {
                 xhr.setRequestHeader(key, value)
@@ -317,7 +314,7 @@ function formatFileSize(bytes: number): string {
     text-align: center;
     cursor: pointer;
     transition: all 0.3s ease;
-    background-color: #fafafa;
+    background-color: var(--bulma-box-background-color, hsl(0, 0%, 100%));
 }
 
 .drag-drop-uploader:hover {

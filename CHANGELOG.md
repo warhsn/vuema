@@ -1,5 +1,9 @@
 # Changelog
 
+### [0.15.3] 2025-07-12
+
+- Refactor: Better styling for the drap and drop uploader.
+
 ### [0.15.2] 2025-07-10
 
 - Bug: Prop reactivity.

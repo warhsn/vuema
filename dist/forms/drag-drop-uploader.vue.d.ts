@@ -17,33 +17,34 @@ declare const __VLS_component: import('vue').DefineComponent<_DragDropUploader, 
         file: File;
         progress: number;
     }) => any;
-    uploadComplete: (result: {
+    "file-uploaded": (result: {
         file: File;
         response: any;
     }) => any;
-    uploadError: (error: {
+    "upload-error": (error: {
         file: File;
         error: string;
     }) => any;
-    allUploadsComplete: (results: any[]) => any;
+    "upload-completed": (results: any[]) => any;
 }, string, import('vue').PublicProps, Readonly<_DragDropUploader> & Readonly<{
     onFilesSelected?: ((files: File[]) => any) | undefined;
     onUploadProgress?: ((progress: {
         file: File;
         progress: number;
     }) => any) | undefined;
-    onUploadComplete?: ((result: {
+    "onFile-uploaded"?: ((result: {
         file: File;
         response: any;
     }) => any) | undefined;
-    onUploadError?: ((error: {
+    "onUpload-error"?: ((error: {
         file: File;
         error: string;
     }) => any) | undefined;
-    onAllUploadsComplete?: ((results: any[]) => any) | undefined;
+    "onUpload-completed"?: ((results: any[]) => any) | undefined;
 }>, {
     multiple: boolean;
     accepts: string;
+    uploadButtonText: string;
 }, {}, {}, {}, string, import('vue').ComponentProvideOptions, false, {
     fileInput: HTMLInputElement;
 }, HTMLDivElement>;
