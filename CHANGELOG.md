@@ -1,5 +1,9 @@
 # Changelog
 
+### [0.15.4] 2025-07-13
+
+- Refactor: Optionally hide the selected items on a search input.
+
 ### [0.15.3] 2025-07-12
 
 - Refactor: Better styling for the drap and drop uploader.

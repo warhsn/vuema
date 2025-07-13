@@ -8,7 +8,7 @@
         </field-label>
         <div class="search-input">
             <!-- Display selected tags -->
-            <div class="tags is-marginless" v-if="modelValue && modelValue.length > 0">
+            <div class="tags is-marginless" v-if="modelValue && modelValue.length > 0 && withTags">
                 <span class="tag" v-for="(item, index) in modelValue" :key="getItemKey(item, index)">
                     {{ getDisplayLabel(item) }}
                     <button class="delete is-small" @click="removeItem(item)" :disabled="disabled">
@@ -88,8 +88,6 @@ import { _hasErrors, _error } from '../computed/errors'
 import FieldError from './field-error.vue'
 import useSizes from '../utils/sizes'
 
-// Note: Add 'emitFullObjects?: boolean' to your _SearchInput interface
-
 const props = withDefaults(
     defineProps<_SearchInput>(), {
         modelValue: () => [],
@@ -97,7 +95,8 @@ const props = withDefaults(
         allowNew: false,
         labelKey: 'label',
         valueKey: 'value',
-        emitFullObjects: false // New prop to control emission format
+        emitFullObjects: false,
+        withTags: true
     }
 )
 
@@ -117,37 +116,27 @@ const isDropdownOpen = ref(false)
 const activeIndex = ref(0)
 const blurTimeout = ref<NodeJS.Timeout | null>(null)
 
-// Helper function to determine if we should emit full objects or just values
-// Based on the format of existing items in modelValue or explicit prop
 function shouldEmitFullObjects(): boolean {
-    // If explicitly set via prop, use that
     if (props.emitFullObjects !== undefined) {
         return props.emitFullObjects
     }
     
     if (!props.modelValue || props.modelValue.length === 0) {
-        // If no existing items, default to emitting just values for simplicity
         return false
     }
     
-    // Check the first item to determine the format
     const firstItem = props.modelValue[0]
-    
-    // If it's an object with the labelKey property, we're dealing with full objects
+
     return typeof firstItem === 'object' && 
            firstItem !== null && 
            firstItem.hasOwnProperty(props.labelKey)
 }
 
-// Helper function to get display label for selected items
-// This handles cases where modelValue contains only IDs or partial objects
 function getDisplayLabel(selectedItem: any): string {
-    // If the selected item already has a label property, use it
     if (selectedItem && selectedItem[props.labelKey]) {
         return selectedItem[props.labelKey]
     }
-    
-    // If it's just an ID/value, look up the full item from the items array
+
     if (props.items && props.items.length > 0) {
         const fullItem = props.items.find(item => {
             const itemValue = getItemValue(item)
@@ -160,29 +149,24 @@ function getDisplayLabel(selectedItem: any): string {
         }
     }
     
-    // Fallback: if we can't find the item, display the value or the item itself
     return selectedItem[props.labelKey] || selectedItem.label || selectedItem.name || String(selectedItem)
 }
 
-// Helper function to safely get item label
 function getItemLabel(item: any): string {
     if (!item) return ''
     return item[props.labelKey] || item.label || item.name || String(item)
 }
 
-// Helper function to safely get item value
 function getItemValue(item: any): any {
     if (!item) return null
     return item[props.valueKey] || item.value || item.id || item
 }
 
-// Helper function to get a unique key for v-for
 function getItemKey(item: any, index: number): string {
     const value = getItemValue(item)
     return value ? String(value) : `item-${index}`
 }
 
-// Computed property to show "Add new" option
 const showAddNew = computed(() => {
     return props.allowNew && 
            searchText.value && 
@@ -190,11 +174,9 @@ const showAddNew = computed(() => {
            !isItemInList(searchText.value)
 })
 
-// Filter items based on search text
 const filteredItems = computed(() => {
     if (!props.items || props.items.length === 0) return []
-    
-    // If no search text, show all unselected items
+
     if (!searchText.value) {
         return props.items.filter(item => !isItemSelected(item))
     }
@@ -206,7 +188,6 @@ const filteredItems = computed(() => {
     })
 })
 
-// Check if an item is already selected
 function isItemSelected(item: any): boolean {
     if (!props.modelValue || props.modelValue.length === 0) return false
     
@@ -217,7 +198,6 @@ function isItemSelected(item: any): boolean {
     })
 }
 
-// Check if a text value exists in the items list
 function isItemInList(text: string): boolean {
     if (!props.items || props.items.length === 0) return false
     
@@ -226,13 +206,11 @@ function isItemInList(text: string): boolean {
     )
 }
 
-// Handle input events
 function onInput(): void {
     isDropdownOpen.value = true
     activeIndex.value = 0
 }
 
-// Handle input click - ensure dropdown opens
 function onInputClick(): void {
     if (!isDropdownOpen.value) {
         isDropdownOpen.value = true
@@ -241,7 +219,6 @@ function onInputClick(): void {
 }
 
 const onFocus = () => {
-    // Clear any pending blur timeout
     if (blurTimeout.value) {
         clearTimeout(blurTimeout.value)
         blurTimeout.value = null
@@ -252,7 +229,6 @@ const onFocus = () => {
 }
 
 const onBlur = () => {
-    // Use a timeout to allow click events to register first
     blurTimeout.value = setTimeout(() => {
         isDropdownOpen.value = false
         emit(blur)
@@ -260,52 +236,42 @@ const onBlur = () => {
     }, 150)
 }
 
-// Select an item from the dropdown
 function selectItem(item: any): void {
-    // Clear any pending blur timeout since we're selecting an item
     if (blurTimeout.value) {
         clearTimeout(blurTimeout.value)
         blurTimeout.value = null
     }
     
     if (!isItemSelected(item)) {
-        // Determine what format to emit based on existing modelValue format
         const itemToAdd = shouldEmitFullObjects() ? item : getItemValue(item)
         const newValue = [...(props.modelValue || []), itemToAdd]
         emit(inputEvent, newValue)
     }
     searchText.value = ''
-    // Don't close dropdown immediately - let it stay open for more selections
     activeIndex.value = 0
 }
 
-// Add a new item that's not in the original list
 function addNewItem(text: string): void {
-    // Clear any pending blur timeout
     if (blurTimeout.value) {
         clearTimeout(blurTimeout.value)
         blurTimeout.value = null
     }
     
     if (props.allowNew && text && text.trim() !== '') {
-        // Create a new item object
         const newItem = {
-            [props.valueKey]: `new-${Date.now()}`, // Generate a unique ID
+            [props.valueKey]: `new-${Date.now()}`,
             [props.labelKey]: text.trim()
         }
-        
-        // Determine what format to emit based on existing modelValue format
+
         const itemToAdd = shouldEmitFullObjects() ? newItem : getItemValue(newItem)
         const newValue = [...(props.modelValue || []), itemToAdd]
         emit(inputEvent, newValue)
         
         searchText.value = ''
-        // Don't close dropdown immediately - let it stay open for more selections
         activeIndex.value = 0
     }
 }
 
-// Remove a selected item
 function removeItem(item: any): void {
     if (!props.modelValue) return
     
@@ -317,20 +283,14 @@ function removeItem(item: any): void {
     emit(inputEvent, newValue)
 }
 
-// Add the currently selected item or create a new one
-function addSelectedOrNew(): void {
-    const totalItems = filteredItems.value.length + (showAddNew.value ? 1 : 0)
-    
+function addSelectedOrNew(): void {    
     if (activeIndex.value >= 0 && activeIndex.value < filteredItems.value.length) {
-        // Add the currently highlighted item from filtered items
         selectItem(filteredItems.value[activeIndex.value])
     } else if (showAddNew.value && activeIndex.value === filteredItems.value.length) {
-        // Add as a new item
         addNewItem(searchText.value)
     }
 }
 
-// Navigate through dropdown with keyboard
 function navigateDropdown(direction: number): void {
     if (!isDropdownOpen.value) {
         isDropdownOpen.value = true
@@ -339,8 +299,7 @@ function navigateDropdown(direction: number): void {
     
     const totalItems = filteredItems.value.length + (showAddNew.value ? 1 : 0)
     if (totalItems === 0) return
-    
-    // Calculate new index with wrapping
+
     let newIndex = activeIndex.value + direction
     if (newIndex < 0) newIndex = totalItems - 1
     if (newIndex >= totalItems) newIndex = 0
@@ -348,7 +307,6 @@ function navigateDropdown(direction: number): void {
     activeIndex.value = newIndex
 }
 
-// Close the dropdown
 function closeDropdown(): void {
     isDropdownOpen.value = false
     searchText.value = ''
@@ -365,9 +323,7 @@ const classes = computed(() => {
     }
 })
 
-// Watch for changes in modelValue to ensure reactivity
 watch(() => props.modelValue, (newValue) => {
-    // This ensures the component reacts to external changes
 }, { deep: true })
 </script>
 

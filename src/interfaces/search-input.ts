@@ -8,4 +8,5 @@ export interface _SearchInput extends _Forms {
     searchPlaceholder?: string
     allowNew?: boolean
     emitFullObjects?: boolean
+    withTags?: boolean
 }

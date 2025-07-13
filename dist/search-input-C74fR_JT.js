@@ -1,12 +1,12 @@
-import { defineComponent as ee, ref as V, computed as C, watch as le, resolveComponent as F, createElementBlock as p, openBlock as i, createBlock as T, createCommentVNode as f, createElementVNode as w, createVNode as oe, withCtx as O, renderSlot as j, Fragment as A, renderList as q, createTextVNode as ne, toDisplayString as K, normalizeClass as B, withDirectives as te, withKeys as I, withModifiers as g, vModelText as ae } from "vue";
+import { defineComponent as ee, ref as B, computed as k, watch as le, resolveComponent as F, createElementBlock as v, openBlock as i, createBlock as C, createCommentVNode as f, createElementVNode as h, createVNode as oe, withCtx as O, renderSlot as j, Fragment as A, renderList as q, createTextVNode as ne, toDisplayString as K, normalizeClass as V, withDirectives as te, withKeys as I, withModifiers as w, vModelText as ae } from "vue";
 import { _ as se } from "./errors-BZdmzG52.js";
 import { _ as ue } from "./field-error.vue_vue_type_script_setup_true_lang-C7PfoMZ6.js";
 import { u as ie } from "./sizes-tLhbz8lD.js";
-import { _ as re } from "./index-ltm-Pftn.js";
+import { _ as re } from "./index-DmCRRUKr.js";
 const de = { class: "search-input" }, ce = {
   key: 0,
   class: "tags is-marginless"
-}, ve = ["onClick", "disabled"], pe = ["placeholder", "disabled", "onKeydown"], fe = {
+}, pe = ["onClick", "disabled"], ve = ["placeholder", "disabled", "onKeydown"], fe = {
   key: 1,
   class: "dropdown-menu"
 }, me = { class: "dropdown-content" }, ye = ["onMousedown", "onMouseenter"], $ = "update:modelValue", he = "focus", we = "blur", ge = /* @__PURE__ */ ee({
@@ -19,6 +19,7 @@ const de = { class: "search-input" }, ce = {
     searchPlaceholder: { default: "Search..." },
     allowNew: { type: Boolean, default: !1 },
     emitFullObjects: { type: Boolean, default: !1 },
+    withTags: { type: Boolean, default: !0 },
     classes: {},
     disabled: { type: Boolean },
     forLabel: {},
@@ -61,8 +62,8 @@ const de = { class: "search-input" }, ce = {
     is11: { type: Boolean },
     is12: { type: Boolean }
   },
-  setup(P, { emit: _ }) {
-    const l = P, z = ie(l), m = _, s = V(""), r = V(!1), a = V(0), u = V(null);
+  setup(P, { emit: z }) {
+    const l = P, R = ie(l), m = z, s = B(""), r = B(!1), a = B(0), u = B(null);
     function L() {
       if (l.emitFullObjects !== void 0)
         return l.emitFullObjects;
@@ -71,20 +72,20 @@ const de = { class: "search-input" }, ce = {
       const e = l.modelValue[0];
       return typeof e == "object" && e !== null && e.hasOwnProperty(l.labelKey);
     }
-    function R(e) {
+    function _(e) {
       if (e && e[l.labelKey])
         return e[l.labelKey];
       if (l.items && l.items.length > 0) {
         const o = l.items.find((n) => {
-          const v = d(n), t = d(e);
-          return v === t;
+          const c = d(n), t = d(e);
+          return c === t;
         });
         if (o)
-          return b(o);
+          return g(o);
       }
       return e[l.labelKey] || e.label || e.name || String(e);
     }
-    function b(e) {
+    function g(e) {
       return e ? e[l.labelKey] || e.label || e.name || String(e) : "";
     }
     function d(e) {
@@ -94,21 +95,21 @@ const de = { class: "search-input" }, ce = {
       const n = d(e);
       return n ? String(n) : `item-${o}`;
     }
-    const y = C(() => l.allowNew && s.value && s.value.trim() !== "" && !U(s.value)), c = C(() => {
+    const b = k(() => l.allowNew && s.value && s.value.trim() !== "" && !U(s.value)), p = k(() => {
       if (!l.items || l.items.length === 0) return [];
       if (!s.value)
-        return l.items.filter((o) => !k(o));
+        return l.items.filter((o) => !T(o));
       const e = s.value.toLowerCase();
-      return l.items.filter((o) => b(o).toLowerCase().includes(e) && !k(o));
+      return l.items.filter((o) => g(o).toLowerCase().includes(e) && !T(o));
     });
-    function k(e) {
+    function T(e) {
       if (!l.modelValue || l.modelValue.length === 0) return !1;
       const o = d(e);
       return l.modelValue.some((n) => d(n) === o);
     }
     function U(e) {
       return !l.items || l.items.length === 0 ? !1 : l.items.some(
-        (o) => b(o).toLowerCase() === e.toLowerCase()
+        (o) => g(o).toLowerCase() === e.toLowerCase()
       );
     }
     function G() {
@@ -125,7 +126,7 @@ const de = { class: "search-input" }, ce = {
       }, 150);
     };
     function S(e) {
-      if (u.value && (clearTimeout(u.value), u.value = null), !k(e)) {
+      if (u.value && (clearTimeout(u.value), u.value = null), !T(e)) {
         const o = L() ? e : d(e), n = [...l.modelValue || [], o];
         m($, n);
       }
@@ -135,26 +136,25 @@ const de = { class: "search-input" }, ce = {
       if (u.value && (clearTimeout(u.value), u.value = null), l.allowNew && e && e.trim() !== "") {
         const o = {
           [l.valueKey]: `new-${Date.now()}`,
-          // Generate a unique ID
           [l.labelKey]: e.trim()
-        }, n = L() ? o : d(o), v = [...l.modelValue || [], n];
-        m($, v), s.value = "", a.value = 0;
+        }, n = L() ? o : d(o), c = [...l.modelValue || [], n];
+        m($, c), s.value = "", a.value = 0;
       }
     }
     function W(e) {
       if (!l.modelValue) return;
-      const o = d(e), n = l.modelValue.filter((v) => d(v) !== o);
+      const o = d(e), n = l.modelValue.filter((c) => d(c) !== o);
       m($, n);
     }
     function X() {
-      c.value.length + (y.value ? 1 : 0), a.value >= 0 && a.value < c.value.length ? S(c.value[a.value]) : y.value && a.value === c.value.length && M(s.value);
+      a.value >= 0 && a.value < p.value.length ? S(p.value[a.value]) : b.value && a.value === p.value.length && M(s.value);
     }
     function E(e) {
       if (!r.value) {
         r.value = !0;
         return;
       }
-      const o = c.value.length + (y.value ? 1 : 0);
+      const o = p.value.length + (b.value ? 1 : 0);
       if (o === 0) return;
       let n = a.value + e;
       n < 0 && (n = o - 1), n >= o && (n = 0), a.value = n;
@@ -162,16 +162,16 @@ const de = { class: "search-input" }, ce = {
     function Y() {
       r.value = !1, s.value = "", a.value = 0;
     }
-    const Z = se(l), x = C(() => ({
+    const Z = se(l), x = k(() => ({
       "is-danger": Z.value,
       "is-rounded": l.isRounded,
-      ...z
+      ...R
     }));
     return le(() => l.modelValue, (e) => {
     }, { deep: !0 }), (e, o) => {
-      const n = F("field-label"), v = F("b-icon");
-      return i(), p("div", null, [
-        e.$slots.default || e.$slots.description ? (i(), T(n, {
+      const n = F("field-label"), c = F("b-icon");
+      return i(), v("div", null, [
+        e.$slots.default || e.$slots.description ? (i(), C(n, {
           key: 0,
           required: e.required
         }, {
@@ -183,31 +183,31 @@ const de = { class: "search-input" }, ce = {
           ]),
           _: 3
         }, 8, ["required"])) : f("", !0),
-        w("div", de, [
-          e.modelValue && e.modelValue.length > 0 ? (i(), p("div", ce, [
-            (i(!0), p(A, null, q(e.modelValue, (t, h) => (i(), p("span", {
+        h("div", de, [
+          e.modelValue && e.modelValue.length > 0 && e.withTags ? (i(), v("div", ce, [
+            (i(!0), v(A, null, q(e.modelValue, (t, y) => (i(), v("span", {
               class: "tag",
-              key: N(t, h)
+              key: N(t, y)
             }, [
-              ne(K(R(t)) + " ", 1),
-              w("button", {
+              ne(K(_(t)) + " ", 1),
+              h("button", {
                 class: "delete is-small",
                 onClick: (D) => W(t),
                 disabled: e.disabled
-              }, null, 8, ve)
+              }, null, 8, pe)
             ]))), 128))
           ])) : f("", !0),
-          w("div", {
-            class: B(["control", {
+          h("div", {
+            class: V(["control", {
               "has-icons-left": e.leftIcon,
               "has-icons-right": e.rightIcon,
               "is-loading": e.isLoading,
               "is-expanded": e.isExpanded
             }])
           }, [
-            te(w("input", {
+            te(h("input", {
               type: "text",
-              class: B(["input", x.value]),
+              class: V(["input", x.value]),
               placeholder: e.searchPlaceholder || e.placeholder,
               disabled: e.disabled,
               "onUpdate:modelValue": o[0] || (o[0] = (t) => s.value = t),
@@ -216,40 +216,40 @@ const de = { class: "search-input" }, ce = {
               onBlur: Q,
               onClick: H,
               onKeydown: [
-                I(g(X, ["prevent"]), ["enter"]),
-                o[1] || (o[1] = I(g((t) => E(1), ["prevent"]), ["down"])),
-                o[2] || (o[2] = I(g((t) => E(-1), ["prevent"]), ["up"])),
+                I(w(X, ["prevent"]), ["enter"]),
+                o[1] || (o[1] = I(w((t) => E(1), ["prevent"]), ["down"])),
+                o[2] || (o[2] = I(w((t) => E(-1), ["prevent"]), ["up"])),
                 I(Y, ["esc"])
               ]
-            }, null, 42, pe), [
+            }, null, 42, ve), [
               [ae, s.value]
             ]),
-            e.leftIcon ? (i(), T(v, {
+            e.leftIcon ? (i(), C(c, {
               key: 0,
               class: "icon is-small is-left",
               icon: e.leftIcon,
               "icon-type": e.leftIconType
             }, null, 8, ["icon", "icon-type"])) : f("", !0),
-            e.rightIcon ? (i(), T(v, {
+            e.rightIcon ? (i(), C(c, {
               key: 1,
               class: "icon is-small is-right",
               icon: e.rightIcon,
               "icon-type": e.rightIconType
             }, null, 8, ["icon", "icon-type"])) : f("", !0)
           ], 2),
-          r.value && (c.value.length > 0 || y.value) ? (i(), p("div", fe, [
-            w("div", me, [
-              (i(!0), p(A, null, q(c.value, (t, h) => (i(), p("a", {
-                key: N(t, h),
-                class: B(["dropdown-item", { "is-active": h === a.value }]),
-                onMousedown: g((D) => S(t), ["prevent"]),
-                onMouseenter: (D) => a.value = h
-              }, K(b(t)), 43, ye))), 128)),
-              y.value ? (i(), p("a", {
+          r.value && (p.value.length > 0 || b.value) ? (i(), v("div", fe, [
+            h("div", me, [
+              (i(!0), v(A, null, q(p.value, (t, y) => (i(), v("a", {
+                key: N(t, y),
+                class: V(["dropdown-item", { "is-active": y === a.value }]),
+                onMousedown: w((D) => S(t), ["prevent"]),
+                onMouseenter: (D) => a.value = y
+              }, K(g(t)), 43, ye))), 128)),
+              b.value ? (i(), v("a", {
                 key: 0,
-                class: B(["dropdown-item", { "is-active": c.value.length === a.value }]),
-                onMousedown: o[3] || (o[3] = g((t) => M(s.value), ["prevent"])),
-                onMouseenter: o[4] || (o[4] = (t) => a.value = c.value.length)
+                class: V(["dropdown-item", { "is-active": p.value.length === a.value }]),
+                onMousedown: o[3] || (o[3] = w((t) => M(s.value), ["prevent"])),
+                onMouseenter: o[4] || (o[4] = (t) => a.value = p.value.length)
               }, ' Add "' + K(s.value) + '" ', 35)) : f("", !0)
             ])
           ])) : f("", !0)
@@ -258,7 +258,7 @@ const de = { class: "search-input" }, ce = {
       ]);
     };
   }
-}), Ce = /* @__PURE__ */ re(ge, [["__scopeId", "data-v-f3b97951"]]);
+}), ke = /* @__PURE__ */ re(ge, [["__scopeId", "data-v-06a1289a"]]);
 export {
-  Ce as default
+  ke as default
 };
