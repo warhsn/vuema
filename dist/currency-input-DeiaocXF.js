@@ -1,7 +1,7 @@
-import { defineComponent as y, resolveComponent as t, createBlock as B, openBlock as f, mergeProps as h, unref as s, createSlots as b, withCtx as o, renderSlot as l, createCommentVNode as I, createVNode as V, normalizeClass as C, createTextVNode as g, toDisplayString as k } from "vue";
-import { _ as N } from "./errors-BZdmzG52.js";
+import { defineComponent as y, resolveComponent as l, createBlock as B, openBlock as f, mergeProps as h, unref as s, createSlots as b, withCtx as o, createVNode as I, normalizeClass as V, createTextVNode as g, toDisplayString as C, renderSlot as t } from "vue";
+import { _ as k } from "./errors-BZdmzG52.js";
 import { u as S } from "./sizes-tLhbz8lD.js";
-const $ = "update:modelValue", z = /* @__PURE__ */ y({
+const $ = "update:modelValue", T = /* @__PURE__ */ y({
   __name: "currency-input",
   props: {
     modelValue: {},
@@ -53,12 +53,12 @@ const $ = "update:modelValue", z = /* @__PURE__ */ y({
     is12: { type: Boolean }
   },
   setup(i, { emit: r }) {
-    const p = r, n = i, a = S(n), d = N(n);
+    const p = r, n = i, a = S(n), d = k(n);
     function c(e) {
       p($, e);
     }
     return (e, q) => {
-      const u = t("action-button"), m = t("number-input");
+      const u = l("action-button"), m = l("number-input");
       return f(), B(m, h({
         required: e.required,
         "has-addons": e.hasAddons,
@@ -72,31 +72,35 @@ const $ = "update:modelValue", z = /* @__PURE__ */ y({
         "is-expanded": e.isExpanded
       }, s(a), { "onUpdate:modelValue": c }), b({
         left: o(() => [
-          V(u, {
-            class: C(["is-static", s(a)])
+          I(u, {
+            class: V(["is-static", s(a)])
           }, {
             default: o(() => [
-              g(k(e.currency), 1)
+              g(C(e.currency), 1)
             ]),
             _: 1
           }, 8, ["class"])
-        ]),
-        default: o(() => [
-          e.$slots.default ? l(e.$slots, "default", { key: 0 }) : I("", !0)
         ]),
         _: 2
       }, [
         e.$slots.description ? {
           name: "description",
           fn: o(() => [
-            l(e.$slots, "description")
+            t(e.$slots, "description")
           ]),
           key: "0"
+        } : void 0,
+        e.$slots.default ? {
+          name: "default",
+          fn: o(() => [
+            t(e.$slots, "default")
+          ]),
+          key: "1"
         } : void 0
       ]), 1040, ["required", "has-addons", "left-icon", "errors", "has-errors", "disabled", "placeholder", "decimals", "modelValue", "is-expanded"]);
     };
   }
 });
 export {
-  z as default
+  T as default
 };

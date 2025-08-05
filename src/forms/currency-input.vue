@@ -20,7 +20,9 @@
         <template #description v-if="$slots.description">
             <slot name="description"/>
         </template>
-        <slot v-if="$slots.default"/>
+        <template v-if="$slots.default" #default>
+            <slot/>
+        </template>
     </number-input>
 </template>
 <script setup lang="ts">

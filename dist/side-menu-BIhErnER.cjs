@@ -1,0 +1,1 @@
+"use strict";Object.defineProperty(exports,Symbol.toStringTag,{value:"Module"});const e=require("vue"),n=require("./index-mXm7uf0R.cjs"),r={},c={class:"menu"};function o(t,u){return e.openBlock(),e.createElementBlock("aside",c,[e.renderSlot(t.$slots,"default")])}const s=n._export_sfc(r,[["render",o]]);exports.default=s;

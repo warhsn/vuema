@@ -1,5 +1,9 @@
 # Changelog
 
+### [0.15.6] 2025-08-05
+
+- Refactor: Ensure label is hidden for the currency input if no default slot is provided.
+
 ### [0.15.5] 2025-08-05
 
 - Refactor: Adds optional debounce to the filterWatcher.
