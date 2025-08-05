@@ -5,6 +5,7 @@ import type { RouteLocationNormalizedLoaded, Router } from 'vue-router'
 export interface FilterWatcherOptions {
     routeName: string
     onFiltersChange?: (query: Record<string, any>) => void
+    debounce?: number
 }
 
 export default function useFilterWatcher(
@@ -13,24 +14,39 @@ export default function useFilterWatcher(
     router: Router,
     options: FilterWatcherOptions
 ) {
+    let debounceTimeout: NodeJS.Timeout | null = null
+
+    const handleFiltersChange = (newFilters: Record<string, any>) => {
+        const query = Object.entries(newFilters).reduce((acc, [key, value]) => {
+            if (value !== '' && value !== null && value !== undefined) {
+                acc[key] = value
+            }
+            return acc
+        }, {} as Record<string, any>)
+
+        if (JSON.stringify(query) !== JSON.stringify(route.query)) {
+            router.push({
+                name: options.routeName,
+                query
+            })
+            if (options.onFiltersChange) {
+                options.onFiltersChange(query)
+            }
+        }
+    }
+
     watch(
         filters,
         (newFilters) => {
-            const query = Object.entries(newFilters).reduce((acc, [key, value]) => {
-                if (value !== '' && value !== null && value !== undefined) {
-                    acc[key] = value
+            if (options.debounce) {
+                if (debounceTimeout) {
+                    clearTimeout(debounceTimeout)
                 }
-                return acc
-            }, {} as Record<string, any>)
-
-            if (JSON.stringify(query) !== JSON.stringify(route.query)) {
-                router.push({
-                    name: options.routeName,
-                    query
-                })
-                if (options.onFiltersChange) {
-                    options.onFiltersChange(query)
-                }
+                debounceTimeout = setTimeout(() => {
+                    handleFiltersChange(newFilters)
+                }, options.debounce)
+            } else {
+                handleFiltersChange(newFilters)
             }
         },
         { deep: true }

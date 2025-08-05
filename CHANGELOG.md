@@ -1,5 +1,9 @@
 # Changelog
 
+### [0.15.5] 2025-08-05
+
+- Refactor: Adds optional debounce to the filterWatcher.
+
 ### [0.15.4] 2025-07-13
 
 - Refactor: Optionally hide the selected items on a search input.
