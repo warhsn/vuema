@@ -1,1 +1,0 @@
-"use strict";Object.defineProperty(exports,Symbol.toStringTag,{value:"Module"});const e=require("vue"),r=require("./index-BArIfMJs.cjs"),o={},t={class:"dropdown-divider"};function c(d,i){return e.openBlock(),e.createElementBlock("hr",t)}const n=r._export_sfc(o,[["render",c]]);exports.default=n;
