@@ -2,23 +2,18 @@
     <div>
         <field-label v-if="$slots.default" :required="required">
             <slot />
-            <slot name="description" />
+            <template #description>
+                <slot name="description" />
+            </template>
         </field-label>
         <div class="field" :class="{ 'has-addons': hasAddons }">
             <div v-if="$slots.left" class="control" :class="slotSizes">
                 <slot name="left" />
             </div>
             <div class="control" :class="classes">
-                <input 
-                    :id="inputId" type="text" 
-                    class="input" 
-                    :class="classes" 
-                    :placeholder="placeholder"
-                    :autocomplete="autocomplete ? 'on' : 'off'"
-                    :disabled="disabled"
-                    :value="modelValue"
-                    @input="onInput"
-                />
+                <input :id="inputId" type="text" class="input" :class="classes" :placeholder="placeholder"
+                    :autocomplete="autocomplete ? 'on' : 'off'" :disabled="disabled" :value="modelValue"
+                    @input="onInput" />
                 <b-icon v-if="leftIcon" class="icon is-small is-left" :icon="leftIcon" />
                 <b-icon v-if="rightIcon" class="icon is-small is-right" :icon="rightIcon" />
             </div>

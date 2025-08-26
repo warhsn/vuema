@@ -1,5 +1,9 @@
 # Changelog
 
+### [0.15.7] 2025-08-026
+
+- Bug: Description slot not being correctly placed for number inputs.
+
 ### [0.15.6] 2025-08-05
 
 - Refactor: Ensure label is hidden for the currency input if no default slot is provided.
