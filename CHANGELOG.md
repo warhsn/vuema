@@ -1,6 +1,10 @@
 # Changelog
 
-### [0.15.7] 2025-08-026
+### [0.15.8] 2025-09-18
+
+- Bug: Drag and drop uploader returning success even though the request failed.
+
+### [0.15.7] 2025-08-26
 
 - Bug: Description slot not being correctly placed for number inputs.
 

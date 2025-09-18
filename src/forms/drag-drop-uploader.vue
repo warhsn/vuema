@@ -270,9 +270,28 @@ async function uploadFile(fileObj: FileWithProgress): Promise<any> {
             if (xhr.status >= 200 && xhr.status < 300) {
                 try {
                     const response = JSON.parse(xhr.responseText)
-                    resolve(response)
+                    // Check if the response contains validation errors
+                    if (response.errors || response.error || response.validationErrors) {
+                        const errorMessage = response.message || 
+                                           response.error || 
+                                           (response.errors ? JSON.stringify(response.errors) : 'Validation failed')
+                        reject(new Error(errorMessage))
+                    } else {
+                        resolve(response)
+                    }
                 } catch {
                     resolve(xhr.responseText)
+                }
+            } else if (xhr.status >= 400 && xhr.status < 500) {
+                // Handle 4xx errors as validation/client errors
+                try {
+                    const errorResponse = JSON.parse(xhr.responseText)
+                    const errorMessage = errorResponse.message || 
+                                       errorResponse.error || 
+                                       (errorResponse.errors ? JSON.stringify(errorResponse.errors) : `HTTP ${xhr.status}: ${xhr.statusText}`)
+                    reject(new Error(errorMessage))
+                } catch {
+                    reject(new Error(`HTTP ${xhr.status}: ${xhr.statusText}`))
                 }
             } else {
                 reject(new Error(`HTTP ${xhr.status}: ${xhr.statusText}`))
