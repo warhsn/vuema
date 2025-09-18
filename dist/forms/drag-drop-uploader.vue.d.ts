@@ -26,6 +26,10 @@ declare const __VLS_component: import('vue').DefineComponent<_DragDropUploader, 
         error: string;
     }) => any;
     "upload-completed": (results: any[]) => any;
+    "upload-failed": (errors: {
+        file: File;
+        error: string;
+    }[]) => any;
 }, string, import('vue').PublicProps, Readonly<_DragDropUploader> & Readonly<{
     onFilesSelected?: ((files: File[]) => any) | undefined;
     onUploadProgress?: ((progress: {
@@ -41,6 +45,10 @@ declare const __VLS_component: import('vue').DefineComponent<_DragDropUploader, 
         error: string;
     }) => any) | undefined;
     "onUpload-completed"?: ((results: any[]) => any) | undefined;
+    "onUpload-failed"?: ((errors: {
+        file: File;
+        error: string;
+    }[]) => any) | undefined;
 }>, {
     multiple: boolean;
     accepts: string;

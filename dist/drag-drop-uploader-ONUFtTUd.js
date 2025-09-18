@@ -1,6 +1,6 @@
-import { defineComponent as I, ref as h, resolveComponent as L, createElementBlock as i, openBlock as n, createBlock as z, createCommentVNode as f, createElementVNode as l, createVNode as A, withCtx as T, renderSlot as C, withModifiers as v, normalizeClass as _, createTextVNode as O, toDisplayString as g, Fragment as P, renderList as x } from "vue";
+import { defineComponent as I, ref as h, resolveComponent as L, createElementBlock as i, openBlock as n, createBlock as z, createCommentVNode as g, createElementVNode as l, createVNode as A, withCtx as T, renderSlot as C, withModifiers as v, normalizeClass as _, createTextVNode as O, toDisplayString as m, Fragment as P, renderList as x } from "vue";
 import { _ as q } from "./field-error.vue_vue_type_script_setup_true_lang-C7PfoMZ6.js";
-import { _ as R } from "./index-DgsojaaH.js";
+import { _ as R } from "./index-BysBZn_e.js";
 const J = ["multiple", "accept"], G = { class: "drag-drop-content" }, K = {
   key: 0,
   class: "drag-drop-prompt"
@@ -77,20 +77,20 @@ const J = ["multiple", "accept"], G = { class: "drag-drop-content" }, K = {
     is11: { type: Boolean },
     is12: { type: Boolean }
   },
-  emits: ["filesSelected", "uploadProgress", "file-uploaded", "upload-error", "upload-completed"],
+  emits: ["filesSelected", "uploadProgress", "file-uploaded", "upload-error", "upload-completed", "upload-failed"],
   setup(E, { emit: w }) {
-    const p = E, d = h([]), y = h(!1), u = h(!1), B = h(), m = w;
+    const p = E, d = h([]), y = h(!1), u = h(!1), B = h(), f = w;
     function D(e) {
       e.dataTransfer && (e.dataTransfer.dropEffect = "copy"), y.value = !0;
     }
-    function b() {
+    function M() {
       y.value = !1;
     }
-    function M(e) {
-      var s;
-      if (y.value = !1, (s = e.dataTransfer) != null && s.files) {
-        const r = Array.from(e.dataTransfer.files);
-        k(r);
+    function b(e) {
+      var r;
+      if (y.value = !1, (r = e.dataTransfer) != null && r.files) {
+        const o = Array.from(e.dataTransfer.files);
+        k(o);
       }
     }
     function F() {
@@ -98,25 +98,25 @@ const J = ["multiple", "accept"], G = { class: "drag-drop-content" }, K = {
       (e = B.value) == null || e.click();
     }
     function S(e) {
-      const s = e.target;
-      if (s.files) {
-        const r = Array.from(s.files);
-        k(r);
+      const r = e.target;
+      if (r.files) {
+        const o = Array.from(r.files);
+        k(o);
       }
     }
     function k(e) {
-      const s = e.filter((o) => !d.value.some(
-        (t) => t.name === o.name && t.size === o.size
-      )), r = s.map((o) => ({
-        file: o,
-        name: o.name,
-        size: o.size,
+      const r = e.filter((s) => !d.value.some(
+        (t) => t.name === s.name && t.size === s.size
+      )), o = r.map((s) => ({
+        file: s,
+        name: s.name,
+        size: s.size,
         progress: 0,
         isUploading: !1,
         isComplete: !1,
         hasError: !1
       }));
-      p.multiple ? d.value.push(...r) : d.value = r.slice(0, 1), m("filesSelected", s);
+      p.multiple ? d.value.push(...o) : d.value = o.slice(0, 1), f("filesSelected", r);
     }
     function U(e) {
       d.value.splice(e, 1);
@@ -127,69 +127,69 @@ const J = ["multiple", "accept"], G = { class: "drag-drop-content" }, K = {
     async function N() {
       if (!p.endpoint) return;
       u.value = !0;
-      const e = [];
+      const e = [], r = [];
       try {
-        for (const s of d.value)
-          if (!s.isComplete) {
-            s.isUploading = !0, s.hasError = !1;
+        for (const o of d.value)
+          if (!o.isComplete) {
+            o.isUploading = !0, o.hasError = !1;
             try {
-              const r = await V(s);
-              s.isComplete = !0, s.isUploading = !1, e.push(r), m("file-uploaded", { file: s.file, response: r });
-            } catch (r) {
-              s.hasError = !0, s.isUploading = !1, s.errorMessage = r instanceof Error ? r.message : "Upload failed", m("upload-error", { file: s.file, error: s.errorMessage });
+              const s = await V(o);
+              o.isComplete = !0, o.isUploading = !1, e.push(s), f("file-uploaded", { file: o.file, response: s });
+            } catch (s) {
+              o.hasError = !0, o.isUploading = !1, o.errorMessage = s instanceof Error ? s.message : "Upload failed", r.push({ file: o.file, error: o.errorMessage }), f("upload-error", { file: o.file, error: o.errorMessage });
             }
           }
-        m("upload-completed", e);
+        r.length === 0 && e.length > 0 ? f("upload-completed", e) : r.length > 0 && f("upload-failed", r);
       } finally {
         u.value = !1;
       }
     }
     async function V(e) {
-      return new Promise((s, r) => {
-        const o = new FormData();
-        o.append("file", e.file), p.additionalData && Object.entries(p.additionalData).forEach(([a, c]) => {
-          o.append(a, String(c));
+      return new Promise((r, o) => {
+        const s = new FormData();
+        s.append("file", e.file), p.additionalData && Object.entries(p.additionalData).forEach(([a, c]) => {
+          s.append(a, String(c));
         });
         const t = new XMLHttpRequest();
         t.upload.addEventListener("progress", (a) => {
-          a.lengthComputable && (e.progress = Math.round(a.loaded / a.total * 100), m("uploadProgress", { file: e.file, progress: e.progress }));
+          a.lengthComputable && (e.progress = Math.round(a.loaded / a.total * 100), f("uploadProgress", { file: e.file, progress: e.progress }));
         }), t.addEventListener("load", () => {
           if (t.status >= 200 && t.status < 300)
             try {
               const a = JSON.parse(t.responseText);
               if (a.errors || a.error || a.validationErrors) {
                 const c = a.message || a.error || (a.errors ? JSON.stringify(a.errors) : "Validation failed");
-                r(new Error(c));
+                o(new Error(c));
               } else
-                s(a);
+                r(a);
             } catch {
-              s(t.responseText);
+              r(t.responseText);
             }
           else if (t.status >= 400 && t.status < 500)
             try {
               const a = JSON.parse(t.responseText), c = a.message || a.error || (a.errors ? JSON.stringify(a.errors) : `HTTP ${t.status}: ${t.statusText}`);
-              r(new Error(c));
+              o(new Error(c));
             } catch {
-              r(new Error(`HTTP ${t.status}: ${t.statusText}`));
+              o(new Error(`HTTP ${t.status}: ${t.statusText}`));
             }
           else
-            r(new Error(`HTTP ${t.status}: ${t.statusText}`));
+            o(new Error(`HTTP ${t.status}: ${t.statusText}`));
         }), t.addEventListener("error", () => {
-          r(new Error("Network error occurred"));
+          o(new Error("Network error occurred"));
         }), t.open("POST", p.endpoint), p.headers && Object.entries(p.headers).forEach(([a, c]) => {
           t.setRequestHeader(a, c);
-        }), t.send(o);
+        }), t.send(s);
       });
     }
     function H(e) {
       if (e === 0) return "0 Bytes";
-      const s = 1024, r = ["Bytes", "KB", "MB", "GB"], o = Math.floor(Math.log(e) / Math.log(s));
-      return parseFloat((e / Math.pow(s, o)).toFixed(2)) + " " + r[o];
+      const r = 1024, o = ["Bytes", "KB", "MB", "GB"], s = Math.floor(Math.log(e) / Math.log(r));
+      return parseFloat((e / Math.pow(r, s)).toFixed(2)) + " " + o[s];
     }
-    return (e, s) => {
-      const r = L("field-label");
+    return (e, r) => {
+      const o = L("field-label");
       return n(), i("div", null, [
-        e.$slots.default || e.$slots.description ? (n(), z(r, {
+        e.$slots.default || e.$slots.description ? (n(), z(o, {
           key: 0,
           required: e.required
         }, {
@@ -200,7 +200,7 @@ const J = ["multiple", "accept"], G = { class: "drag-drop-content" }, K = {
             C(e.$slots, "default", {}, void 0, !0)
           ]),
           _: 3
-        }, 8, ["required"])) : f("", !0),
+        }, 8, ["required"])) : g("", !0),
         l("div", {
           class: _(["drag-drop-uploader", {
             "is-dragover": y.value,
@@ -208,8 +208,8 @@ const J = ["multiple", "accept"], G = { class: "drag-drop-content" }, K = {
             "has-files": d.value.length > 0
           }]),
           onDragover: v(D, ["prevent"]),
-          onDragleave: v(b, ["prevent"]),
-          onDrop: v(M, ["prevent"]),
+          onDragleave: v(M, ["prevent"]),
+          onDrop: v(b, ["prevent"]),
           onClick: F
         }, [
           l("input", {
@@ -223,42 +223,42 @@ const J = ["multiple", "accept"], G = { class: "drag-drop-content" }, K = {
           }, null, 40, J),
           l("div", G, [
             d.value.length === 0 ? (n(), i("div", K, [
-              s[0] || (s[0] = l("svg", {
+              r[0] || (r[0] = l("svg", {
                 class: "drag-drop-icon",
                 xmlns: "http://www.w3.org/2000/svg",
                 viewBox: "0 0 24 24"
               }, [
                 l("path", { d: "M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20Z" })
               ], -1)),
-              s[1] || (s[1] = l("p", { class: "drag-drop-text" }, [
+              r[1] || (r[1] = l("p", { class: "drag-drop-text" }, [
                 l("strong", null, "Click to upload"),
                 O(" or drag and drop files here ")
               ], -1)),
-              e.accepts ? (n(), i("p", X, " Accepted formats: " + g(e.accepts), 1)) : f("", !0)
+              e.accepts ? (n(), i("p", X, " Accepted formats: " + m(e.accepts), 1)) : g("", !0)
             ])) : (n(), i("div", Z, [
-              (n(!0), i(P, null, x(d.value, (o, t) => (n(), i("div", {
+              (n(!0), i(P, null, x(d.value, (s, t) => (n(), i("div", {
                 key: t,
                 class: _(["file-item", {
-                  "is-uploading": o.isUploading,
-                  "is-success": o.isComplete,
-                  "is-error": o.hasError
+                  "is-uploading": s.isUploading,
+                  "is-success": s.isComplete,
+                  "is-error": s.hasError
                 }])
               }, [
                 l("div", Q, [
-                  l("span", W, g(o.name), 1),
-                  l("span", Y, g(H(o.size)), 1)
+                  l("span", W, m(s.name), 1),
+                  l("span", Y, m(H(s.size)), 1)
                 ]),
-                o.isUploading ? (n(), i("div", j, [
+                s.isUploading ? (n(), i("div", j, [
                   l("progress", {
                     class: "progress is-small is-primary",
-                    value: o.progress,
+                    value: s.progress,
                     max: "100"
-                  }, g(o.progress) + "% ", 9, ee)
-                ])) : f("", !0),
+                  }, m(s.progress) + "% ", 9, ee)
+                ])) : g("", !0),
                 l("div", se, [
-                  o.isComplete ? (n(), i("span", oe, " Complete ")) : o.hasError ? (n(), i("span", te, " Error ")) : o.isUploading ? (n(), i("span", re, g(o.progress) + "% ", 1)) : f("", !0)
+                  s.isComplete ? (n(), i("span", oe, " Complete ")) : s.hasError ? (n(), i("span", te, " Error ")) : s.isUploading ? (n(), i("span", re, m(s.progress) + "% ", 1)) : g("", !0)
                 ]),
-                o.isUploading ? f("", !0) : (n(), i("button", {
+                s.isUploading ? g("", !0) : (n(), i("button", {
                   key: 1,
                   class: "delete is-small",
                   onClick: v((a) => U(t), ["stop"])
@@ -273,7 +273,7 @@ const J = ["multiple", "accept"], G = { class: "drag-drop-content" }, K = {
               class: _(["button is-primary", { "is-loading": u.value }]),
               onClick: N,
               disabled: u.value || !e.endpoint
-            }, g(e.uploadButtonText), 11, ie)
+            }, m(e.uploadButtonText), 11, ie)
           ]),
           l("div", de, [
             l("button", {
@@ -282,12 +282,12 @@ const J = ["multiple", "accept"], G = { class: "drag-drop-content" }, K = {
               disabled: u.value
             }, " Clear ", 8, pe)
           ])
-        ])) : f("", !0),
+        ])) : g("", !0),
         A(q, { error: e.error }, null, 8, ["error"])
       ]);
     };
   }
-}), me = /* @__PURE__ */ R(ce, [["__scopeId", "data-v-75ae4fbc"]]);
+}), me = /* @__PURE__ */ R(ce, [["__scopeId", "data-v-3e6a78f5"]]);
 export {
   me as default
 };

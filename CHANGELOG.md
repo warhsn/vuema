@@ -1,5 +1,9 @@
 # Changelog
 
+### [0.15.9] 2025-09-18
+
+- Refac: Emit errors from drag and drop uploader.
+
 ### [0.15.8] 2025-09-18
 
 - Bug: Drag and drop uploader returning success even though the request failed.

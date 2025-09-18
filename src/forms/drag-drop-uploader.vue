@@ -143,6 +143,7 @@ const emit = defineEmits<{
     (e: 'file-uploaded', result: { file: File, response: any }): void,
     (e: 'upload-error', error: { file: File, error: string }): void,
     (e: 'upload-completed', results: any[]): void,
+    (e: 'upload-failed', errors: { file: File, error: string }[]): void,
 }>()
 
 function onDragOver(event: DragEvent) {
@@ -217,6 +218,7 @@ async function uploadFiles() {
     
     isUploading.value = true
     const results: any[] = []
+    const errors: any[] = []
     
     try {
         for (const fileObj of files.value) {
@@ -235,11 +237,18 @@ async function uploadFiles() {
                 fileObj.hasError = true
                 fileObj.isUploading = false
                 fileObj.errorMessage = error instanceof Error ? error.message : 'Upload failed'
+                errors.push({ file: fileObj.file, error: fileObj.errorMessage })
                 emit('upload-error', { file: fileObj.file, error: fileObj.errorMessage })
             }
         }
         
-        emit('upload-completed', results)
+        // Only emit upload-completed if all uploads succeeded
+        if (errors.length === 0 && results.length > 0) {
+            emit('upload-completed', results)
+        } else if (errors.length > 0) {
+            // Emit a new event for when uploads fail
+            emit('upload-failed', errors)
+        }
     } finally {
         isUploading.value = false
     }
