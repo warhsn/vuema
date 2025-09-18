@@ -1,6 +1,6 @@
 import { defineComponent as I, ref as h, resolveComponent as L, createElementBlock as i, openBlock as n, createBlock as z, createCommentVNode as g, createElementVNode as l, createVNode as A, withCtx as T, renderSlot as C, withModifiers as v, normalizeClass as _, createTextVNode as O, toDisplayString as m, Fragment as P, renderList as x } from "vue";
 import { _ as q } from "./field-error.vue_vue_type_script_setup_true_lang-C7PfoMZ6.js";
-import { _ as R } from "./index-BysBZn_e.js";
+import { _ as R } from "./index-D_FMbkGZ.js";
 const J = ["multiple", "accept"], G = { class: "drag-drop-content" }, K = {
   key: 0,
   class: "drag-drop-prompt"
@@ -287,7 +287,7 @@ const J = ["multiple", "accept"], G = { class: "drag-drop-content" }, K = {
       ]);
     };
   }
-}), me = /* @__PURE__ */ R(ce, [["__scopeId", "data-v-3e6a78f5"]]);
+}), me = /* @__PURE__ */ R(ce, [["__scopeId", "data-v-91722574"]]);
 export {
   me as default
 };
