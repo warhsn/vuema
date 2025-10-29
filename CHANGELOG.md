@@ -1,5 +1,9 @@
 # Changelog
 
+### [0.15.10] 2025-10-29
+
+- Refac: Adds the ability to select a single item in search inputs.
+
 ### [0.15.9] 2025-09-18
 
 - Refac: Emit errors from drag and drop uploader.

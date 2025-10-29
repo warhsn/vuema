@@ -1,10 +1,10 @@
 <template>
     <span class="icon">
-        <i :class="`${iconType || 'fa-solid'} fa-${icon} ${iconClasses}`"></i>
+        <i :class="[props.iconType || 'fa-solid', `fa-${props.icon}`, props.iconClasses]"></i>
     </span>
 </template>
 <script setup lang="ts">
 import { _Icons } from '../interfaces/icons'
 
-defineProps<_Icons>()
+const props = defineProps<_Icons>()
 </script>

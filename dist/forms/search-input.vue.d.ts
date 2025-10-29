@@ -12,15 +12,16 @@ type __VLS_TemplateResult = ReturnType<typeof __VLS_template>;
 declare const __VLS_component: import('vue').DefineComponent<_SearchInput, {}, {}, {}, {}, import('vue').ComponentOptionsMixin, import('vue').ComponentOptionsMixin, {} & {
     blur: () => any;
     focus: () => any;
-    "update:modelValue": (value: any[]) => any;
+    "update:modelValue": (value: any) => any;
 }, string, import('vue').PublicProps, Readonly<_SearchInput> & Readonly<{
     onBlur?: (() => any) | undefined;
     onFocus?: (() => any) | undefined;
-    "onUpdate:modelValue"?: ((value: any[]) => any) | undefined;
+    "onUpdate:modelValue"?: ((value: any) => any) | undefined;
 }>, {
-    modelValue: Array<any>;
+    modelValue: Array<any> | any;
     valueKey: string;
     labelKey: string;
+    multiple: boolean;
     searchPlaceholder: string;
     allowNew: boolean;
     emitFullObjects: boolean;

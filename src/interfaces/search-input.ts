@@ -1,7 +1,7 @@
 import { _Forms } from "./forms";
 
 export interface _SearchInput extends _Forms {
-    modelValue: Array<any>
+    modelValue: Array<any> | any
     items: Array<any>
     valueKey: string
     labelKey: string
@@ -9,4 +9,5 @@ export interface _SearchInput extends _Forms {
     allowNew?: boolean
     emitFullObjects?: boolean
     withTags?: boolean
+    multiple?: boolean
 }

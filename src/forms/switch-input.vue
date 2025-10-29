@@ -17,7 +17,7 @@
                 :class="classes" 
                 class="switch"
             >
-            <field-label :for="fieldName" :required="required">
+            <field-label v-if="$slots['inner-label']" :for="fieldName" :required="required">
                 <slot name="inner-label" />
             </field-label>
         </div>

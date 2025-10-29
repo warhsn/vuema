@@ -7,9 +7,9 @@
             </template>
         </field-label>
         <div class="search-input">
-            <!-- Display selected tags -->
-            <div class="tags is-marginless" v-if="modelValue && modelValue.length > 0 && withTags">
-                <span class="tag" v-for="(item, index) in modelValue" :key="getItemKey(item, index)">
+            <!-- Display selected tags (only in multiple mode) -->
+            <div class="tags is-marginless" v-if="selectedItems.length > 0 && withTags && multiple">
+                <span class="tag" v-for="(item, index) in selectedItems" :key="getItemKey(item, index)">
                     {{ getDisplayLabel(item) }}
                     <button class="delete is-small" @click="removeItem(item)" :disabled="disabled">
                     </button>
@@ -22,15 +22,15 @@
                 'is-loading': isLoading,
                 'is-expanded': isExpanded
             }">
-                <input 
+                <input
                     type="text"
-                    class="input" 
-                    :class="classes"  
+                    class="input"
+                    :class="classes"
                     :placeholder="searchPlaceholder || placeholder"
                     :disabled="disabled"
                     v-model="searchText"
                     @input="onInput"
-                    @focus="onFocus"
+                    @focus="onFocus($event)"
                     @blur="onBlur"
                     @click="onInputClick"
                     @keydown.enter.prevent="addSelectedOrNew"
@@ -96,7 +96,8 @@ const props = withDefaults(
         labelKey: 'label',
         valueKey: 'value',
         emitFullObjects: false,
-        withTags: true
+        withTags: true,
+        multiple: true
     }
 )
 
@@ -106,7 +107,7 @@ const focus = 'focus'
 const blur = 'blur'
 
 const emit = defineEmits<{
-    (e: typeof inputEvent, value: Array<any>): void,
+    (e: typeof inputEvent, value: Array<any> | any): void,
     (e: typeof focus): void,
     (e: typeof blur): void,
 }>()
@@ -116,19 +117,26 @@ const isDropdownOpen = ref(false)
 const activeIndex = ref(0)
 const blurTimeout = ref<NodeJS.Timeout | null>(null)
 
+// Helper to normalize modelValue to an array for internal use
+function getModelValueAsArray(): Array<any> {
+    if (!props.modelValue) return []
+    return Array.isArray(props.modelValue) ? props.modelValue : [props.modelValue]
+}
+
 function shouldEmitFullObjects(): boolean {
     if (props.emitFullObjects !== undefined) {
         return props.emitFullObjects
     }
-    
-    if (!props.modelValue || props.modelValue.length === 0) {
+
+    const modelValueArray = getModelValueAsArray()
+    if (modelValueArray.length === 0) {
         return false
     }
-    
-    const firstItem = props.modelValue[0]
 
-    return typeof firstItem === 'object' && 
-           firstItem !== null && 
+    const firstItem = modelValueArray[0]
+
+    return typeof firstItem === 'object' &&
+           firstItem !== null &&
            firstItem.hasOwnProperty(props.labelKey)
 }
 
@@ -167,9 +175,13 @@ function getItemKey(item: any, index: number): string {
     return value ? String(value) : `item-${index}`
 }
 
+const selectedItems = computed(() => {
+    return getModelValueAsArray()
+})
+
 const showAddNew = computed(() => {
-    return props.allowNew && 
-           searchText.value && 
+    return props.allowNew &&
+           searchText.value &&
            searchText.value.trim() !== '' &&
            !isItemInList(searchText.value)
 })
@@ -189,10 +201,11 @@ const filteredItems = computed(() => {
 })
 
 function isItemSelected(item: any): boolean {
-    if (!props.modelValue || props.modelValue.length === 0) return false
-    
+    const modelValueArray = getModelValueAsArray()
+    if (modelValueArray.length === 0) return false
+
     const itemValue = getItemValue(item)
-    return props.modelValue.some(selected => {
+    return modelValueArray.some(selected => {
         const selectedValue = getItemValue(selected)
         return selectedValue === itemValue
     })
@@ -209,6 +222,11 @@ function isItemInList(text: string): boolean {
 function onInput(): void {
     isDropdownOpen.value = true
     activeIndex.value = 0
+
+    // In single-select mode, clear selection when user starts typing
+    if (!props.multiple && props.modelValue) {
+        emit(inputEvent, null)
+    }
 }
 
 function onInputClick(): void {
@@ -218,12 +236,17 @@ function onInputClick(): void {
     }
 }
 
-const onFocus = () => {
+const onFocus = (event?: FocusEvent) => {
     if (blurTimeout.value) {
         clearTimeout(blurTimeout.value)
         blurTimeout.value = null
     }
-    
+
+    // In single-select mode, select all text so user can easily replace it
+    if (!props.multiple && event?.target && searchText.value) {
+        (event.target as HTMLInputElement).select()
+    }
+
     isDropdownOpen.value = true
     emit(focus)
 }
@@ -241,14 +264,20 @@ function selectItem(item: any): void {
         clearTimeout(blurTimeout.value)
         blurTimeout.value = null
     }
-    
+
     if (!isItemSelected(item)) {
         const itemToAdd = shouldEmitFullObjects() ? item : getItemValue(item)
-        const newValue = [...(props.modelValue || []), itemToAdd]
+        const newValue = props.multiple
+            ? [...getModelValueAsArray(), itemToAdd]
+            : itemToAdd
         emit(inputEvent, newValue)
     }
     searchText.value = ''
     activeIndex.value = 0
+
+    if (!props.multiple) {
+        isDropdownOpen.value = false
+    }
 }
 
 function addNewItem(text: string): void {
@@ -256,7 +285,7 @@ function addNewItem(text: string): void {
         clearTimeout(blurTimeout.value)
         blurTimeout.value = null
     }
-    
+
     if (props.allowNew && text && text.trim() !== '') {
         const newItem = {
             [props.valueKey]: `new-${Date.now()}`,
@@ -264,23 +293,35 @@ function addNewItem(text: string): void {
         }
 
         const itemToAdd = shouldEmitFullObjects() ? newItem : getItemValue(newItem)
-        const newValue = [...(props.modelValue || []), itemToAdd]
+        const newValue = props.multiple
+            ? [...getModelValueAsArray(), itemToAdd]
+            : itemToAdd
         emit(inputEvent, newValue)
-        
+
         searchText.value = ''
         activeIndex.value = 0
+
+        if (!props.multiple) {
+            isDropdownOpen.value = false
+        }
     }
 }
 
 function removeItem(item: any): void {
     if (!props.modelValue) return
-    
-    const itemValue = getItemValue(item)
-    const newValue = props.modelValue.filter(selected => {
-        const selectedValue = getItemValue(selected)
-        return selectedValue !== itemValue
-    })
-    emit(inputEvent, newValue)
+
+    if (!props.multiple) {
+        // In single-select mode, just clear the value
+        emit(inputEvent, null)
+    } else {
+        // In multiple mode, filter out the removed item
+        const itemValue = getItemValue(item)
+        const newValue = getModelValueAsArray().filter(selected => {
+            const selectedValue = getItemValue(selected)
+            return selectedValue !== itemValue
+        })
+        emit(inputEvent, newValue)
+    }
 }
 
 function addSelectedOrNew(): void {    
@@ -324,7 +365,15 @@ const classes = computed(() => {
 })
 
 watch(() => props.modelValue, (newValue) => {
-}, { deep: true })
+    // In single-select mode, display the selected item in the input
+    if (!props.multiple) {
+        if (newValue) {
+            searchText.value = getDisplayLabel(newValue)
+        } else {
+            searchText.value = ''
+        }
+    }
+}, { deep: true, immediate: true })
 </script>
 
 <style scoped>

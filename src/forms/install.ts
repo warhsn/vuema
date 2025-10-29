@@ -2,6 +2,7 @@ import { defineAsyncComponent } from 'vue'
 
 export default function (app: any) {
     app.component('field-label', defineAsyncComponent(() => import('./field-label.vue')))
+    app.component('field-error', defineAsyncComponent(() => import('./field-error.vue')))
     app.component('text-input', defineAsyncComponent(() => import('./text-input.vue')))
     app.component('password-input', defineAsyncComponent(() => import('./password-input.vue')))
     app.component('text-area', defineAsyncComponent(() => import('./text-area.vue')))
