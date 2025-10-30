@@ -2,7 +2,7 @@ import { defineComponent as te, ref as T, computed as k, watch as ne, resolveCom
 import { _ as ie } from "./errors-BZdmzG52.js";
 import { _ as re } from "./field-error.vue_vue_type_script_setup_true_lang-C7PfoMZ6.js";
 import { u as ce } from "./sizes-tLhbz8lD.js";
-import { _ as de } from "./index-BWa2K1iz.js";
+import { _ as de } from "./index-B246DAUR.js";
 const fe = { class: "search-input" }, ve = {
   key: 0,
   class: "tags is-marginless"

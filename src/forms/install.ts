@@ -9,6 +9,7 @@ export default function (app: any) {
     app.component('select-input', defineAsyncComponent(() => import('./select-input.vue')))
     app.component('radio-input', defineAsyncComponent(() => import('./radio-input.vue')))
     app.component('checkbox-input', defineAsyncComponent(() => import('./checkbox-input.vue')))
+    app.component('color-picker', defineAsyncComponent(() => import('./color-picker.vue')))
     app.component('switch-input', defineAsyncComponent(() => import('./switch-input.vue')))
     app.component('currency-input', defineAsyncComponent(() => import('./currency-input.vue')))
     app.component('tag-input', defineAsyncComponent(() => import('./tag-input.vue')))

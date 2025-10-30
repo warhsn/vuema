@@ -1,5 +1,5 @@
 import { createElementBlock as o, openBlock as t, renderSlot as r } from "vue";
-import { _ as c } from "./index-BWa2K1iz.js";
+import { _ as c } from "./index-B246DAUR.js";
 const s = {}, n = { class: "box" };
 function _(e, l) {
   return t(), o("div", n, [

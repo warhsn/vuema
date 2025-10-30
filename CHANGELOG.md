@@ -1,12 +1,16 @@
 # Changelog
 
+### [0.16.0] 2025-10-30
+
+- Feature: Adds a colour picker input.
+
 ### [0.15.10] 2025-10-29
 
-- Refac: Adds the ability to select a single item in search inputs.
+- Refactor: Adds the ability to select a single item in search inputs.
 
 ### [0.15.9] 2025-09-18
 
-- Refac: Emit errors from drag and drop uploader.
+- Refactor: Emit errors from drag and drop uploader.
 
 ### [0.15.8] 2025-09-18
 
