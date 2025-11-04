@@ -138,8 +138,9 @@ const isUploading = ref(false)
 const fileInput = ref<HTMLInputElement>()
 
 const emit = defineEmits<{
-    (e: 'filesSelected', files: File[]): void,
-    (e: 'uploadProgress', progress: { file: File, progress: number }): void,
+    (e: 'files-selected', files: File[]): void,
+    (e: 'file-added', file: File): void,
+    (e: 'upload-progress', progress: { file: File, progress: number }): void,
     (e: 'file-uploaded', result: { file: File, response: any }): void,
     (e: 'upload-error', error: { file: File, error: string }): void,
     (e: 'upload-completed', results: any[]): void,
@@ -202,7 +203,7 @@ function addFiles(newFiles: File[]) {
         files.value = fileObjects.slice(0, 1)
     }
     
-    emit('filesSelected', filesToAdd)
+    emit('files-selected', filesToAdd)
 }
 
 function removeFile(index: number) {
@@ -271,7 +272,7 @@ async function uploadFile(fileObj: FileWithProgress): Promise<any> {
         xhr.upload.addEventListener('progress', (event) => {
             if (event.lengthComputable) {
                 fileObj.progress = Math.round((event.loaded / event.total) * 100)
-                emit('uploadProgress', { file: fileObj.file, progress: fileObj.progress })
+                emit('upload-progress', { file: fileObj.file, progress: fileObj.progress })
             }
         })
         

@@ -1,5 +1,9 @@
 # Changelog
 
+### [0.16.1] 2025-10-30
+
+- Refactor: Standardises the event names for the drag and drop uploader.
+
 ### [0.16.0] 2025-10-30
 
 - Feature: Adds a colour picker input.
