@@ -1,1 +1,0 @@
-"use strict";const c=()=>{for(var r="",a="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789",t=a.length,n=0;n<t;n++)r+=a.charAt(Math.floor(Math.random()*t));return r};exports._randomString=c;
