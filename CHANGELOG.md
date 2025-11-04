@@ -1,6 +1,6 @@
 # Changelog
 
-### [0.17.0] 2025-11-04
+### [0.17.1] 2025-11-04
 
 - Feature: Programmatically open alert and confirm modals.
 

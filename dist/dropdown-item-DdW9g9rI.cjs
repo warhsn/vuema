@@ -1,0 +1,1 @@
+"use strict";Object.defineProperty(exports,Symbol.toStringTag,{value:"Module"});const e=require("vue"),i=e.defineComponent({__name:"dropdown-item",emits:["click"],setup(l,{emit:o}){const n=o;return(r,t)=>(e.openBlock(),e.createElementBlock("div",{onClick:t[0]||(t[0]=c=>n("click")),class:"dropdown-item"},[e.renderSlot(r.$slots,"default")]))}});exports.default=i;
