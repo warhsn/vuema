@@ -63,4 +63,18 @@ const emits = defineEmits<{
 function close() {
     isActive.value = false
 }
+
+function open() {
+    isActive.value = true
+}
+
+function toggle() {
+    isActive.value = !isActive.value
+}
+
+defineExpose({
+    open,
+    close,
+    toggle
+})
 </script>

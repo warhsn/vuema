@@ -79,4 +79,24 @@ function confirm() {
     isActive.value = false
     emits('confirm')
 }
+
+function open() {
+    isActive.value = true
+}
+
+function close() {
+    isActive.value = false
+}
+
+function toggle() {
+    isActive.value = !isActive.value
+}
+
+defineExpose({
+    open,
+    close,
+    cancel,
+    confirm,
+    toggle
+})
 </script>

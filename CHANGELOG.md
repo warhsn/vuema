@@ -1,6 +1,10 @@
 # Changelog
 
-### [0.16.1] 2025-10-30
+### [0.17.0] 2025-11-04
+
+- Feature: Programmatically open alert and confirm modals.
+
+### [0.16.1] 2025-11-04
 
 - Refactor: Standardises the event names for the drag and drop uploader.
 
