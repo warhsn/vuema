@@ -1,6 +1,6 @@
 # Changelog
 
-### [0.17.3] 2025-11-04
+### [0.17.3] 2025-11-06
 
 - Feature: Adds in a clear-on-success prop for the drag and drop uploader.
 
