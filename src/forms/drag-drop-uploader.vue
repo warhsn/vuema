@@ -118,7 +118,8 @@ import FieldError from './field-error.vue'
 const props = withDefaults(defineProps<_DragDropUploader>(), {
     multiple: true,
     accepts: '*/*',
-    uploadButtonText: 'Upload'
+    uploadButtonText: 'Upload',
+    clearOnSuccess: false
 })
 
 interface FileWithProgress {
@@ -246,6 +247,10 @@ async function uploadFiles() {
         // Only emit upload-completed if all uploads succeeded
         if (errors.length === 0 && results.length > 0) {
             emit('upload-completed', results)
+            // Clear files if clearOnSuccess prop is enabled
+            if (props.clearOnSuccess) {
+                clearFiles()
+            }
         } else if (errors.length > 0) {
             // Emit a new event for when uploads fail
             emit('upload-failed', errors)

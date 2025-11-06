@@ -55,6 +55,7 @@ declare const __VLS_component: import('vue').DefineComponent<_DragDropUploader, 
     multiple: boolean;
     accepts: string;
     uploadButtonText: string;
+    clearOnSuccess: boolean;
 }, {}, {}, {}, string, import('vue').ComponentProvideOptions, false, {
     fileInput: HTMLInputElement;
 }, HTMLDivElement>;

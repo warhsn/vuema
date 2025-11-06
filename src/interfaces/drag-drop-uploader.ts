@@ -7,4 +7,5 @@ export interface _DragDropUploader extends _Forms {
     multiple?: boolean
     additionalData?: Record<string, string | number | boolean>
     headers?: Record<string, string>
+    clearOnSuccess?: boolean
 }

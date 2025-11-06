@@ -1,6 +1,6 @@
-import { defineComponent as H, ref as v, resolveComponent as I, createElementBlock as i, openBlock as n, createBlock as L, createCommentVNode as m, createElementVNode as l, createVNode as z, withCtx as C, renderSlot as E, withModifiers as B, normalizeClass as _, createTextVNode as A, toDisplayString as y, Fragment as O, renderList as q } from "vue";
+import { defineComponent as H, ref as v, resolveComponent as I, createElementBlock as i, openBlock as n, createBlock as L, createCommentVNode as m, createElementVNode as l, createVNode as O, withCtx as E, renderSlot as w, withModifiers as B, normalizeClass as _, createTextVNode as z, toDisplayString as y, Fragment as A, renderList as q } from "vue";
 import { _ as P } from "./field-error.vue_vue_type_script_setup_true_lang-C7PfoMZ6.js";
-import { _ as R } from "./index-sOG1cr8I.js";
+import { _ as R } from "./index-BLOpkW_g.js";
 const J = ["multiple", "accept"], G = { class: "drag-drop-content" }, K = {
   key: 0,
   class: "drag-drop-prompt"
@@ -19,10 +19,10 @@ const J = ["multiple", "accept"], G = { class: "drag-drop-content" }, K = {
 }, te = {
   key: 1,
   class: "tag is-danger is-small"
-}, re = {
+}, ae = {
   key: 2,
   class: "tag is-info is-small"
-}, ae = ["onClick"], le = {
+}, re = ["onClick"], le = {
   key: 1,
   class: "field is-grouped mt-3"
 }, ne = { class: "control" }, ie = ["disabled"], de = { class: "control" }, pe = ["disabled"], ce = /* @__PURE__ */ H({
@@ -34,6 +34,7 @@ const J = ["multiple", "accept"], G = { class: "drag-drop-content" }, K = {
     multiple: { type: Boolean, default: !0 },
     additionalData: {},
     headers: {},
+    clearOnSuccess: { type: Boolean, default: !1 },
     classes: {},
     disabled: { type: Boolean },
     forLabel: {},
@@ -78,36 +79,36 @@ const J = ["multiple", "accept"], G = { class: "drag-drop-content" }, K = {
     is12: { type: Boolean }
   },
   emits: ["files-selected", "file-added", "upload-progress", "file-uploaded", "upload-error", "upload-completed", "upload-failed"],
-  setup(p, { emit: w }) {
-    const c = p, d = v([]), h = v(!1), f = v(!1), k = v(), g = w;
-    function D(s) {
+  setup(p, { emit: D }) {
+    const c = p, d = v([]), h = v(!1), f = v(!1), k = v(), g = D;
+    function M(s) {
       s.dataTransfer && (s.dataTransfer.dropEffect = "copy"), h.value = !0;
     }
-    function M() {
+    function b() {
       h.value = !1;
     }
     function x(s) {
-      var r;
-      if (h.value = !1, (r = s.dataTransfer) != null && r.files) {
+      var a;
+      if (h.value = !1, (a = s.dataTransfer) != null && a.files) {
         const o = Array.from(s.dataTransfer.files);
         T(o);
       }
     }
-    function b() {
+    function F() {
       var s;
       (s = k.value) == null || s.click();
     }
-    function F(s) {
-      const r = s.target;
-      if (r.files) {
-        const o = Array.from(r.files);
+    function S(s) {
+      const a = s.target;
+      if (a.files) {
+        const o = Array.from(a.files);
         T(o);
       }
     }
     function T(s) {
-      const r = s.filter((e) => !d.value.some(
+      const a = s.filter((e) => !d.value.some(
         (t) => t.name === e.name && t.size === e.size
-      )), o = r.map((e) => ({
+      )), o = a.map((e) => ({
         file: e,
         name: e.name,
         size: e.size,
@@ -116,18 +117,18 @@ const J = ["multiple", "accept"], G = { class: "drag-drop-content" }, K = {
         isComplete: !1,
         hasError: !1
       }));
-      c.multiple ? d.value.push(...o) : d.value = o.slice(0, 1), g("files-selected", r);
+      c.multiple ? d.value.push(...o) : d.value = o.slice(0, 1), g("files-selected", a);
     }
-    function S(s) {
+    function U(s) {
       d.value.splice(s, 1);
     }
-    function U() {
+    function C() {
       d.value = [];
     }
     async function $() {
       if (!c.endpoint) return;
       f.value = !0;
-      const s = [], r = [];
+      const s = [], a = [];
       try {
         for (const o of d.value)
           if (!o.isComplete) {
@@ -136,38 +137,38 @@ const J = ["multiple", "accept"], G = { class: "drag-drop-content" }, K = {
               const e = await N(o);
               o.isComplete = !0, o.isUploading = !1, s.push(e), g("file-uploaded", { file: o.file, response: e });
             } catch (e) {
-              o.hasError = !0, o.isUploading = !1, o.errorMessage = e instanceof Error ? e.message : "Upload failed", r.push({ file: o.file, error: o.errorMessage }), g("upload-error", { file: o.file, error: o.errorMessage });
+              o.hasError = !0, o.isUploading = !1, o.errorMessage = e instanceof Error ? e.message : "Upload failed", a.push({ file: o.file, error: o.errorMessage }), g("upload-error", { file: o.file, error: o.errorMessage });
             }
           }
-        r.length === 0 && s.length > 0 ? g("upload-completed", s) : r.length > 0 && g("upload-failed", r);
+        a.length === 0 && s.length > 0 ? (g("upload-completed", s), c.clearOnSuccess && C()) : a.length > 0 && g("upload-failed", a);
       } finally {
         f.value = !1;
       }
     }
     async function N(s) {
-      return new Promise((r, o) => {
+      return new Promise((a, o) => {
         const e = new FormData();
-        e.append("file", s.file), c.additionalData && Object.entries(c.additionalData).forEach(([a, u]) => {
-          e.append(a, String(u));
+        e.append("file", s.file), c.additionalData && Object.entries(c.additionalData).forEach(([r, u]) => {
+          e.append(r, String(u));
         });
         const t = new XMLHttpRequest();
-        t.upload.addEventListener("progress", (a) => {
-          a.lengthComputable && (s.progress = Math.round(a.loaded / a.total * 100), g("upload-progress", { file: s.file, progress: s.progress }));
+        t.upload.addEventListener("progress", (r) => {
+          r.lengthComputable && (s.progress = Math.round(r.loaded / r.total * 100), g("upload-progress", { file: s.file, progress: s.progress }));
         }), t.addEventListener("load", () => {
           if (t.status >= 200 && t.status < 300)
             try {
-              const a = JSON.parse(t.responseText);
-              if (a.errors || a.error || a.validationErrors) {
-                const u = a.message || a.error || (a.errors ? JSON.stringify(a.errors) : "Validation failed");
+              const r = JSON.parse(t.responseText);
+              if (r.errors || r.error || r.validationErrors) {
+                const u = r.message || r.error || (r.errors ? JSON.stringify(r.errors) : "Validation failed");
                 o(new Error(u));
               } else
-                r(a);
+                a(r);
             } catch {
-              r(t.responseText);
+              a(t.responseText);
             }
           else if (t.status >= 400 && t.status < 500)
             try {
-              const a = JSON.parse(t.responseText), u = a.message || a.error || (a.errors ? JSON.stringify(a.errors) : `HTTP ${t.status}: ${t.statusText}`);
+              const r = JSON.parse(t.responseText), u = r.message || r.error || (r.errors ? JSON.stringify(r.errors) : `HTTP ${t.status}: ${t.statusText}`);
               o(new Error(u));
             } catch {
               o(new Error(`HTTP ${t.status}: ${t.statusText}`));
@@ -176,28 +177,28 @@ const J = ["multiple", "accept"], G = { class: "drag-drop-content" }, K = {
             o(new Error(`HTTP ${t.status}: ${t.statusText}`));
         }), t.addEventListener("error", () => {
           o(new Error("Network error occurred"));
-        }), t.open("POST", c.endpoint), c.headers && Object.entries(c.headers).forEach(([a, u]) => {
-          t.setRequestHeader(a, u);
+        }), t.open("POST", c.endpoint), c.headers && Object.entries(c.headers).forEach(([r, u]) => {
+          t.setRequestHeader(r, u);
         }), t.send(e);
       });
     }
     function V(s) {
       if (s === 0) return "0 Bytes";
-      const r = 1024, o = ["Bytes", "KB", "MB", "GB"], e = Math.floor(Math.log(s) / Math.log(r));
-      return parseFloat((s / Math.pow(r, e)).toFixed(2)) + " " + o[e];
+      const a = 1024, o = ["Bytes", "KB", "MB", "GB"], e = Math.floor(Math.log(s) / Math.log(a));
+      return parseFloat((s / Math.pow(a, e)).toFixed(2)) + " " + o[e];
     }
-    return (s, r) => {
+    return (s, a) => {
       const o = I("field-label");
       return n(), i("div", null, [
         s.$slots.default || s.$slots.description ? (n(), L(o, {
           key: 0,
           required: p.required
         }, {
-          description: C(() => [
-            E(s.$slots, "description", {}, void 0, !0)
+          description: E(() => [
+            w(s.$slots, "description", {}, void 0, !0)
           ]),
-          default: C(() => [
-            E(s.$slots, "default", {}, void 0, !0)
+          default: E(() => [
+            w(s.$slots, "default", {}, void 0, !0)
           ]),
           _: 3
         }, 8, ["required"])) : m("", !0),
@@ -207,10 +208,10 @@ const J = ["multiple", "accept"], G = { class: "drag-drop-content" }, K = {
             "is-uploading": f.value,
             "has-files": d.value.length > 0
           }]),
-          onDragover: B(D, ["prevent"]),
-          onDragleave: B(M, ["prevent"]),
+          onDragover: B(M, ["prevent"]),
+          onDragleave: B(b, ["prevent"]),
           onDrop: B(x, ["prevent"]),
-          onClick: b
+          onClick: F
         }, [
           l("input", {
             ref_key: "fileInput",
@@ -218,25 +219,25 @@ const J = ["multiple", "accept"], G = { class: "drag-drop-content" }, K = {
             type: "file",
             multiple: p.multiple,
             accept: p.accepts,
-            onChange: F,
+            onChange: S,
             style: { display: "none" }
           }, null, 40, J),
           l("div", G, [
             d.value.length === 0 ? (n(), i("div", K, [
-              r[0] || (r[0] = l("svg", {
+              a[0] || (a[0] = l("svg", {
                 class: "drag-drop-icon",
                 xmlns: "http://www.w3.org/2000/svg",
                 viewBox: "0 0 24 24"
               }, [
                 l("path", { d: "M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20Z" })
               ], -1)),
-              r[1] || (r[1] = l("p", { class: "drag-drop-text" }, [
+              a[1] || (a[1] = l("p", { class: "drag-drop-text" }, [
                 l("strong", null, "Click to upload"),
-                A(" or drag and drop files here ")
+                z(" or drag and drop files here ")
               ], -1)),
               p.accepts ? (n(), i("p", X, " Accepted formats: " + y(p.accepts), 1)) : m("", !0)
             ])) : (n(), i("div", Z, [
-              (n(!0), i(O, null, q(d.value, (e, t) => (n(), i("div", {
+              (n(!0), i(A, null, q(d.value, (e, t) => (n(), i("div", {
                 key: t,
                 class: _(["file-item", {
                   "is-uploading": e.isUploading,
@@ -256,13 +257,13 @@ const J = ["multiple", "accept"], G = { class: "drag-drop-content" }, K = {
                   }, y(e.progress) + "% ", 9, ee)
                 ])) : m("", !0),
                 l("div", se, [
-                  e.isComplete ? (n(), i("span", oe, " Complete ")) : e.hasError ? (n(), i("span", te, " Error ")) : e.isUploading ? (n(), i("span", re, y(e.progress) + "% ", 1)) : m("", !0)
+                  e.isComplete ? (n(), i("span", oe, " Complete ")) : e.hasError ? (n(), i("span", te, " Error ")) : e.isUploading ? (n(), i("span", ae, y(e.progress) + "% ", 1)) : m("", !0)
                 ]),
                 e.isUploading ? m("", !0) : (n(), i("button", {
                   key: 1,
                   class: "delete is-small",
-                  onClick: B((a) => S(t), ["stop"])
-                }, null, 8, ae))
+                  onClick: B((r) => U(t), ["stop"])
+                }, null, 8, re))
               ], 2))), 128))
             ]))
           ])
@@ -278,16 +279,16 @@ const J = ["multiple", "accept"], G = { class: "drag-drop-content" }, K = {
           l("div", de, [
             l("button", {
               class: "button",
-              onClick: U,
+              onClick: C,
               disabled: f.value
             }, " Clear ", 8, pe)
           ])
         ])) : m("", !0),
-        z(P, { error: p.error }, null, 8, ["error"])
+        O(P, { error: p.error }, null, 8, ["error"])
       ]);
     };
   }
-}), me = /* @__PURE__ */ R(ce, [["__scopeId", "data-v-c0f44a95"]]);
+}), me = /* @__PURE__ */ R(ce, [["__scopeId", "data-v-acb25dec"]]);
 export {
   me as default
 };

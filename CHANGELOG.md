@@ -1,5 +1,9 @@
 # Changelog
 
+### [0.17.3] 2025-11-04
+
+- Feature: Adds in a clear-on-success prop for the drag and drop uploader.
+
 ### [0.17.1] 2025-11-04
 
 - Feature: Programmatically open alert and confirm modals.

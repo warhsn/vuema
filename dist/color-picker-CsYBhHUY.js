@@ -2,7 +2,7 @@ import { defineComponent as E, computed as B, resolveComponent as h, createEleme
 import { _ as z } from "./errors-BZdmzG52.js";
 import { _ as N } from "./field-error.vue_vue_type_script_setup_true_lang-C7PfoMZ6.js";
 import { u as T } from "./sizes-tLhbz8lD.js";
-import { _ as q } from "./index-sOG1cr8I.js";
+import { _ as q } from "./index-BLOpkW_g.js";
 const w = ["disabled", "value"], L = "update:modelValue", R = "focus", S = "blur", P = /* @__PURE__ */ E({
   __name: "color-picker",
   props: {
