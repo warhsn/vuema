@@ -18,7 +18,7 @@
             <!-- Search input -->
             <div class="control" :class="{
                 'has-icons-left': leftIcon,
-                'has-icons-right': rightIcon,
+                'has-icons-right': rightIcon || showClearButton,
                 'is-loading': isLoading,
                 'is-expanded': isExpanded
             }">
@@ -38,18 +38,27 @@
                     @keydown.up.prevent="navigateDropdown(-1)"
                     @keydown.esc="closeDropdown"
                 >
-                <b-icon 
-                    v-if="leftIcon" 
-                    class="icon is-small is-left" 
+                <b-icon
+                    v-if="leftIcon"
+                    class="icon is-small is-left"
                     :icon="leftIcon"
                     :icon-type="leftIconType"
                 />
-                <b-icon 
-                    v-if="rightIcon" 
-                    class="icon is-small is-right" 
+                <b-icon
+                    v-if="rightIcon"
+                    class="icon is-small is-right"
                     :icon="rightIcon"
                     :icon-type="rightIconType"
                 />
+                <span
+                    v-if="showClearButton"
+                    class="icon is-small is-right is-clickable clear-button"
+                    @mousedown.prevent="clearSelection"
+                    role="button"
+                    :aria-label="'Clear selection'"
+                >
+                    <i class="fas fa-times-circle"></i>
+                </span>
             </div>
             <!-- Dropdown for search results -->
             <div class="dropdown-menu" v-if="isDropdownOpen && (filteredItems.length > 0 || showAddNew)">
@@ -184,6 +193,10 @@ const showAddNew = computed(() => {
            searchText.value &&
            searchText.value.trim() !== '' &&
            !isItemInList(searchText.value)
+})
+
+const showClearButton = computed(() => {
+    return !props.multiple && props.modelValue && !props.disabled
 })
 
 const filteredItems = computed(() => {
@@ -324,6 +337,17 @@ function removeItem(item: any): void {
     }
 }
 
+function clearSelection(): void {
+    if (blurTimeout.value) {
+        clearTimeout(blurTimeout.value)
+        blurTimeout.value = null
+    }
+
+    emit(inputEvent, null)
+    searchText.value = ''
+    isDropdownOpen.value = false
+}
+
 function addSelectedOrNew(): void {    
     if (activeIndex.value >= 0 && activeIndex.value < filteredItems.value.length) {
         selectItem(filteredItems.value[activeIndex.value])
@@ -427,5 +451,16 @@ watch(() => props.modelValue, (newValue) => {
 .dropdown-item.is-active {
     background-color: #3273dc;
     color: white;
+}
+
+.clear-button {
+    cursor: pointer;
+    pointer-events: all;
+    color: #7a7a7a;
+    transition: color 0.2s ease;
+}
+
+.clear-button:hover {
+    color: #ff3860;
 }
 </style>

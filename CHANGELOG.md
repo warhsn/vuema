@@ -1,5 +1,9 @@
 # Changelog
 
+### [0.17.4] 2025-11-07
+
+- Feature: Adds a clear button to the search-input when in single selection mode.
+
 ### [0.17.3] 2025-11-06
 
 - Feature: Adds in a clear-on-success prop for the drag and drop uploader.
