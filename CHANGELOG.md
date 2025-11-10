@@ -1,5 +1,9 @@
 # Changelog
 
+### [0.17.5] 2025-11-10
+
+- Feature: Adds a clear button to the date picker.
+
 ### [0.17.4] 2025-11-07
 
 - Feature: Adds a clear button to the search-input when in single selection mode.

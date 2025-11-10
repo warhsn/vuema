@@ -1,11 +1,11 @@
 <template>
     <div class="b-date-picker" ref="pickerRef">
         <!-- Mobile fallback: native date input -->
-        <text-input 
+        <text-input
             v-if="isMobile"
             type="date"
             :is-expanded="isExpanded"
-            :has-addons="withIcon"
+            :has-addons="withIcon || showClearButton"
             :is-small="isSmall"
             :is-medium="isMedium"
             :is-large="isLarge"
@@ -29,6 +29,18 @@
                     icon="calendar"
                 />
             </template>
+            <template #right>
+                <icon-button
+                    v-if="showClearButton"
+                    :is-small="isSmall"
+                    :is-medium="isMedium"
+                    :is-large="isLarge"
+                    @click.prevent="clearDateFromButton"
+                    class="is-shadowless"
+                    icon="times-circle"
+                    title="Clear date"
+                />
+            </template>
             <template v-for="slotName in slotNames" :key="slotName" v-slot:[slotName]>
                 <slot :name="slotName"></slot>
             </template>
@@ -36,9 +48,9 @@
 
         <!-- Desktop: custom date picker -->
         <template v-else>
-            <text-input 
+            <text-input
                 :is-expanded="isExpanded"
-                :has-addons="withIcon"
+                :has-addons="withIcon || showClearButton"
                 :is-small="isSmall"
                 :is-medium="isMedium"
                 :is-large="isLarge"
@@ -67,6 +79,18 @@
                         class="is-shadowless"
                         role="presentation"
                         icon="calendar"
+                    />
+                </template>
+                <template #right>
+                    <icon-button
+                        v-if="showClearButton"
+                        :is-small="isSmall"
+                        :is-medium="isMedium"
+                        :is-large="isLarge"
+                        @click.prevent="clearDateFromButton"
+                        class="is-shadowless"
+                        icon="times-circle"
+                        title="Clear date"
                     />
                 </template>
                 <template v-for="slotName in slotNames" :key="slotName" v-slot:[slotName]>
@@ -220,6 +244,7 @@ const showPicker = computed(() => state.showingPicker)
 const displayYear = computed(() => state.currentDate.format('YYYY'))
 const today = computed(() => dayjs().format(props.format))
 const currentMonth = computed(() => state.currentDate.month())
+const showClearButton = computed(() => !!state.selectedDate)
 
 // Convert date format for native input (always YYYY-MM-DD)
 const nativeDateValue = computed(() => {
@@ -399,6 +424,12 @@ function clearDate(): void {
     state.currentDate = dayjs()
     emit('update:model-value', '')
     togglePicker()
+}
+
+function clearDateFromButton(): void {
+    state.selectedDate = null
+    state.currentDate = dayjs()
+    emit('update:model-value', '')
 }
 
 function isDateDisabledHelper(date: Dayjs): boolean {

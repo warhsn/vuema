@@ -196,7 +196,17 @@ const showAddNew = computed(() => {
 })
 
 const showClearButton = computed(() => {
-    return !props.multiple && props.modelValue && !props.disabled
+    if (props.multiple || props.disabled || !props.modelValue) {
+        return false
+    }
+
+    // If it's an array (even in single mode), check if it has items
+    if (Array.isArray(props.modelValue)) {
+        return props.modelValue.length > 0
+    }
+
+    // For non-array values, just check if it exists
+    return true
 })
 
 const filteredItems = computed(() => {
