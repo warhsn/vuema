@@ -2,6 +2,10 @@
 
 ### [0.17.5] 2025-11-10
 
+- Bug: Fixes prop handling for the search input.
+
+### [0.17.5] 2025-11-10
+
 - Feature: Adds a clear button to the date picker.
 
 ### [0.17.4] 2025-11-07

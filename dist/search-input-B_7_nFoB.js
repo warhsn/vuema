@@ -1,8 +1,8 @@
-import { defineComponent as oe, ref as C, computed as V, watch as ae, resolveComponent as q, createElementBlock as v, openBlock as c, createBlock as A, createCommentVNode as y, createElementVNode as g, createVNode as ue, withCtx as P, renderSlot as z, Fragment as R, renderList as U, createTextVNode as se, toDisplayString as L, normalizeClass as T, withDirectives as ie, withKeys as K, withModifiers as w, vModelText as re } from "vue";
+import { defineComponent as oe, ref as k, computed as V, watch as ae, resolveComponent as q, createElementBlock as v, openBlock as c, createBlock as A, createCommentVNode as y, createElementVNode as g, createVNode as ue, withCtx as P, renderSlot as z, Fragment as R, renderList as U, createTextVNode as se, toDisplayString as L, normalizeClass as T, withDirectives as ie, withKeys as K, withModifiers as w, vModelText as re } from "vue";
 import { _ as ce } from "./errors-BZdmzG52.js";
 import { _ as de } from "./field-error.vue_vue_type_script_setup_true_lang-C7PfoMZ6.js";
 import { u as fe } from "./sizes-tLhbz8lD.js";
-import { _ as ve } from "./index-DUjqbKyF.js";
+import { _ as ve } from "./index-B7SVBGUh.js";
 const me = { class: "search-input" }, pe = {
   key: 0,
   class: "tags is-marginless"
@@ -64,68 +64,68 @@ const me = { class: "search-input" }, pe = {
     is12: { type: Boolean }
   },
   setup(o, { emit: G }) {
-    const l = o, H = fe(l), m = G, u = C(""), r = C(!1), s = C(0), i = C(null);
+    const t = o, H = fe(t), m = G, u = k(""), r = k(!1), s = k(0), i = k(null);
     function h() {
-      return l.modelValue ? Array.isArray(l.modelValue) ? l.modelValue : [l.modelValue] : [];
+      return t.modelValue ? Array.isArray(t.modelValue) ? t.modelValue : [t.modelValue] : [];
     }
     function M() {
-      if (l.emitFullObjects !== void 0)
-        return l.emitFullObjects;
+      if (t.emitFullObjects !== void 0)
+        return t.emitFullObjects;
       const e = h();
       if (e.length === 0)
         return !1;
-      const t = e[0];
-      return typeof t == "object" && t !== null && t.hasOwnProperty(l.labelKey);
+      const l = e[0];
+      return typeof l == "object" && l !== null && l.hasOwnProperty(t.labelKey);
     }
     function N(e) {
-      if (e && e[l.labelKey])
-        return e[l.labelKey];
-      if (l.items && l.items.length > 0) {
-        const t = l.items.find((n) => {
+      if (e && e[t.labelKey])
+        return e[t.labelKey];
+      if (t.items && t.items.length > 0) {
+        const l = t.items.find((n) => {
           const d = f(n), a = f(e);
           return d === a;
         });
-        if (t)
-          return I(t);
+        if (l)
+          return I(l);
       }
-      return e[l.labelKey] || e.label || e.name || String(e);
+      return e[t.labelKey] || e.label || e.name || String(e);
     }
     function I(e) {
-      return e ? e[l.labelKey] || e.label || e.name || String(e) : "";
+      return e ? e[t.labelKey] || e.label || e.name || String(e) : "";
     }
     function f(e) {
-      return e ? e[l.valueKey] || e.value || e.id || e : null;
+      return e ? e[t.valueKey] || e.value || e.id || e : null;
     }
-    function S(e, t) {
+    function S(e, l) {
       const n = f(e);
-      return n ? String(n) : `item-${t}`;
+      return n ? String(n) : `item-${l}`;
     }
-    const E = V(() => h()), k = V(() => l.allowNew && u.value && u.value.trim() !== "" && !J(u.value)), F = V(() => l.multiple || l.disabled || !l.modelValue ? !1 : Array.isArray(l.modelValue) ? l.modelValue.length > 0 : !0), p = V(() => {
-      if (!l.items || l.items.length === 0) return [];
+    const E = V(() => h()), C = V(() => t.allowNew && u.value && u.value.trim() !== "" && !J(u.value)), F = V(() => t.multiple || t.disabled || !t.modelValue ? !1 : Array.isArray(t.modelValue) ? t.modelValue.length > 0 : !0), p = V(() => {
+      if (!t.items || t.items.length === 0) return [];
       if (!u.value)
-        return l.items.filter((t) => !$(t));
+        return t.items.filter((l) => !$(l));
       const e = u.value.toLowerCase();
-      return l.items.filter((t) => I(t).toLowerCase().includes(e) && !$(t));
+      return t.items.filter((l) => I(l).toLowerCase().includes(e) && !$(l));
     });
     function $(e) {
-      const t = h();
-      if (t.length === 0) return !1;
+      const l = h();
+      if (l.length === 0) return !1;
       const n = f(e);
-      return t.some((d) => f(d) === n);
+      return l.some((d) => f(d) === n);
     }
     function J(e) {
-      return !l.items || l.items.length === 0 ? !1 : l.items.some(
-        (t) => I(t).toLowerCase() === e.toLowerCase()
+      return !t.items || t.items.length === 0 ? !1 : t.items.some(
+        (l) => I(l).toLowerCase() === e.toLowerCase()
       );
     }
     function Q() {
-      r.value = !0, s.value = 0, !l.multiple && l.modelValue && m(b, null);
+      r.value = !0, s.value = 0, !t.multiple && t.modelValue && m(b, null);
     }
     function W() {
       r.value || (r.value = !0, s.value = 0);
     }
     const X = (e) => {
-      i.value && (clearTimeout(i.value), i.value = null), !l.multiple && (e != null && e.target) && u.value && e.target.select(), r.value = !0, m(Be);
+      i.value && (clearTimeout(i.value), i.value = null), !t.multiple && (e != null && e.target) && u.value && e.target.select(), r.value = !0, m(Be);
     }, Y = () => {
       i.value = setTimeout(() => {
         r.value = !1, m(Ve), i.value = null;
@@ -133,26 +133,26 @@ const me = { class: "search-input" }, pe = {
     };
     function D(e) {
       if (i.value && (clearTimeout(i.value), i.value = null), !$(e)) {
-        const t = M() ? e : f(e), n = l.multiple ? [...h(), t] : t;
+        const l = M() ? e : f(e), n = t.multiple ? [...h(), l] : l;
         m(b, n);
       }
-      u.value = "", s.value = 0, l.multiple || (r.value = !1);
+      u.value = "", s.value = 0, t.multiple || (r.value = !1);
     }
     function O(e) {
-      if (i.value && (clearTimeout(i.value), i.value = null), l.allowNew && e && e.trim() !== "") {
-        const t = {
-          [l.valueKey]: `new-${Date.now()}`,
-          [l.labelKey]: e.trim()
-        }, n = M() ? t : f(t), d = l.multiple ? [...h(), n] : n;
-        m(b, d), u.value = "", s.value = 0, l.multiple || (r.value = !1);
+      if (i.value && (clearTimeout(i.value), i.value = null), t.allowNew && e && e.trim() !== "") {
+        const l = {
+          [t.valueKey]: `new-${Date.now()}`,
+          [t.labelKey]: e.trim()
+        }, n = M() ? l : f(l), d = t.multiple ? [...h(), n] : n;
+        m(b, d), u.value = "", s.value = 0, t.multiple || (r.value = !1);
       }
     }
     function Z(e) {
-      if (l.modelValue)
-        if (!l.multiple)
+      if (t.modelValue)
+        if (!t.multiple)
           m(b, null);
         else {
-          const t = f(e), n = h().filter((d) => f(d) !== t);
+          const l = f(e), n = h().filter((d) => f(d) !== l);
           m(b, n);
         }
     }
@@ -160,29 +160,34 @@ const me = { class: "search-input" }, pe = {
       i.value && (clearTimeout(i.value), i.value = null), m(b, null), u.value = "", r.value = !1;
     }
     function ee() {
-      s.value >= 0 && s.value < p.value.length ? D(p.value[s.value]) : k.value && s.value === p.value.length && O(u.value);
+      s.value >= 0 && s.value < p.value.length ? D(p.value[s.value]) : C.value && s.value === p.value.length && O(u.value);
     }
     function x(e) {
       if (!r.value) {
         r.value = !0;
         return;
       }
-      const t = p.value.length + (k.value ? 1 : 0);
-      if (t === 0) return;
+      const l = p.value.length + (C.value ? 1 : 0);
+      if (l === 0) return;
       let n = s.value + e;
-      n < 0 && (n = t - 1), n >= t && (n = 0), s.value = n;
+      n < 0 && (n = l - 1), n >= l && (n = 0), s.value = n;
     }
     function le() {
       r.value = !1, u.value = "", s.value = 0;
     }
-    const te = ce(l), ne = V(() => ({
-      "is-danger": te.value,
-      "is-rounded": l.isRounded,
-      ...H
-    }));
-    return ae(() => l.modelValue, (e) => {
-      l.multiple || (e ? u.value = N(e) : u.value = "");
-    }, { deep: !0, immediate: !0 }), (e, t) => {
+    const te = ce(t), ne = V(() => {
+      const e = {
+        "is-danger": te.value,
+        "is-rounded": t.isRounded,
+        ...H
+      };
+      return t.classes && t.classes.split(" ").forEach((l) => {
+        l.trim() && (e[l.trim()] = !0);
+      }), e;
+    });
+    return ae(() => t.modelValue, (e) => {
+      t.multiple || (e ? u.value = N(e) : u.value = "");
+    }, { deep: !0, immediate: !0 }), (e, l) => {
       const n = q("field-label"), d = q("b-icon");
       return c(), v("div", null, [
         e.$slots.default || e.$slots.description ? (c(), A(n, {
@@ -224,15 +229,15 @@ const me = { class: "search-input" }, pe = {
               class: T(["input", ne.value]),
               placeholder: o.searchPlaceholder || o.placeholder,
               disabled: o.disabled,
-              "onUpdate:modelValue": t[0] || (t[0] = (a) => u.value = a),
+              "onUpdate:modelValue": l[0] || (l[0] = (a) => u.value = a),
               onInput: Q,
-              onFocus: t[1] || (t[1] = (a) => X(a)),
+              onFocus: l[1] || (l[1] = (a) => X(a)),
               onBlur: Y,
               onClick: W,
               onKeydown: [
                 K(w(ee, ["prevent"]), ["enter"]),
-                t[2] || (t[2] = K(w((a) => x(1), ["prevent"]), ["down"])),
-                t[3] || (t[3] = K(w((a) => x(-1), ["prevent"]), ["up"])),
+                l[2] || (l[2] = K(w((a) => x(1), ["prevent"]), ["down"])),
+                l[3] || (l[3] = K(w((a) => x(-1), ["prevent"]), ["up"])),
                 K(le, ["esc"])
               ]
             }, null, 42, he), [
@@ -256,11 +261,11 @@ const me = { class: "search-input" }, pe = {
               onMousedown: w(_, ["prevent"]),
               role: "button",
               "aria-label": "Clear selection"
-            }, [...t[6] || (t[6] = [
+            }, [...l[6] || (l[6] = [
               g("i", { class: "fas fa-times-circle" }, null, -1)
             ])], 32)) : y("", !0)
           ], 2),
-          r.value && (p.value.length > 0 || k.value) ? (c(), v("div", ge, [
+          r.value && (p.value.length > 0 || C.value) ? (c(), v("div", ge, [
             g("div", we, [
               (c(!0), v(R, null, U(p.value, (a, B) => (c(), v("a", {
                 key: S(a, B),
@@ -268,11 +273,11 @@ const me = { class: "search-input" }, pe = {
                 onMousedown: w((j) => D(a), ["prevent"]),
                 onMouseenter: (j) => s.value = B
               }, L(I(a)), 43, be))), 128)),
-              k.value ? (c(), v("a", {
+              C.value ? (c(), v("a", {
                 key: 0,
                 class: T(["dropdown-item", { "is-active": p.value.length === s.value }]),
-                onMousedown: t[4] || (t[4] = w((a) => O(u.value), ["prevent"])),
-                onMouseenter: t[5] || (t[5] = (a) => s.value = p.value.length)
+                onMousedown: l[4] || (l[4] = w((a) => O(u.value), ["prevent"])),
+                onMouseenter: l[5] || (l[5] = (a) => s.value = p.value.length)
               }, ' Add "' + L(u.value) + '" ', 35)) : y("", !0)
             ])
           ])) : y("", !0)
@@ -281,7 +286,7 @@ const me = { class: "search-input" }, pe = {
       ]);
     };
   }
-}), Ae = /* @__PURE__ */ ve(Ie, [["__scopeId", "data-v-e67c2557"]]);
+}), Ae = /* @__PURE__ */ ve(Ie, [["__scopeId", "data-v-a4110783"]]);
 export {
   Ae as default
 };

@@ -391,11 +391,22 @@ function closeDropdown(): void {
 const hasErrors = _hasErrors(props)
 
 const classes = computed(() => {
-    return {
+    const baseClasses: Record<string, boolean> = {
         'is-danger': hasErrors.value,
         'is-rounded': props.isRounded,
         ...sizes
     }
+
+    // Add custom classes from props if provided
+    if (props.classes) {
+        props.classes.split(' ').forEach(cls => {
+            if (cls.trim()) {
+                baseClasses[cls.trim()] = true
+            }
+        })
+    }
+
+    return baseClasses
 })
 
 watch(() => props.modelValue, (newValue) => {
