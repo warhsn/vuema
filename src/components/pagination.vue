@@ -86,6 +86,7 @@
     color: #363636;
     font-size: 1rem;
     line-height: 1.5;
+    white-space: nowrap;
   }
 
   .pagination-info.is-small {

@@ -1,8 +1,8 @@
 # Changelog
 
-### [0.17.8] 2025-11-10
+### [0.17.9] 2025-11-10
 
-- Feature: Adds a total counter to the pagination component.
+- Refactor: Corrects a white space issue.
 
 ### [0.17.7] 2025-11-10
 
