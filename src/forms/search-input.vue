@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div :class="{ 'is-flex-grow-1': isExpanded }">
         <field-label v-if="$slots.default || $slots.description" :required="required">
             <slot />
             <template #description>
@@ -16,12 +16,13 @@
                 </span>
             </div>
             <!-- Search input -->
-            <div class="control" :class="{
-                'has-icons-left': leftIcon,
-                'has-icons-right': rightIcon || showClearButton,
-                'is-loading': isLoading,
-                'is-expanded': isExpanded
-            }">
+            <div class="field">
+                <div class="control" :class="{
+                    'has-icons-left': leftIcon,
+                    'has-icons-right': rightIcon || showClearButton,
+                    'is-loading': isLoading,
+                    'is-expanded': isExpanded
+                }">
                 <input
                     type="text"
                     class="input"
@@ -59,6 +60,7 @@
                 >
                     <i class="fas fa-times-circle"></i>
                 </span>
+                </div>
             </div>
             <!-- Dropdown for search results -->
             <div class="dropdown-menu" v-if="isDropdownOpen && (filteredItems.length > 0 || showAddNew)">
@@ -425,6 +427,14 @@ watch(() => props.modelValue, (newValue) => {
 .search-input {
     position: relative;
     width: 100%;
+}
+
+.search-input:has(.is-expanded) {
+    flex: 1;
+}
+
+.search-input .field {
+    margin-bottom: 0;
 }
 
 .search-input .tags {

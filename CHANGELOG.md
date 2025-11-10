@@ -1,5 +1,9 @@
 # Changelog
 
+### [0.17.7] 2025-11-10
+
+- Bug: Search input not expanding.
+
 ### [0.17.5] 2025-11-10
 
 - Bug: Fixes prop handling for the search input.
