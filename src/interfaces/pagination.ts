@@ -7,4 +7,6 @@ export interface _Pagination extends _Sizes {
     nextText?: string
     previousText?: string
     lastText?: string
+    showInfo?: boolean
+    infoText?: string
 }

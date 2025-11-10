@@ -4,5 +4,7 @@ declare const _default: import('vue').DefineComponent<_Pagination, {}, {}, {}, {
     nextText: string;
     previousText: string;
     lastText: string;
+    showInfo: boolean;
+    infoText: string;
 }, {}, {}, {}, string, import('vue').ComponentProvideOptions, false, {}, any>;
 export default _default;

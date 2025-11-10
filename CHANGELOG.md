@@ -1,5 +1,9 @@
 # Changelog
 
+### [0.17.8] 2025-11-10
+
+- Feature: Adds a total counter to the pagination component.
+
 ### [0.17.7] 2025-11-10
 
 - Bug: Search input not expanding.
