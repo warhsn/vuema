@@ -1,5 +1,9 @@
 # Changelog
 
+### [0.17.10] 2025-11-11
+
+- Refactor: Modernization of the time input.
+
 ### [0.17.9] 2025-11-10
 
 - Refactor: Corrects a white space issue.

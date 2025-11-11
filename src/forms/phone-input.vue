@@ -154,40 +154,40 @@ const countryDialingCodes = [
     { code: '+972', name: 'Israel' }
 ]
 
-function formatPhoneNumber(digits: string): string {
+function formatPhoneNumber(digits: string, countryCode: string): string {
     if (!digits) return ''
-    
-    const countryCode = (props.countryCode || '').replace(/\D/g, '')
-    const format = countryFormats[countryCode as keyof typeof countryFormats]
-    
+
+    const cleanCountryCode = countryCode.replace(/\D/g, '')
+    const format = countryFormats[cleanCountryCode as keyof typeof countryFormats]
+
     if (format) {
         const match = digits.match(format.pattern)
         if (match) {
             return format.format.replace(/\$(\d)/g, (_, index) => match[parseInt(index)])
         }
     }
-    
+
     // Default formatting for unrecognized formats
     if (digits.length > 6) {
         return `${digits.slice(0, 3)} ${digits.slice(3, 6)} ${digits.slice(6)}`
     }
-    
+
     if (digits.length > 3) {
         return `${digits.slice(0, 3)} ${digits.slice(3)}`
     }
-    
+
     return digits
 }
 
 // Parse country code and phone number from the full modelValue
 const selectedCountryCode = computed(() => {
     if (!props.modelValue) return ''
-    
+
     // Find matching country code from the beginning of the value
     const matchingCode = countryDialingCodes
-        .filter(country => props.modelValue.startsWith(country.code))
+        .filter(country => props.modelValue?.startsWith(country.code))
         .sort((a, b) => b.code.length - a.code.length)[0] // Get longest match
-    
+
     return matchingCode?.code || ''
 })
 
@@ -234,7 +234,7 @@ function handleDialingCodeChange(event: Event): void {
 }
 
 const displayValue = computed(() => {
-    return formatPhoneNumber(phoneDigits.value)
+    return formatPhoneNumber(phoneDigits.value, selectedCountryCode.value)
 })
 
 const isValidPhoneNumber = computed(() => {

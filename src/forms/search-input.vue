@@ -393,7 +393,7 @@ function closeDropdown(): void {
 const hasErrors = _hasErrors(props)
 
 const classes = computed(() => {
-    const baseClasses: Record<string, boolean> = {
+    const baseClasses: Record<string, boolean | undefined> = {
         'is-danger': hasErrors.value,
         'is-rounded': props.isRounded,
         ...sizes

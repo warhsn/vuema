@@ -79,13 +79,14 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    padding: 0.5em 0.75em;
+    min-width: 2.5em;
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+    height: 2.5em;
     border: 1px solid #dbdbdb;
     border-radius: 4px;
-    background-color: white;
-    color: #363636;
+    background-color: transparent;
     font-size: 1rem;
-    line-height: 1.5;
     white-space: nowrap;
   }
 
