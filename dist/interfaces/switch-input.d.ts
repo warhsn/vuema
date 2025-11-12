@@ -1,3 +1,4 @@
 import { _Forms } from './forms';
-export interface _SwitchInput extends _Forms {
+import { _Status } from './status';
+export interface _SwitchInput extends _Forms, _Status {
 }

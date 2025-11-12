@@ -1,5 +1,9 @@
 # Changelog
 
+### [0.17.11] 2025-11-12
+
+- Refactor: Added styling props to the switch input.
+
 ### [0.17.10] 2025-11-11
 
 - Refactor: Modernization of the time input.

@@ -7,14 +7,14 @@
             </template>
         </field-label>
         <div class="field">
-            <input 
+            <input
                 @click="onInput"
-                :id="fieldName" 
-                type="checkbox" 
-                :name="fieldName" 
+                :id="fieldName"
+                type="checkbox"
+                :name="fieldName"
                 :checked="modelValue === true"
                 v-bind="{ disabled }"
-                :class="classes" 
+                :class="switchClasses"
                 class="switch"
             >
             <field-label v-if="$slots['inner-label']" :for="fieldName" :required="required">
@@ -24,6 +24,7 @@
     </div>
 </template>
 <script setup lang="ts">
+import { computed } from 'vue'
 import { _SwitchInput } from '../interfaces/switch-input'
 import { _randomString } from '../computed/strings'
 
@@ -40,4 +41,26 @@ function onInput() {
 }
 
 const fieldName = _randomString()
+
+const switchClasses = computed(() => {
+    return [
+        props.classes,
+        {
+            'is-small': props.isSmall,
+            'is-medium': props.isMedium,
+            'is-large': props.isLarge,
+            'is-primary': props.isPrimary,
+            'is-info': props.isInfo,
+            'is-success': props.isSuccess,
+            'is-warning': props.isWarning,
+            'is-danger': props.isDanger,
+            'is-link': props.isLink,
+            'is-dark': props.isDark,
+            'is-light': props.isLight,
+            'is-black': props.isBlack,
+            'is-white': props.isWhite,
+            'is-text': props.isText,
+        }
+    ]
+})
 </script>
