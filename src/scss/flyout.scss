@@ -12,16 +12,16 @@
 .flyout-container {
     width: 640px;
     height: 100vh;
-    background: var(--bulma-box-background-color, hsl(0, 0%, 100%));
-    color: hsl(0, 0%, 96%);
+    background: var(--bulma-scheme-main);
+    color: var(--bulma-text);
     display: flex;
     flex-direction: column;
-    box-shadow: -4px 0 20px rgba(0, 0, 0, 0.3);
+    box-shadow: var(--bulma-shadow-large, -4px 0 20px rgba(10, 10, 10, 0.1));
 }
 
 .flyout-header {
     padding: 1.5rem;
-    border-bottom: 1px solid hsl(0, 0%, 21%);
+    border-bottom: 1px solid var(--bulma-border);
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -40,7 +40,7 @@
 
 .flyout-footer {
     padding: 1.5rem;
-    border-top: 1px solid hsl(0, 0%, 21%);
+    border-top: 1px solid var(--bulma-border);
     flex-shrink: 0;
 }
 

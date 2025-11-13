@@ -448,10 +448,10 @@ watch(() => props.modelValue, (newValue) => {
     display: block;
     top: 100%;
     left: 0;
-    background: white;
-    border: 1px solid #dbdbdb;
-    border-radius: 4px;
-    box-shadow: 0 2px 3px rgba(10, 10, 10, 0.1), 0 0 0 1px rgba(10, 10, 10, 0.1);
+    background: var(--bulma-scheme-main);
+    border: 1px solid var(--bulma-border);
+    border-radius: var(--bulma-radius);
+    box-shadow: var(--bulma-shadow);
 }
 
 .dropdown-content {
@@ -463,7 +463,7 @@ watch(() => props.modelValue, (newValue) => {
 .dropdown-item {
     display: block;
     padding: 0.375rem 1rem;
-    color: #4a4a4a;
+    color: var(--bulma-text-strong);
     text-decoration: none;
     white-space: nowrap;
     cursor: pointer;
@@ -473,15 +473,9 @@ watch(() => props.modelValue, (newValue) => {
     text-align: left;
 }
 
-.dropdown-item:hover,
-.dropdown-item.is-active {
-    background-color: #f5f5f5;
-    color: #363636;
-}
-
-.dropdown-item.is-active {
-    background-color: #3273dc;
-    color: white;
+.dropdown-item:hover {
+    background-color: var(--bulma-primary) !important;
+    color: var(--bulma-primary-invert) !important;
 }
 
 .clear-button {

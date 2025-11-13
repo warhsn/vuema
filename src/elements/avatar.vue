@@ -1,27 +1,18 @@
 <template>
     <figure class="image is-clickable" :style="`width: ${size}px; height: ${size}px;`">
-        <img 
-            v-if="imageUrl"
-            :width="`${size}px`"
-            :height="`${size}px`"
-            :src="imageUrl"
-            :class="{
-                'is-rounded': isRound
-            }"    
-        />
-        <div 
-            v-else
+        <div
             :style="`
-                width: ${size}px; 
-                height: ${size}px; 
+                width: ${size}px;
+                height: ${size}px;
                 border-radius: ${isRound ? '50%' : '0'};
                 display: flex;
                 align-items: center;
                 justify-content: center;
                 background-color: ${backgroundColour};
-                color: ${textColor};`
+                color: ${textColor};
+                ${imageUrl ? `background-image: url('${imageUrl}'); background-size: cover; background-position: center;` : ''}`
             ">
-            {{ getInitials(name ?? '') }}
+            {{ imageUrl ? '' : getInitials(name ?? '') }}
         </div>
     </figure>
 </template>

@@ -83,8 +83,8 @@
     padding-left: 0.5em;
     padding-right: 0.5em;
     height: 2.5em;
-    border: 1px solid #dbdbdb;
-    border-radius: 4px;
+    border: 1px solid var(--bulma-border);
+    border-radius: var(--bulma-radius);
     background-color: transparent;
     font-size: 1rem;
     white-space: nowrap;

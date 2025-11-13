@@ -1,5 +1,9 @@
 # Changelog
 
+### [0.17.12] 2025-11-13
+
+- Refactor: Styling improvements.
+
 ### [0.17.11] 2025-11-12
 
 - Refactor: Added styling props to the switch input.

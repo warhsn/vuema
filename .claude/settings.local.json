@@ -1,7 +1,9 @@
 {
   "permissions": {
     "allow": [
-      "Bash(npx vitest:*)"
+      "Bash(npx vitest:*)",
+      "Bash(find:*)",
+      "Bash(cat:*)"
     ],
     "deny": []
   }
