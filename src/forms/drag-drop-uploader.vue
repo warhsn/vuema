@@ -86,10 +86,10 @@
         
         <div class="field is-grouped mt-3" v-if="files.length > 0">
             <div class="control">
-                <button 
+                <button
                     class="button is-primary"
                     @click="uploadFiles"
-                    :disabled="isUploading || !endpoint"
+                    :disabled="isUploading || (!endpoint && !presignedUrlCallback)"
                     :class="{ 'is-loading': isUploading }"
                 >
                     {{ uploadButtonText }}
@@ -216,8 +216,8 @@ function clearFiles() {
 }
 
 async function uploadFiles() {
-    if (!props.endpoint) return
-    
+    if (!props.endpoint && !props.presignedUrlCallback) return
+
     isUploading.value = true
     const results: any[] = []
     const errors: any[] = []
@@ -261,33 +261,79 @@ async function uploadFiles() {
 }
 
 async function uploadFile(fileObj: FileWithProgress): Promise<any> {
+    if (props.presignedUrlCallback) {
+        return uploadWithPresignedUrl(fileObj)
+    }
+    return uploadToEndpoint(fileObj)
+}
+
+async function uploadWithPresignedUrl(fileObj: FileWithProgress): Promise<any> {
+    const { url, key } = await props.presignedUrlCallback!(fileObj.file)
+
     return new Promise((resolve, reject) => {
-        const formData = new FormData()
-        formData.append('file', fileObj.file)
-        
-        // Add additional data if provided
-        if (props.additionalData) {
-            Object.entries(props.additionalData).forEach(([key, value]) => {
-                formData.append(key, String(value))
-            })
-        }
-        
         const xhr = new XMLHttpRequest()
-        
+
         xhr.upload.addEventListener('progress', (event) => {
             if (event.lengthComputable) {
                 fileObj.progress = Math.round((event.loaded / event.total) * 100)
                 emit('upload-progress', { file: fileObj.file, progress: fileObj.progress })
             }
         })
-        
+
+        xhr.addEventListener('load', async () => {
+            if (xhr.status >= 200 && xhr.status < 300) {
+                try {
+                    if (props.onUploadComplete) {
+                        const result = await props.onUploadComplete({ file: fileObj.file, key })
+                        resolve(result)
+                    } else {
+                        resolve({ key })
+                    }
+                } catch (error) {
+                    reject(error instanceof Error ? error : new Error('Upload complete callback failed'))
+                }
+            } else {
+                reject(new Error(`Upload failed: HTTP ${xhr.status}`))
+            }
+        })
+
+        xhr.addEventListener('error', () => {
+            reject(new Error('Network error occurred'))
+        })
+
+        xhr.open('PUT', url)
+        xhr.setRequestHeader('Content-Type', fileObj.file.type)
+        xhr.send(fileObj.file)
+    })
+}
+
+async function uploadToEndpoint(fileObj: FileWithProgress): Promise<any> {
+    return new Promise((resolve, reject) => {
+        const formData = new FormData()
+        formData.append('file', fileObj.file)
+
+        if (props.additionalData) {
+            Object.entries(props.additionalData).forEach(([key, value]) => {
+                formData.append(key, String(value))
+            })
+        }
+
+        const xhr = new XMLHttpRequest()
+
+        xhr.upload.addEventListener('progress', (event) => {
+            if (event.lengthComputable) {
+                fileObj.progress = Math.round((event.loaded / event.total) * 100)
+                emit('upload-progress', { file: fileObj.file, progress: fileObj.progress })
+            }
+        })
+
         xhr.addEventListener('load', () => {
             if (xhr.status >= 200 && xhr.status < 300) {
                 try {
                     const response = JSON.parse(xhr.responseText)
                     if (response.errors || response.error || response.validationErrors) {
-                        const errorMessage = response.message || 
-                                           response.error || 
+                        const errorMessage = response.message ||
+                                           response.error ||
                                            (response.errors ? JSON.stringify(response.errors) : 'Validation failed')
                         reject(new Error(errorMessage))
                     } else {
@@ -299,8 +345,8 @@ async function uploadFile(fileObj: FileWithProgress): Promise<any> {
             } else if (xhr.status >= 400 && xhr.status < 500) {
                 try {
                     const errorResponse = JSON.parse(xhr.responseText)
-                    const errorMessage = errorResponse.message || 
-                                       errorResponse.error || 
+                    const errorMessage = errorResponse.message ||
+                                       errorResponse.error ||
                                        (errorResponse.errors ? JSON.stringify(errorResponse.errors) : `HTTP ${xhr.status}: ${xhr.statusText}`)
                     reject(new Error(errorMessage))
                 } catch {
@@ -310,11 +356,11 @@ async function uploadFile(fileObj: FileWithProgress): Promise<any> {
                 reject(new Error(`HTTP ${xhr.status}: ${xhr.statusText}`))
             }
         })
-        
+
         xhr.addEventListener('error', () => {
             reject(new Error('Network error occurred'))
         })
-        
+
         xhr.open('POST', props.endpoint!)
 
         if (props.headers) {
@@ -322,7 +368,7 @@ async function uploadFile(fileObj: FileWithProgress): Promise<any> {
                 xhr.setRequestHeader(key, value)
             })
         }
-        
+
         xhr.send(formData)
     })
 }

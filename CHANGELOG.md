@@ -1,5 +1,9 @@
 # Changelog
 
+### [0.17.13] 2025-12-08
+
+- Feature: Add support for presigned URL's to the drag and drop uploader.
+
 ### [0.17.12] 2025-11-13
 
 - Refactor: Styling improvements.
