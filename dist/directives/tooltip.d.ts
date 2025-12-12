@@ -13,7 +13,7 @@ type TooltipHTMLElement = HTMLElement & {
         cleanup: () => void;
     };
 };
-export declare const vTooltip: ObjectDirective<TooltipHTMLElement, string | TooltipOptions>;
+export declare const vTooltip: ObjectDirective<TooltipHTMLElement, string | TooltipOptions | null | undefined>;
 export declare const TooltipPlugin: {
     install(app: App): void;
 };

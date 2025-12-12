@@ -1,5 +1,9 @@
 # Changelog
 
+### [0.17.14] 2025-12-12
+
+- Bug: Fixes a binding bug for the tooltip directive.
+
 ### [0.17.13] 2025-12-08
 
 - Feature: Add support for presigned URL's to the drag and drop uploader.

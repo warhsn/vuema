@@ -174,11 +174,13 @@ const createTooltip = (el: TooltipHTMLElement, options: TooltipOptions) => {
     return el._tooltipInstance;
 };
 
-export const vTooltip: ObjectDirective<TooltipHTMLElement, string | TooltipOptions> = {
+export const vTooltip: ObjectDirective<TooltipHTMLElement, string | TooltipOptions | null | undefined> = {
     mounted(el, binding) {
-        const options = typeof binding.value === 'string'
+        if (!binding.value) return;
+
+        const options: TooltipOptions = typeof binding.value === 'string'
             ? { content: binding.value }
-            : binding.value;
+            : { ...binding.value };
 
         if (binding.modifiers) {
             if (binding.modifiers.top) options.position = 'top';
@@ -193,17 +195,24 @@ export const vTooltip: ObjectDirective<TooltipHTMLElement, string | TooltipOptio
             if (binding.modifiers.warning) options.color = 'warning';
             if (binding.modifiers.danger) options.color = 'danger';
 
-            options.multiline = binding.modifiers.multiline || options.multiline;
-            options.always = binding.modifiers.always || options.always;
+            if (binding.modifiers.multiline) options.multiline = true;
+            if (binding.modifiers.always) options.always = true;
         }
 
-        createTooltip(el, options as TooltipOptions);
+        createTooltip(el, options);
     },
 
     updated(el, binding) {
-        const options = typeof binding.value === 'string'
+        if (!binding.value) {
+            if (el._tooltipInstance) {
+                el._tooltipInstance.cleanup();
+            }
+            return;
+        }
+
+        const options: TooltipOptions = typeof binding.value === 'string'
             ? { content: binding.value }
-            : binding.value;
+            : { ...binding.value };
 
         if (binding.modifiers) {
             if (binding.modifiers.top) options.position = 'top';
@@ -218,11 +227,11 @@ export const vTooltip: ObjectDirective<TooltipHTMLElement, string | TooltipOptio
             if (binding.modifiers.warning) options.color = 'warning';
             if (binding.modifiers.danger) options.color = 'danger';
 
-            options.multiline = binding.modifiers.multiline || options.multiline;
-            options.always = binding.modifiers.always || options.always;
+            if (binding.modifiers.multiline) options.multiline = true;
+            if (binding.modifiers.always) options.always = true;
         }
 
-        createTooltip(el, options as TooltipOptions);
+        createTooltip(el, options);
     },
 
     beforeUnmount(el) {
