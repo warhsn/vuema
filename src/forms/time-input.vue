@@ -176,6 +176,7 @@ const props = withDefaults(defineProps<TimePickerProps>(), {
     format: '24',
     withIcon: true,
     minuteStep: 1,
+    clearable: true,
 })
 
 const emit = defineEmits<TimePickerEmits>()
@@ -206,7 +207,7 @@ const sizes = useSizes(props)
 const hasErrors = _hasErrors(props)
 
 const showPicker = computed(() => state.showingPicker)
-const showClearButton = computed(() => !!state.selectedTime)
+const showClearButton = computed(() => props.clearable && !!state.selectedTime)
 
 // Convert time format for native input (always HH:mm)
 const nativeTimeValue = computed(() => {

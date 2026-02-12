@@ -24,6 +24,12 @@ export interface TimePickerProps extends _Forms {
     withIcon?: boolean
 
     /**
+     * Show the clear button when a time is selected
+     * Default: true
+     */
+    clearable?: boolean
+
+    /**
      * Step interval for minutes (default: 1)
      * Common values: 1, 5, 15, 30
      */

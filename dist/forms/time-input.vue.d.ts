@@ -21,6 +21,7 @@ declare const __VLS_component: import('vue').DefineComponent<TimePickerProps, {}
 }>, {
     format: "12" | "24";
     withIcon: boolean;
+    clearable: boolean;
     minuteStep: number;
 }, {}, {}, {}, string, import('vue').ComponentProvideOptions, false, {
     pickerRef: HTMLDivElement;

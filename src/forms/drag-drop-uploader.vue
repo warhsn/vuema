@@ -213,6 +213,9 @@ function removeFile(index: number) {
 
 function clearFiles() {
     files.value = []
+    if (fileInput.value) {
+        fileInput.value.value = ''
+    }
 }
 
 async function uploadFiles() {

@@ -1,5 +1,9 @@
 # Changelog
 
+### [0.17.15] 2026-02-12
+
+- Bug: File input not re-selectable after clearing in the drag and drop uploader.
+
 ### [0.17.14] 2025-12-12
 
 - Bug: Fixes a binding bug for the tooltip directive.
